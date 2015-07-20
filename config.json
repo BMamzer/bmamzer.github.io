@@ -3,13 +3,11 @@
   "largeLinks": [
     {
       "name": "bmamzer.github.io/website",
-      "link": "&#47;"
+      "link": "&#47;website"
     }
   ],
   "projectLinks": [
     {
-      "name": "Example Project",
-      "link": "projects&#47;exampleproject&#47;"
     }
   ],
   "layout": {
