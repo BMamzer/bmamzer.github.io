@@ -22,7 +22,7 @@ Zerdian: Space Shooting Game
 
 Just one guy making games in his free time.
 
-## Info
+## History
 
 Finally released my first game Zerdian: Space Shooting Game.
 
