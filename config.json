@@ -6,6 +6,11 @@
       "link": "&#47;"
     }
   ],
+  "projectLinks": [
+    {
+      "name": “Zerdian: Space Shooting Game”
+    }
+  ],
   "layout": {
     "40%_Width": [
       "factsheet"
