@@ -38,13 +38,13 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 ## Videos
 
-And here’s the trailer for my first game [Youtube](http://www.youtube.com/watch?v=IYbvSmNIc8I “Zerdian video”)
+And here’s the trailer for my first game [Youtube](http://www.youtube.com/watch?v=IYbvSmNIc8I)
 
 <iframe src="//www.youtube.com/embed/IYbvSmNIc8I" frameborder="0" allowfullscreen></iframe>
 
 ## Images
 
-download all screenshots & photos as ** [.zip (63 KB)](assets/images/images.zip "Images zip") **
+download all screenshots & photos as ** [.zip (23 MB)](assets/images/images.zip "Images zip") **
 
 [![Screenshot1](assets/images/1.jpg)](assets/images/1.jpg)
 [![Screenshot2](assets/images/2.jpg)](assets/images/2.jpg)
@@ -57,22 +57,12 @@ download all screenshots & photos as ** [.zip (63 KB)](assets/images/images.zip 
 
 ## Icon
 
-download the icon as ** [.zip (7 KB)]( assets/images/icon.zip "Icon zip") **
+download the icon as ** [.zip (323 KB)]( assets/images/icon.zip "Icon zip") **
 
 [![icon](assets/images/icon.png)](assets/images/icon.png "Icon")
 
 **Twitter**  
 [twitter.com/mzrgames][twitter]
-
-**Web**  
-[bmamzer.github.io/website/][homepage]
-
-<!--- =====================================================================  -->
-<!--- Referenced links -->
-
-[homepage]: http://bmamzer.github.io/website/ “Bartlomiej Mamzer“
-
-[contact]: mailto:bartlomiejmamzergames@gmail.com
 
 <!--- Social -->
 
