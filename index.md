@@ -38,7 +38,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 ## Videos
 
-Not a trailer, but here's some of the music! [Youtube](http://www.youtube.com/watch?v=hxQAUADFCzw "Motohiro Kawashima live")
+And here’s the trailer for my first game: [Zerdian Youtube](http://www.youtube.com/watch?v=IYbvSmNIc8I “Zerdian Trailer on Youtube")
 
 <iframe src="//www.youtube.com/embed/IYbvSmNIc8I" frameborder="0" allowfullscreen></iframe>
 
@@ -61,24 +61,20 @@ download logo files as ** [.zip (7 KB)]( assets/images/logo.zip "Logo & Icon zip
 **Twitter**  
 [twitter.com/mzrgames][twitter]
 
-** Facebook**  
-[facebook.com/companyname][facebook]
-
 **Web**  
-[companydomain.com][homepage]
+[bmamzer.github.io/website/][homepage]
 
 <!--- =====================================================================  -->
 <!--- Referenced links -->
 
-[homepage]: http://companydomain.com "Company Name"
+[homepage]: http://bmamzer.github.io/website/ "Company Name"
 
-[contact]: mailto:press-contact@company.com
+[contact]: mailto:bartlomiejmamzergames@gmail.com
 
 <!--- Social -->
 
-[twitter]: https://twitter.com/companyname
-[facebook]: https://facebook.com/companyname
-[skype]: callto:companyskypename
+[twitter]: https://twitter.com/mzrgames
+[skype]: bartek010102
 
 <!--- Projects  -->
 
