@@ -12,14 +12,11 @@ Bartlomiej Mamzer
 [bartlomiejmamzergames@gmail.com][contact]
 
 **Social:**  
-[twitter.com/mzrgames][twitter]
+[twitter.com/mzrgames][twitter]    
 [Skype](callto:bartek010102)
 
 **Releases:**  
 [Zerdian: Space Shooting Game][example_project]
-
-**Phone:**  
-+48 511 101 865
 
 ## Description
 
@@ -41,9 +38,9 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 ## Videos
 
-And here’s the trailer for my first game: [Zerdian](www.youtube.com/watch?v=IYbvSmNIc8I “Zerdian Trailer on Youtube")  
+And here’s the trailer for my first game: [Youtube](www.youtube.com/watch?v=IYbvSmNIc8I “Zerdian Trailer on Youtube")  
 
-<iframe src="//www.youtube.com/watch?v=IYbvSmNIc8I" frameborder="0" allowfullscreen></iframe>
+<iframe src="//www.youtube.com/embed/IYbvSmNIc8I" frameborder="0" allowfullscreen></iframe>
 
 ## Images
 
@@ -62,7 +59,7 @@ download logo files as ** [.zip (7 KB)]( assets/images/logo.zip "Logo & Icon zip
 [![icon](assets/images/icon.png)](assets/images/icon.png "Icon")
 
 **Twitter**  
-[twitter.com/companyname][twitter]
+[twitter.com/mzrgames][twitter]
 
 ** Facebook**  
 [facebook.com/companyname][facebook]
