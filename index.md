@@ -1,4 +1,4 @@
-# ![Bartlomiej Mamzer](assets/images/header.png)
+# ![Bartlomiej Mamzer](assets/images/header.jpg)
 
 ## Factsheet
 
