@@ -38,7 +38,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 ## Videos
 
-And here’s the trailer for my first game [Youtube](http://www.youtube.com/watch?v=IYbvSmNIc8I "Motohiro Kawashima live")
+And here’s the trailer for my first game [Youtube](http://www.youtube.com/watch?v=IYbvSmNIc8I “Zerdian video”)
 
 <iframe src="//www.youtube.com/embed/IYbvSmNIc8I" frameborder="0" allowfullscreen></iframe>
 
@@ -46,16 +46,19 @@ And here’s the trailer for my first game [Youtube](http://www.youtube.com/watc
 
 download all screenshots & photos as ** [.zip (63 KB)](assets/images/images.zip "Images zip") **
 
-[![image_01_name](assets/images/image_01.png)](assets/images/image_01.png)
-[![image_02_name](assets/images/image_02.png)](assets/images/image_02.png)
-[![image_03_name](assets/images/image_03.png)](assets/images/image_03.png)
-[![image_04_name](assets/images/image_04.png)](assets/images/image_04.png)
+[![Screenshot1](assets/images/1.jpg)](assets/images/1.jpg)
+[![Screenshot2](assets/images/2.jpg)](assets/images/2.jpg)
+[![Screenshot3](assets/images/3.jpg)](assets/images/3.jpg)
+[![Screenshot4](assets/images/4.jpg)](assets/images/4.jpg)
+[![Screenshot5](assets/images/5.jpg)](assets/images/5.jpg)
+[![Screenshot6](assets/images/6.jpg)](assets/images/6.jpg)
+[![Screenshot7](assets/images/7.jpg)](assets/images/7.jpg)
+[![Screenshot8](assets/images/8.jpg)](assets/images/8.jpg)
 
-## Logo & Icon
+## Icon
 
-download logo files as ** [.zip (7 KB)]( assets/images/logo.zip "Logo & Icon zip") **
+download the icon as ** [.zip (7 KB)]( assets/images/icon.zip "Icon zip") **
 
-[![logo](assets/images/logo.png)](assets/images/logo.png "Logo")
 [![icon](assets/images/icon.png)](assets/images/icon.png "Icon")
 
 **Twitter**  
@@ -67,7 +70,7 @@ download logo files as ** [.zip (7 KB)]( assets/images/logo.zip "Logo & Icon zip
 <!--- =====================================================================  -->
 <!--- Referenced links -->
 
-[homepage]: http://bmamzer.github.io/website/ "Company Name"
+[homepage]: http://bmamzer.github.io/website/ “Bartlomiej Mamzer“
 
 [contact]: mailto:bartlomiejmamzergames@gmail.com
 
