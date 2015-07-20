@@ -8,7 +8,8 @@
   ],
   "projectLinks": [
     {
-      "name": “Zerdian: Space Shooting Game”
+      "name": “Zerdian: Space Shooting Game”,
+      "link": "projects&#47;exampleproject&#47;"
     }
   ],
   "layout": {
