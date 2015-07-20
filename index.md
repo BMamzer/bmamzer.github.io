@@ -16,7 +16,7 @@ Bartlomiej Mamzer
 [Skype](callto:bartek010102)
 
 **Releases:**  
-[Zerdian: Space Shooting Game][example_project]
+Zerdian: Space Shooting Game
 
 ## Description
 
@@ -60,9 +60,6 @@ download all screenshots & photos as ** [.zip (23 MB)](assets/images/images.zip 
 download the icon as ** [.zip (323 KB)]( assets/images/icon.zip "Icon zip") **
 
 [![icon](assets/images/icon.jpg)](assets/images/icon.jpg "Icon")
-
-**Twitter**  
-[twitter.com/mzrgames][twitter]
 
 <!--- =====================================================================  -->
 <!--- Referenced links -->

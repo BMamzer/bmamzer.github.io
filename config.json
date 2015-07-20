@@ -1,15 +1,9 @@
 {
-  "title": "Press Kit - Company Name",
+  "title": "Press Kit - Bartlomiej Mamzer”,
   "largeLinks": [
     {
-      "name": "CompanyName.com",
+      "name": "bmamzer.github.io/website",
       "link": "&#47;"
-    }
-  ],
-  "projectLinks": [
-    {
-      "name": "Example Project",
-      "link": "projects&#47;exampleproject&#47;"
     }
   ],
   "layout": {
@@ -18,8 +12,7 @@
     ],
     "60%_Width": [
       "description",
-      "history",
-      "projects"
+      "history"
     ],
     "50%_Width": [
       "team-repeating-collaborator",
