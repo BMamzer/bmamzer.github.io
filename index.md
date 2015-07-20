@@ -38,7 +38,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 ## Videos
 
-And here’s the trailer for my first game: [Youtube](http://www.youtube.com/watch?v=IYbvSmNIc8I “Zerdian Trailer on Youtube")
+Not a trailer, but here's some of the music! [Youtube](http://www.youtube.com/watch?v=hxQAUADFCzw "Motohiro Kawashima live")
 
 <iframe src="//www.youtube.com/embed/IYbvSmNIc8I" frameborder="0" allowfullscreen></iframe>
 
