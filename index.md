@@ -6,7 +6,7 @@
 Bartlomiej Mamzer
 
 **Website:**  
-[http://bmamzer.github.io/website][homepage]
+[bmamzer.github.io/website][homepage]
 
 **Press / Business contact:**  
 [bartlomiejmamzergames@gmail.com][contact]
@@ -59,7 +59,7 @@ download all screenshots & photos as ** [.zip (23 MB)](assets/images/images.zip 
 
 download the icon as ** [.zip (323 KB)]( assets/images/icon.zip "Icon zip") **
 
-[![icon](assets/images/icon.png)](assets/images/icon.png "Icon")
+[![icon](assets/images/icon.jpg)](assets/images/icon.jpg "Icon")
 
 **Twitter**  
 [twitter.com/mzrgames][twitter]
@@ -69,7 +69,7 @@ download the icon as ** [.zip (323 KB)]( assets/images/icon.zip "Icon zip") **
 
 [homepage]: http://bmamzer.github.io/website “Bartlomiej Mamzer”
 
-[contact]: mailto: bartlomiejmamzergames@gmail.com
+[contact]: mailto:bartlomiejmamzergames@gmail.com
 
 <!--- Social -->
 
