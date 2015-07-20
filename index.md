@@ -1,4 +1,4 @@
-# ![Company Name](assets/images/header.png)
+# ![Bartlomiej Mamzer](assets/images/header.png)
 
 ## Factsheet
 
@@ -34,7 +34,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 ## Projects
 
-* [Zerdian: Space Shooting Game][example_project]
+* Zerdian: Space Shooting Game
 
 ## Videos
 
@@ -67,7 +67,7 @@ download the icon as ** [.zip (323 KB)]( assets/images/icon.zip "Icon zip") **
 <!--- =====================================================================  -->
 <!--- Referenced links -->
 
-[homepage]: http://bmamzer.github.io/website “Bartlomiej Mamzer”
+[homepage]: http://bmamzer.github.io/website
 
 [contact]: mailto:bartlomiejmamzergames@gmail.com
 
@@ -75,7 +75,3 @@ download the icon as ** [.zip (323 KB)]( assets/images/icon.zip "Icon zip") **
 
 [twitter]: https://twitter.com/mzrgames
 [skype]: bartek010102
-
-<!--- Projects  -->
-
-[example_project]: projects/exampleproject/
