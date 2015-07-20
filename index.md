@@ -22,11 +22,9 @@ Zerdian: Space Shooting Game
 
 Just one guy making games in his free time.
 
-## History
+## Info
 
-### Info
-
-Finally release my first game Zerdian: Space Shooting Game
+Finally released my first game Zerdian: Space Shooting Game.
 
 ## Projects
 
