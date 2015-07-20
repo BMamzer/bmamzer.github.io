@@ -1,14 +1,14 @@
 {
-  "title": "Press Kit - Bartlomiej Mamzer”,
+  "title": "Press Kit - Company Name",
   "largeLinks": [
     {
-      "name": "bmamzer.github.io/website",
+      "name": "CompanyName.com",
       "link": "&#47;"
     }
   ],
   "projectLinks": [
     {
-      "name": “Zerdian: Space Shooting Game”,
+      "name": "Example Project",
       "link": "projects&#47;exampleproject&#47;"
     }
   ],
