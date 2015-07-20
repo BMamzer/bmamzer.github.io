@@ -38,7 +38,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 ## Videos
 
-And here’s the trailer for my first game: [Youtube](www.youtube.com/watch?v=IYbvSmNIc8I “Zerdian Trailer on Youtube")  
+And here’s the trailer for my first game: [Youtube](http://www.youtube.com/watch?v=IYbvSmNIc8I “Zerdian Trailer on Youtube")
 
 <iframe src="//www.youtube.com/embed/IYbvSmNIc8I" frameborder="0" allowfullscreen></iframe>
 
