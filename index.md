@@ -24,7 +24,7 @@ Bartlomiej Mamzer is just one guy, making games in his free time.
 
 ## History
 
-Zerdian is Bartlomiej’s first officially released game.
+Zerdian is Bartlomiej Mamzer’s first officially released game.
 It took quite a while to finish it. Mainly because of the fact that, as a starting developer, Bartlomiej had to learn how to use leaderboards, achievements, cloud save, replays and other cool features that he could find.
 During the development the approach changed a few times, the final version could be described as a mix between Geometry Wars, Raptor: Call of the Shadows and Diablo.
 The most obvious connection (to Geometry Wars) is the main gameplay and special effects - Zerdian is a twin stick shooter with morphing backgrounds.
