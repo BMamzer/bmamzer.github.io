@@ -1,32 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <title>Zerdian</title>
 
-    <title></title>
+  <!-- Make all relative URLs load from the site root -->
+  <base href="/" />
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src='src/thirdparty/flatdoc-0.9/legacy.js'></script>
-    <script src='src/thirdparty/flatdoc-0.9/flatdoc.js'></script>
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-    <link href='src/css/style.css' rel='stylesheet' title='style'>
-
-    <script src='src/js/zerdian/main.js'></script>
+  <link rel="stylesheet" href="src/css/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="src/thirdparty/flatdoc-0.9/legacy.js"></script>
+  <script src="src/thirdparty/flatdoc-0.9/flatdoc.js"></script>
+  <script>
+    // point Flatdoc at the root markdown file
+    Flatdoc.run({ fetcher: Flatdoc.file('/index.md') });
+  </script>
+  <script src="src/js/main.js"></script>
 </head>
+<body role="flatdoc" class="no-literate">
+  <noscript>This site requires JavaScript. Turn it on!</noscript>
 
-<body role='flatdoc' class='no-literate'>
-    <noscript>This site requires JavaScript. Turn it the heck on!</noscript>
-
-    <div class='content-root'>
-        <div class='menubar'>
-            <div class='menu section' role='flatdoc-menu'></div>
-        </div>
-        <div role='flatdoc-content' class='content'></div>
-    </div>
-
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  <div class="content-root">
+    <div class="menubar"><div class="menu section" role="flatdoc-menu"></div></div>
+    <div role="flatdoc-content" class="content"></div>
+  </div>
 </body>
 </html>
