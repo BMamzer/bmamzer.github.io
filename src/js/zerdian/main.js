@@ -1,5 +1,5 @@
 Flatdoc.run({
-  fetcher: Flatdoc.file('index.md')
+  fetcher: Flatdoc.file('zerdian/index.md')
 });
 
 
