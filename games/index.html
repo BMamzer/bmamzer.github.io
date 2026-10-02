@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Games by Bartlomiej Mamzer</title>
+  <meta name="description" content="Mobile games by Bartlomiej Mamzer, including Potato Farmer. Privacy policy and contact." />
+  <style>
+    :root { --ink: #3a1d14; --muted: #6b5a52; --card: #fffdf7; --line: #ecdcc4; --green: #4cb52f; --sky: #6ec6ff; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font: 17px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: var(--ink);
+      background: linear-gradient(180deg, var(--sky) 0, #d9f1ff 340px, #f4fbff 100%); min-height: 100vh; }
+    main { max-width: 760px; margin: 0 auto; padding: 48px 20px 64px; }
+    h1 { font-size: clamp(28px, 6vw, 40px); line-height: 1.15; margin: 0 0 6px; }
+    .lead { margin: 0 0 32px; opacity: .85; }
+    .card { background: var(--card); border: 3px solid var(--line); border-radius: 20px; padding: 22px 24px; margin-bottom: 20px;
+      box-shadow: 0 6px 0 rgba(58, 29, 20, .08); }
+    .game { display: flex; gap: 18px; align-items: flex-start; }
+    .icon { flex: none; width: 72px; height: 72px; border-radius: 18px; background: #b5793f; display: grid; place-items: center;
+      font-size: 42px; border: 3px solid var(--ink); }
+    h2 { margin: 0 0 4px; font-size: 22px; }
+    .tag { margin: 0 0 10px; color: var(--muted); }
+    .links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+    .links a { display: inline-block; padding: 9px 16px; border-radius: 12px; border: 2px solid var(--ink); color: var(--ink);
+      text-decoration: none; font-weight: 600; background: #fff; }
+    .links a.primary { background: var(--green); color: #fff; }
+    .links a:hover { filter: brightness(.95); }
+    h3 { margin: 0 0 8px; font-size: 18px; }
+    p { margin: 0 0 10px; }
+    a { color: #1f6fb2; }
+    footer { margin-top: 36px; font-size: 14px; color: var(--muted); text-align: center; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Games by Bartlomiej Mamzer</h1>
+    <p class="lead">Cozy, silly games for Android and iOS.</p>
+
+    <section class="card game">
+      <div class="icon" aria-hidden="true">🥔</div>
+      <div>
+        <h2>Potato Farmer</h2>
+        <p class="tag">You are a potato. You farm potatoes. Plant, harvest, cook, decorate and build your spud empire.</p>
+        <div class="links">
+          <!-- add the store links when the game is live:
+          <a class="primary" href="https://play.google.com/store/apps/details?id=bartmamzer.potato.farmer.game">Google Play</a>
+          <a class="primary" href="https://apps.apple.com/app/id6816941711">App Store</a>
+          -->
+          <a href="/games/PrivacyPolicy">Privacy Policy</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h3>Privacy</h3>
+      <p>Our <a href="/games/PrivacyPolicy">Privacy Policy</a> covers all our mobile games: what information is processed, who receives
+        it, the choices you have, and how to delete your data.</p>
+    </section>
+
+    <section class="card">
+      <h3>Contact and support</h3>
+      <p>Questions, feedback or a data deletion request? Email
+        <a href="mailto:bartlomiejmamzergames@gmail.com">bartlomiejmamzergames@gmail.com</a>.</p>
+    </section>
+
+    <footer>© 2026 Bartlomiej Mamzer</footer>
+  </main>
+</body>
+</html>
