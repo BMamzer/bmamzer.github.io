@@ -513,7 +513,8 @@
       ],
       "released": "2016",
       "platforms": [
-        "ios"
+        "ios",
+        "android"
       ],
       "stores": [
         {
@@ -555,7 +556,8 @@
           }
         ],
         "trailer": "/assets/games/cryptograms/trailer.mp4"
-      }
+      },
+      "unavailable": "No longer on Google Play"
     },
     {
       "id": "christmas-santa-ragdoll-run",
@@ -653,7 +655,8 @@
       ],
       "released": "2014",
       "platforms": [
-        "ios"
+        "ios",
+        "android"
       ],
       "stores": [
         {
@@ -690,7 +693,8 @@
         "cover": "/assets/games/zerdian-wars/cover.webp",
         "hero": "/assets/games/zerdian-wars/hero.webp",
         "trailer": "/assets/games/zerdian-wars/trailer.mp4"
-      }
+      },
+      "unavailable": "No longer on Google Play"
     }
   ]
 }
