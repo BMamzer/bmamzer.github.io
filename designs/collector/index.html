@@ -20,24 +20,8 @@
   <meta name="twitter:description" content="Indie games for PC, iOS and Android, by a solo developer.">
   <meta name="twitter:image" content="https://bartmamzer.com/assets/site/og.jpg">
   <link rel="icon" href="/designs/collector/favicon.svg" type="image/svg+xml">
-  <script>
-    // Design poll only: ?font=cinzel or grimoire (Cinzel with Alegreya) swaps the fonts (Sora is the default) and
-    // ?palette=ember or ice the colours. Drop this and the unused font links once both are picked.
-    (() => {
-      const q = new URLSearchParams(location.search);
-      const font = q.get('font');
-      if (['cinzel', 'grimoire'].includes(font)) document.documentElement.dataset.font = font;
-      const palette = q.get('palette');
-      const theme = { ember: '#170c0b', ice: '#08151c' }[palette];
-      if (!theme) return;
-      document.documentElement.dataset.palette = palette;
-      document.querySelector('meta[name="theme-color"]').content = theme;
-      document.querySelector('link[rel="icon"]').href = `/designs/collector/favicon-${palette}.svg`;
-    })();
-  </script>
-  <link rel="preload" href="/assets/fonts/inter/inter-400-800-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/fonts/inter/font.css">
-  <link rel="stylesheet" href="/assets/fonts/sora/font.css">
+  <link rel="preload" href="/assets/fonts/cinzel/cinzel-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/alegreya/alegreya-400-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/fonts/cinzel/font.css">
   <link rel="stylesheet" href="/assets/fonts/alegreya/font.css">
   <link rel="stylesheet" href="/designs/collector/style.css">

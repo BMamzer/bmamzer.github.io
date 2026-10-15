@@ -1,6 +1,6 @@
-/* Collector: the Holo card collection with grown-up type. Palette and type live in the custom properties below. */
+/* Collector: the Holo card collection with Grimoire's type (Cinzel and Alegreya). Palette and type live in the custom properties below. */
 
-/* Palettes: gold is the default; html[data-palette] switches to ember or ice. Every colour lives in these tokens. */
+/* Every colour lives in these tokens. */
 :root {
   --bg: #0d1226;
   --bg-deep: #070a17;
@@ -36,101 +36,6 @@
   --mark-a: #fff1c2;
   --mark-b: #e2a537;
   --mark-c: #ffd873;
-  --display: 'Sora', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --d-weight: 700;
-  --d-track: -0.02em;
-  --d-case: none;
-  --d-scale: 1;
-  --title-scale: 0.9;
-  --title-lh: 1;
-  --card-scale: 0.92;
-  --radius: 22px;
-  --wrap: 1280px;
-  --gutter: clamp(16px, 4vw, 40px);
-  color-scheme: dark;
-}
-:root[data-palette="ember"] {
-  --bg: #170c0b;
-  --bg-deep: #0b0505;
-  --sky-top: #3b1610;
-  --void: #070303;
-  --panel: rgba(50, 22, 18, 0.72);
-  --panel-solid: #231110;
-  --card-top: #2e1511;
-  --card-body: #1e0e0c;
-  --card-bottom: #110606;
-  --ink: #fff4ee;
-  --muted: #e2c7bb;
-  --faint: #ab8c80;
-  --hi: #ff9447;
-  --hi-2: #ffc46b;
-  --hi-3: #ff6b57;
-  --hi-4: #c8451d;
-  --on-hi: #200a02;
-  --title: linear-gradient(180deg, #fff4e2 0%, #ffd08a 36%, #ff8a3d 64%, #e5532f 100%);
-  --btn: linear-gradient(180deg, #ffa25c, #f06a2c);
-  --btn-ink: #200a02;
-  --btn-glow: rgba(255, 122, 51, 0.5);
-  --foil: linear-gradient(100deg, #9c2f1a, #ffb067 30%, #e0482f 55%, #ffd9a0 75%, #9c2f1a);
-  --blob-a: rgba(255, 96, 60, 0.24);
-  --blob-b: rgba(255, 170, 80, 0.16);
-  --blob-c: rgba(170, 40, 30, 0.3);
-  --back-1: #6a2416;
-  --back-2: #1c0907;
-  --back-3: #3a130d;
-  --paper: #fff1e3;
-  --paper-ink: #4a1a10;
-  --mark-a: #ffd08a;
-  --mark-b: #e5532f;
-  --mark-c: #ffb067;
-}
-:root[data-palette="ice"] {
-  --bg: #08151c;
-  --bg-deep: #040b10;
-  --sky-top: #103140;
-  --void: #02070a;
-  --panel: rgba(14, 40, 52, 0.72);
-  --panel-solid: #0d2230;
-  --card-top: #11313f;
-  --card-body: #0b1f2a;
-  --card-bottom: #061219;
-  --ink: #f0fbff;
-  --muted: #b8d4de;
-  --faint: #7fa1ad;
-  --hi: #8fe6f7;
-  --hi-2: #a8f0d8;
-  --hi-3: #c9d6ff;
-  --hi-4: #4aa8d8;
-  --on-hi: #04222b;
-  --title: linear-gradient(180deg, #ffffff 0%, #e2f8ff 40%, #8fdcf0 66%, #eafcff 100%);
-  --btn: linear-gradient(180deg, #b6f2ff, #74d6ee);
-  --btn-ink: #04222b;
-  --btn-glow: rgba(127, 227, 245, 0.45);
-  --foil: linear-gradient(100deg, #4f98b0, #e8fbff 30%, #7fd3e8 55%, #ffffff 75%, #4f98b0);
-  --blob-a: rgba(127, 227, 245, 0.2);
-  --blob-b: rgba(70, 130, 220, 0.24);
-  --blob-c: rgba(168, 240, 216, 0.13);
-  --back-1: #1b5068;
-  --back-2: #06141b;
-  --back-3: #0f3040;
-  --paper: #effbff;
-  --paper-ink: #0b3442;
-  --mark-a: #ffffff;
-  --mark-b: #4aa8d8;
-  --mark-c: #b6f2ff;
-}
-
-/* Type options for the design poll: html[data-font] swaps the fonts. Body text is Inter except in the Grimoire pairing. */
-:root[data-font="cinzel"] {
-  --display: 'Cinzel', Georgia, serif;
-  --d-track: 0.01em;
-  --d-scale: 0.92;
-  --title-scale: 0.78;
-  --title-lh: 1.05;
-  --card-scale: 0.84;
-}
-:root[data-font="grimoire"] {
   --display: 'Cinzel', Georgia, serif;
   --body: 'Alegreya', Georgia, 'Times New Roman', serif;
   --d-weight: 600;
@@ -139,7 +44,11 @@
   --title-scale: 0.78;
   --title-lh: 1.05;
   --card-scale: 0.84;
+  --radius: 22px;
+  --wrap: 1280px;
+  --gutter: clamp(16px, 4vw, 40px);
   font-size: 106.25%;
+  color-scheme: dark;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -832,8 +741,7 @@ html.gyro .card.rare .foil { animation: none; background-position: calc(50% + va
 
 .collection:focus { outline: none; }
 
-/* Display type: every font option sets its weight, tracking and case through the tokens. */
+/* Display type: weight and tracking come from the tokens. */
 .brand-name, .section-title, .sub-title, .hero-title, .card-title, .count strong, .profile-name, .stat dd, .d-title {
   font-weight: var(--d-weight); letter-spacing: var(--d-track);
 }
-.hero-title, .section-title, .sub-title, .d-title { text-transform: var(--d-case); }

@@ -20,17 +20,6 @@
   <meta name="twitter:description" content="Indie games for PC, iOS and Android, by a solo developer.">
   <meta name="twitter:image" content="https://bartmamzer.com/assets/site/og.jpg">
   <link rel="icon" href="/designs/holo/favicon.svg" type="image/svg+xml">
-  <script>
-    // Design poll only: ?palette=ember or ?palette=ice shows the other colour sets. Drop this once a palette is picked.
-    (() => {
-      const palette = new URLSearchParams(location.search).get('palette');
-      const theme = { ember: '#170c0b', ice: '#08151c' }[palette];
-      if (!theme) return;
-      document.documentElement.dataset.palette = palette;
-      document.querySelector('meta[name="theme-color"]').content = theme;
-      document.querySelector('link[rel="icon"]').href = `/designs/holo/favicon-${palette}.svg`;
-    })();
-  </script>
   <link rel="preload" href="/assets/fonts/lilita-one/lilita-one-400-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/nunito/nunito-400-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/fonts/lilita-one/font.css">
