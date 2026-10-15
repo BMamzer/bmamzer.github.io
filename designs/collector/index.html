@@ -4,43 +4,67 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Bart Mamzer | Indie games</title>
-  <meta name="description" content="Indie games for PC, iOS and Android by Bart Mamzer, a solo game developer from Poland.">
+  <meta name="description" content="Indie games for PC, iOS and Android, made by Bart Mamzer, an independent game developer from Poland.">
   <link rel="canonical" href="https://bartmamzer.com/">
-  <meta name="theme-color" content="#0d0d0f">
+  <meta name="theme-color" content="#0d1226">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Bart Mamzer">
   <meta property="og:title" content="Bart Mamzer | Indie games">
-  <meta property="og:description" content="Indie games by a solo developer. Action RPGs, strategy and idle games for PC, iOS and Android.">
+  <meta property="og:description" content="Indie games for PC, iOS and Android, by a solo developer.">
   <meta property="og:url" content="https://bartmamzer.com/">
   <meta property="og:image" content="https://bartmamzer.com/assets/site/og.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Bart Mamzer | Indie games">
-  <meta name="twitter:description" content="Indie games by a solo developer.">
+  <meta name="twitter:description" content="Indie games for PC, iOS and Android, by a solo developer.">
   <meta name="twitter:image" content="https://bartmamzer.com/assets/site/og.jpg">
   <link rel="icon" href="/designs/collector/favicon.svg" type="image/svg+xml">
-  <link rel="preload" href="/assets/fonts/instrument-serif/instrument-serif-400-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/assets/fonts/inter/inter-400-600-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/fonts/instrument-serif/font.css">
-  <link rel="stylesheet" href="/assets/fonts/barlow-condensed/font.css">
+  <script>
+    // Design poll only: ?font=cinzel, chakra or unbounded swaps the display font (Sora is the default) and
+    // ?palette=ember or ice the colours. Drop this and the unused font links once both are picked.
+    (() => {
+      const q = new URLSearchParams(location.search);
+      const font = q.get('font');
+      if (['cinzel', 'chakra', 'unbounded'].includes(font)) document.documentElement.dataset.font = font;
+      const palette = q.get('palette');
+      const theme = { ember: '#170c0b', ice: '#08151c' }[palette];
+      if (!theme) return;
+      document.documentElement.dataset.palette = palette;
+      document.querySelector('meta[name="theme-color"]').content = theme;
+      document.querySelector('link[rel="icon"]').href = `/designs/collector/favicon-${palette}.svg`;
+    })();
+  </script>
+  <link rel="preload" href="/assets/fonts/inter/inter-400-800-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/fonts/inter/font.css">
+  <link rel="stylesheet" href="/assets/fonts/sora/font.css">
+  <link rel="stylesheet" href="/assets/fonts/cinzel/font.css">
+  <link rel="stylesheet" href="/assets/fonts/chakra-petch/font.css">
+  <link rel="stylesheet" href="/assets/fonts/unbounded/font.css">
   <link rel="stylesheet" href="/designs/collector/style.css">
   <script type="module" src="/designs/collector/app.js"></script>
 </head>
 <body>
   <a class="skip" href="#collection">Skip to the games</a>
 
+  <div class="sky" aria-hidden="true">
+    <span class="blob blob-a"></span>
+    <span class="blob blob-b"></span>
+    <span class="blob blob-c"></span>
+    <span class="stars"></span>
+    <span class="stars stars-twinkle"></span>
+  </div>
+
   <header class="topbar">
     <div class="wrap topbar-inner">
       <a class="brand" href="#top" aria-label="Bart Mamzer, back to top">
-        <img src="/designs/collector/favicon.svg" alt="" width="26" height="26">
-        <span>Bart Mamzer</span>
+        <span class="mark" data-mark></span>
+        <span class="brand-name">Bart Mamzer</span>
       </a>
       <nav aria-label="Sections">
         <ul class="nav">
           <li><a href="#collection">Games</a></li>
-          <li><a href="#about">About</a></li>
+          <li><a href="#profile">About</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
@@ -51,67 +75,57 @@
     <section class="hero" aria-labelledby="hero-title">
       <div class="wrap hero-inner">
         <div class="hero-copy">
-          <p class="kicker" id="hero-kicker">Independent game studio</p>
+          <p class="eyebrow" id="hero-eyebrow">Independent game studio</p>
           <h1 class="hero-title" id="hero-title">Bart Mamzer</h1>
           <p class="hero-lead" id="hero-lead"></p>
           <p class="hero-sub" id="hero-sub"></p>
           <div class="hero-cta">
-            <a class="btn btn-solid" href="#collection">View the collection</a>
-            <a class="btn btn-line" href="#about">About me</a>
+            <a class="btn btn-primary" href="#collection">Browse the collection</a>
+            <a class="btn btn-ghost" href="#profile">Meet the developer</a>
           </div>
         </div>
-
-        <div class="showcase" id="showcase" aria-roledescription="carousel" aria-label="Spotlight games">
-          <ul class="deck" id="deck"></ul>
-          <div class="showcase-bar">
-            <button class="icon-btn" type="button" id="deck-prev" aria-label="Previous card">
-              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M15.4 5.4 14 4l-8 8 8 8 1.4-1.4L8.8 12z" fill="currentColor"/></svg>
-            </button>
-            <p class="deck-caption" id="deck-caption" aria-live="polite"></p>
-            <button class="icon-btn" type="button" id="deck-next" aria-label="Next card">
-              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M8.6 18.6 10 20l8-8-8-8-1.4 1.4 6.6 6.6z" fill="currentColor"/></svg>
-            </button>
-          </div>
-        </div>
+        <ul class="hand" id="hand" aria-label="Spotlight games"></ul>
       </div>
     </section>
 
     <section class="collection" id="collection" aria-labelledby="collection-title" tabindex="-1">
       <div class="wrap">
-        <header class="section-head">
+        <div class="section-head">
           <div>
-            <p class="kicker">The collection</p>
+            <p class="eyebrow">The collection</p>
             <h2 class="section-title" id="collection-title">Every card is a game you can play</h2>
           </div>
           <p class="count" id="count" aria-live="polite"></p>
-        </header>
+        </div>
 
         <div class="controls" id="controls">
-          <div class="tabs" id="platform-tabs" role="group" aria-label="Platform"></div>
-          <div class="selects">
+          <div class="chip-row" id="platform-row">
+            <span class="chip-label" id="platform-label">Platform</span>
+            <div class="chips" id="platform-chips" role="group" aria-labelledby="platform-label"></div>
+          </div>
+          <div class="control-line">
             <label class="search" id="search-wrap" hidden>
               <span class="visually-hidden">Find a game</span>
               <input type="search" id="search" placeholder="Find a card" autocomplete="off">
             </label>
-            <label class="select" id="genre-wrap">
-              <span>Genre</span>
-              <select id="genre"></select>
-            </label>
-            <label class="select">
+            <label class="sort">
               <span>Sort</span>
               <select id="sort">
                 <option value="newest">Newest first</option>
                 <option value="oldest">Oldest first</option>
-                <option value="number">Card number</option>
                 <option value="az">A to Z</option>
               </select>
             </label>
+          </div>
+          <div class="chip-row genre-row" id="genre-row">
+            <span class="chip-label" id="genre-label">Type</span>
+            <div class="chips chips-scroll" id="genre-chips" role="group" aria-labelledby="genre-label"></div>
           </div>
         </div>
 
         <noscript>
           <div class="noscript">
-            <p>This site needs JavaScript to show the game cards. You can find every game here:</p>
+            <p>This site needs JavaScript to deal out the game cards. You can find every game here:</p>
             <p>
               <a href="https://store.steampowered.com/developer/BartMamzer">Steam</a> ·
               <a href="https://apps.apple.com/developer/id1033646930">App Store</a> ·
@@ -120,46 +134,36 @@
           </div>
         </noscript>
 
-        <ul class="grid" id="grid-own" aria-label="Games"></ul>
+        <ul class="grid" id="grid-rare" aria-label="Games"></ul>
 
-        <div class="subset" id="ports" hidden>
-          <header class="subset-head">
-            <h3 class="subset-title">Ports</h3>
+        <div class="sub-set ports-set" id="ports" hidden>
+          <div class="set-head">
+            <h3 class="sub-title"><span class="set-stamp">Ports</span></h3>
             <p id="ports-note"></p>
-          </header>
+          </div>
           <ul class="grid" id="grid-ports" aria-label="Ports"></ul>
         </div>
 
-        <div class="subset" id="earlier" hidden>
-          <header class="subset-head">
-            <h3 class="subset-title">Earlier releases</h3>
-            <p>Where it all started.</p>
-          </header>
-          <ul class="grid" id="grid-earlier" aria-label="Earlier games"></ul>
+        <div class="sub-set common-set" id="common" hidden>
+          <div class="set-head">
+            <h3 class="sub-title">Common cards</h3>
+            <p>Earlier games, from where it all started.</p>
+          </div>
+          <ul class="grid" id="grid-common" aria-label="Earlier games"></ul>
         </div>
 
         <div class="empty" id="empty" hidden>
           <p>No cards match these filters.</p>
-          <button class="btn btn-line" type="button" id="reset">Show all cards</button>
+          <button class="btn btn-ghost" type="button" id="reset">Show all cards</button>
         </div>
       </div>
     </section>
 
-    <section class="about" id="about" aria-labelledby="about-title">
-      <div class="wrap about-inner">
-        <div class="about-card" id="about-card"></div>
-        <div class="about-text">
-          <p class="kicker">The developer</p>
-          <h2 class="section-title" id="about-title">Made by a solo developer</h2>
-          <div class="about-body" id="about-body"></div>
-          <dl class="stats" id="stats"></dl>
-          <div class="contact" id="contact" tabindex="-1">
-            <h3 class="kicker">Contact</h3>
-            <p class="contact-lead">Questions, press, feedback or a bug in one of the games? Email me.</p>
-            <a class="mail" id="mail"></a>
-            <ul class="links" id="links" aria-label="Find me online"></ul>
-          </div>
-        </div>
+    <section class="profile-section" id="profile" aria-labelledby="profile-title">
+      <div class="wrap">
+        <p class="eyebrow">Developer profile</p>
+        <h2 class="section-title" id="profile-title">Meet the solo dev</h2>
+        <article class="profile" id="profile-card"></article>
       </div>
     </section>
   </main>
@@ -175,13 +179,13 @@
         <img id="lightbox-img" alt="">
         <figcaption id="lightbox-count"></figcaption>
       </figure>
-      <button class="icon-btn lightbox-prev" type="button" id="lightbox-prev" aria-label="Previous screenshot">
+      <button class="round-btn lightbox-prev" type="button" id="lightbox-prev" aria-label="Previous screenshot">
         <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15.4 5.4 14 4l-8 8 8 8 1.4-1.4L8.8 12z" fill="currentColor"/></svg>
       </button>
-      <button class="icon-btn lightbox-next" type="button" id="lightbox-next" aria-label="Next screenshot">
+      <button class="round-btn lightbox-next" type="button" id="lightbox-next" aria-label="Next screenshot">
         <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8.6 18.6 10 20l8-8-8-8-1.4 1.4 6.6 6.6z" fill="currentColor"/></svg>
       </button>
-      <button class="icon-btn lightbox-close" type="button" id="lightbox-close" aria-label="Close screenshot">
+      <button class="round-btn lightbox-close" type="button" id="lightbox-close" aria-label="Close screenshot">
         <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M18.3 7.1 16.9 5.7 12 10.6 7.1 5.7 5.7 7.1l4.9 4.9-4.9 4.9 1.4 1.4 4.9-4.9 4.9 4.9 1.4-1.4-4.9-4.9z" fill="currentColor"/></svg>
       </button>
     </div>
