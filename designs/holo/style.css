@@ -313,15 +313,19 @@ ul { margin: 0; padding: 0; list-style: none; }
   position: absolute;
   left: 50%; bottom: 4%;
   width: 37%;
+  --lift: 0%;
+  --bend: 1;
   transform-origin: 50% 135%;
-  transform: translateX(calc(-50% + var(--offset) * var(--spread))) rotate(calc(var(--offset) * var(--turn))) translateY(calc(var(--abs) * 6%));
+  transform: translateX(calc(-50% + var(--offset) * var(--spread))) rotate(calc(var(--offset) * var(--turn) * var(--bend))) translateY(calc(var(--abs) * 6% - var(--lift)));
   transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
   z-index: calc(10 - var(--abs));
 }
-.hand .card:hover, .hand .card:focus-within {
-  transform: translateX(calc(-50% + var(--offset) * var(--spread))) rotate(calc(var(--offset) * var(--turn) * 0.8)) translateY(calc(var(--abs) * 6% - 14%));
-  z-index: 20;
+/* A card lifts for the mouse or keyboard focus only: touch hover sticks after a tap, and focus returns
+   to the card when the sheet closes, so either would leave it raised. */
+@media (hover: hover) {
+  .hand .card:hover { --lift: 14%; --bend: 0.8; z-index: 20; }
 }
+.hand .card:has(:focus-visible) { --lift: 14%; --bend: 0.8; z-index: 20; }
 @media (prefers-reduced-motion: no-preference) {
   .hand .card { animation: deal 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) backwards; animation-delay: calc(0.15s + var(--i) * 0.12s); }
 }
@@ -869,18 +873,22 @@ html.gyro .card.rare .foil { animation: none; background-position: calc(50% + va
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px;
+  max-width: 600px;
 }
-@media (min-width: 760px) {
-  .links { display: flex; flex-wrap: wrap; justify-content: center; }
-  .links a { padding: 0 20px; white-space: nowrap; }
+/* Even columns with left-aligned content, so the icons line up row to row. */
+@media (min-width: 900px) {
+  .links { grid-template-columns: repeat(4, minmax(0, 1fr)); max-width: 860px; }
+  .links a { white-space: nowrap; }
 }
 .links a {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 10px;
+  justify-content: flex-start;
+  gap: 12px;
   min-height: 52px;
-  padding: 0 14px;
+  padding: 0 18px;
+  text-align: left;
+  line-height: 1.3;
   border: 1px solid var(--line-soft);
   background: rgba(23, 16, 11, 0.6);
   color: var(--text);
@@ -953,6 +961,7 @@ html.gyro .card.rare .foil { animation: none; background-position: calc(50% + va
     radial-gradient(90% 40% at 50% 0%, color-mix(in oklab, var(--accent) 16%, transparent), transparent 70%),
     linear-gradient(180deg, var(--sheet), #0e0907);
   overflow: hidden;
+  overflow: clip; /* clip, not hidden, so the close button can stay pinned while the sheet scrolls */
 }
 @media (min-width: 900px) {
   .sheet {
@@ -970,7 +979,11 @@ html.gyro .card.rare .foil { animation: none; background-position: calc(50% + va
 @keyframes sheet-in {
   from { opacity: 0; transform: perspective(1400px) rotateY(-60deg) scale(0.86); }
 }
-.sheet-close { position: absolute; top: max(14px, env(safe-area-inset-top)); right: 14px; z-index: 5; }
+/* Pinned to the top of the screen while the sheet scrolls; the negative margin keeps the hero under it. */
+.sheet-close {
+  position: sticky; top: max(14px, env(safe-area-inset-top)); z-index: 5;
+  width: max-content; margin: max(14px, env(safe-area-inset-top)) 14px -62px auto;
+}
 
 .d-hero { position: relative; aspect-ratio: 16 / 10; max-height: 62vh; width: 100%; background: var(--void); }
 @media (min-width: 700px) { .d-hero { aspect-ratio: 16 / 7; } }
