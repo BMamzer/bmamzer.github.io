@@ -43,6 +43,7 @@ for (const [i, g] of (data.games || []).entries()) {
   }
   need(Array.isArray(g.genres) && g.genres.length, 'genres is missing');
   need(/^#[0-9a-f]{6}$/i.test(g.accent || ''), 'accent must be a hex colour like #3cc6e6');
+  if ('originalDeveloper' in g) need(typeof g.originalDeveloper === 'string' && g.originalDeveloper.trim(), 'originalDeveloper must name the studio that made the original game');
   want(Array.isArray(g.description) && g.description.length, 'no description paragraphs');
   want(g.tagline?.length <= 70, 'tagline is long (keep it under 70 characters)');
   want(g.summary?.length <= 240, 'summary is long (keep it under 240 characters)');

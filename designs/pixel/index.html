@@ -79,6 +79,7 @@
         <figcaption class="view-caption">
           <p class="view-label"><span class="accent-dot" aria-hidden="true"></span>Now exploring</p>
           <h2 class="view-title"></h2>
+          <p class="view-port" hidden></p>
           <p class="view-tagline"></p>
           <div class="view-actions"></div>
         </figcaption>
@@ -99,7 +100,7 @@
         <span class="section-icon" data-sprite="chest" aria-hidden="true"></span>
         <div>
           <h2 id="quests-title" class="section-title">Quest log</h2>
-          <p class="section-sub">Every released game. Pick one to read its scroll.</p>
+          <p class="section-sub">Every released game. Pick a game to see more.</p>
         </div>
       </header>
 
@@ -119,7 +120,7 @@
 
       <div class="quest-layout">
         <div class="inventory panel panel-dark" role="tabpanel" aria-labelledby="quests-title">
-          <p class="inventory-hint">Arrow keys move, Enter opens the scroll.</p>
+          <p class="inventory-hint">Arrow keys move, Enter opens the game.</p>
           <ul class="slots" role="list"></ul>
           <p class="empty" hidden>No quests match. Try another tab.</p>
         </div>
@@ -192,15 +193,15 @@
     </div>
   </noscript>
 
-  <dialog class="scroll" aria-labelledby="scroll-title">
-    <div class="scroll-bar">
-      <span class="scroll-knob" aria-hidden="true"></span>
-      <p class="scroll-kicker">Quest scroll</p>
+  <dialog class="info" aria-labelledby="info-title">
+    <div class="info-bar">
+      <span class="info-icon" data-sprite="sword" aria-hidden="true"></span>
+      <p class="info-kicker">Game info</p>
       <button class="close-btn" type="button" data-close aria-label="Close">
         <span aria-hidden="true">X</span>
       </button>
     </div>
-    <article class="scroll-body"></article>
+    <article class="info-body"></article>
   </dialog>
 
   <dialog class="lightbox" aria-label="Screenshot viewer">

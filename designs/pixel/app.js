@@ -1,7 +1,7 @@
 // "Pixel" design: the studio site as a 90s party RPG screen. All game content comes from /games.json.
 import {
   loadCatalog, icon, esc, releaseLabel, onRoute, openGame, closeGame, playTrailer, stopTrailer,
-  reducedMotion, setPageMeta, addStructuredData, privacyLinks, PLATFORM_LABELS,
+  reducedMotion, setPageMeta, addStructuredData, privacyLinks, portLabel, PLATFORM_LABELS,
 } from '/assets/site/catalog.js';
 
 const $ = (sel, root = document) => root.querySelector(sel);
@@ -42,6 +42,14 @@ const SPRITES = {
       'pppppppppppp', 'qppppppppppq', 'pqppppppppqp', 'ppqppppppqpp',
       'pppqprrpqppp', 'ppppqrrqpppp', 'pppppppppppp', 'pppppppppppp',
     ],
+  },
+  phone: {
+    palette: { p: '#d9cdf5', s: '#6fd3ff', k: '#4b2d7d' },
+    rows: ['pppppp', 'pssssp', 'pssssp', 'pssssp', 'pssssp', 'pssssp', 'pppppp', 'ppkkpp', 'pppppp'],
+  },
+  swap: {
+    palette: { a: '#d9cdf5', b: '#6fd3ff' },
+    rows: ['..a......', '.aaaaaaa.', '..a......', '.........', '......b..', '.bbbbbbb.', '......b..'],
   },
   hero: {
     palette: { C: '#3d2a66', c: '#6b46a8', s: '#f2c9a0', e: '#15100c', b: '#e8b64c', B: '#5a3720', t: '#8a5a2c', g: '#56d6f0' },
@@ -85,6 +93,33 @@ function rarity(game) {
   return { key: 'rare', label: 'Rare' };
 }
 
+const isMobileOnly = g => g.platforms.every(p => p === 'ios' || p === 'android');
+const plural = (n, word) => `${n} ${word}${n === 1 ? '' : 's'}`;
+
+/** "5 games and 2 mobile ports": Bart's own games first, ports counted separately. */
+function countText({ originals, ports }) {
+  const parts = [plural(originals.length, 'game')];
+  if (ports.length) parts.push(plural(ports.length, ports.every(isMobileOnly) ? 'mobile port' : 'port'));
+  return listText(parts);
+}
+
+function portsHeading(ports) {
+  return ports.every(isMobileOnly) ? 'Mobile ports' : 'Ports';
+}
+
+/** The violet port plaque, e.g. "Mobile port", with a pixel phone (or swap arrows for other ports). */
+function portTag(g, extra = '') {
+  if (!g.isPort) return '';
+  return `<span class="port-tag ${extra}">${spriteSvg(isMobileOnly(g) ? 'phone' : 'swap')}${esc(portLabel(g))}</span>`;
+}
+
+/** The prominent line under a port's title: "Mobile port. Original game by Silver Lemur Games." */
+function portNote(g) {
+  if (!g.isPort) return '';
+  const line = `${portLabel(g)}. Original game by ${g.originalDeveloper}.`;
+  return `<p class="port-note">${spriteSvg(isMobileOnly(g) ? 'phone' : 'swap')}<span>${esc(line)}</span></p>`;
+}
+
 function listText(items) {
   if (items.length < 2) return items.join('');
   return `${items.slice(0, -1).join(', ')} and ${items.at(-1)}`;
@@ -105,7 +140,8 @@ function img(src, alt, attrs = '') {
 
 const STORE_TYPES = ['steam', 'appstore', 'googleplay', 'itch', 'crazygames'];
 
-function renderIntro({ studio, games, platforms }) {
+function renderIntro(catalog) {
+  const { studio, platforms } = catalog;
   $('[data-slot="tagline"]').textContent = studio.tagline;
   const stores = studio.links.filter(l => STORE_TYPES.includes(l.type));
   $('.intro-stores').hidden = !stores.length;
@@ -116,7 +152,7 @@ function renderIntro({ studio, games, platforms }) {
     `<li><span class="intro-stat-value">${esc(s.value)}</span><span class="intro-stat-label">${esc(s.label)}</span></li>`).join('');
   const kinds = listText(platforms.map(p => PLATFORM_LABELS[p]));
   $('[data-slot="lead"]').textContent =
-    `${games.length} released games for ${kinds}. Pick a quest.`;
+    `${countText(catalog)} for ${kinds}. Pick a quest.`;
 }
 
 function setupViewport(catalog) {
@@ -139,6 +175,7 @@ function setupViewport(catalog) {
       <span class="portrait-text">
         <span class="portrait-name">${esc(g.title)}</span>
         <span class="portrait-sub">${esc(g.genres[0] || '')} | ${esc(releaseLabel(g))}</span>
+        ${portTag(g)}
       </span>
     </button></li>`).join('');
 
@@ -168,8 +205,11 @@ function setupViewport(catalog) {
       video.hidden = !g.media.loop || !motionOk();
       $('.view-title').textContent = g.title;
       $('.view-tagline').textContent = g.tagline;
+      const port = $('.view-port');
+      port.hidden = !g.isPort;
+      port.innerHTML = g.isPort ? `${portTag(g)}<span>Original game by ${esc(g.originalDeveloper)}</span>` : '';
       $('.view-actions').innerHTML =
-        `<button class="btn btn-gold" type="button" data-open="${esc(g.id)}">Read the scroll</button>${storeLinks(g, 'btn-compact')}`;
+        `<button class="btn btn-gold" type="button" data-open="${esc(g.id)}">View game</button>${storeLinks(g, 'btn-compact')}`;
       for (const b of $$('.portrait', list)) b.setAttribute('aria-pressed', String(Number(b.dataset.index) === index));
       const done = () => view.classList.remove('is-changing');
       if (art.complete) done(); else art.addEventListener('load', done, { once: true });
@@ -205,10 +245,14 @@ function setupViewport(catalog) {
   schedule();
 }
 
-function setupLog({ studio, games, featured, platforms }) {
+function setupLog(catalog) {
+  const { studio, originals, ports, platforms } = catalog;
+  const latest = originals.find(g => g.featured) || originals[0];
+  const port = ports[0];
   const facts = [
-    `${studio.name} has released ${games.length} games.`,
-    featured[0] && `Latest release: ${featured[0].title} (${releaseLabel(featured[0])}).`,
+    `${studio.name} has released ${countText(catalog)}.`,
+    latest && `Latest game: ${latest.title} (${releaseLabel(latest)}).`,
+    port && `Latest ${portLabel(port).toLowerCase()}: ${port.title} (${releaseLabel(port)}), original game by ${port.originalDeveloper}.`,
     ...studio.stats.map(s => `${s.label}: ${s.value}.`),
     `Quests available on ${listText(platforms.map(p => PLATFORM_LABELS[p]))}.`,
     studio.location && `Forged in ${studio.location}.`,
@@ -329,6 +373,7 @@ function slotHtml(g, eager) {
         <span class="slot-art">
           ${img(g.media.cover, '', `width="320" height="180" ${eager ? '' : 'loading="lazy"'}`)}
           <span class="gem" aria-hidden="true"></span>
+          ${portTag(g, 'slot-port')}
         </span>
         <span class="slot-plate">
           <span class="slot-title">${esc(g.title)}</span>
@@ -341,16 +386,21 @@ function slotHtml(g, eager) {
 
 function renderSlots(catalog) {
   const list = filtered(catalog);
-  const main = list.filter(g => g.featured);
-  const old = list.filter(g => !g.featured);
-  const slots = $('.slots');
-  slots.innerHTML = main.map((g, i) => slotHtml(g, i < 4)).join('') +
-    (old.length && main.length ? `<li class="slot-divider"><span>Older relics</span></li>` : '') +
-    old.map(g => slotHtml(g, false)).join('');
+  // Bart's own games lead; ports and older games follow under their own dividers.
+  const groups = [
+    { games: list.filter(g => g.featured && !g.isPort) },
+    { games: list.filter(g => g.isPort), label: portsHeading(catalog.ports) },
+    { games: list.filter(g => !g.featured && !g.isPort), label: 'Older relics' },
+  ].filter(grp => grp.games.length);
+  let shown = 0;
+  $('.slots').innerHTML = groups.map((grp, i) =>
+    (grp.label && (i > 0 || grp.games.some(g => g.isPort)) ? `<li class="slot-divider"><span>${esc(grp.label)}</span></li>` : '') +
+    grp.games.map(g => slotHtml(g, shown++ < 4)).join('')).join('');
   $('.empty').hidden = list.length > 0;
   $('.inventory-hint').hidden = !list.length;
 
-  if (!list.some(g => g.id === state.selectedId)) state.selectedId = list[0]?.id || null;
+  const ordered = groups.flatMap(grp => grp.games);
+  if (!ordered.some(g => g.id === state.selectedId)) state.selectedId = ordered[0]?.id || null;
   markSelected();
   renderPanel(catalog);
 }
@@ -416,28 +466,28 @@ function renderPanel(catalog) {
   panel.style.setProperty('--accent', g.accent);
   panel.innerHTML = `
     <div class="item-art rarity-${r.key}">${img(g.media.cover, `${g.title} cover art`, 'width="640" height="360"')}</div>
-    <p class="rarity-label rarity-${r.key}">${esc(r.label)}</p>
+    <div class="item-tags"><p class="rarity-label rarity-${r.key}">${esc(r.label)}</p>${portTag(g)}</div>
     <h3 class="item-title rarity-${r.key}">${esc(g.title)}</h3>
+    ${portNote(g)}
     ${g.subtitle ? `<p class="item-sub">${esc(g.subtitle)}</p>` : ''}
     <p class="item-tagline">${esc(g.tagline)}</p>
     <dl class="stats">${statRows(g)}</dl>
     ${g.highlights.length ? `<ul class="affixes" role="list">${g.highlights.map(h => `<li>${esc(h)}</li>`).join('')}</ul>` : ''}
     <div class="item-actions">
-      <button class="btn btn-gold" type="button" data-open="${esc(g.id)}">Read the scroll</button>
+      <button class="btn btn-gold" type="button" data-open="${esc(g.id)}">View game</button>
       ${storeLinks(g, 'btn-compact')}
     </div>
-    <p class="item-summary">${esc(g.summary)}</p>
-    ${g.credits ? `<p class="item-credits">${esc(g.credits)}</p>` : ''}`;
+`;
 }
 
-// ---------------------------------------------------------------- the scroll (game detail)
+// ---------------------------------------------------------------- game info window
 
-const scroll = $('dialog.scroll');
+const infoWin = $('dialog.info');
 const lightbox = $('dialog.lightbox');
 let openId = null;
 let returnFocus = null;
 
-function scrollHtml(g) {
+function infoHtml(g) {
   const r = rarity(g);
   const m = g.media;
   const links = [
@@ -445,15 +495,15 @@ function scrollHtml(g) {
     g.privacy && `<a href="${esc(g.privacy)}">Privacy policy</a>`,
   ].filter(Boolean);
   const trailer = m.trailer ? `
-    <section class="scroll-section trailer-section" aria-label="Trailer">
+    <section class="info-section trailer-section" aria-label="Trailer">
       <div class="trailer">
         <video class="trailer-video" preload="none" playsinline ${m.loopPoster || m.hero ? `poster="${esc(m.loopPoster || m.hero)}"` : ''}></video>
         <button class="btn btn-gold trailer-play" type="button" data-trailer="${esc(m.trailer)}">${icon('play')}<span>Watch trailer</span></button>
       </div>
     </section>` : '';
   const shots = m.screenshots.length ? `
-    <section class="scroll-section">
-      <h3 class="scroll-h">Screenshots</h3>
+    <section class="info-section">
+      <h3 class="info-h">Screenshots</h3>
       <ul class="shots" role="list">
         ${m.screenshots.map((s, i) => `
           <li><button class="shot" type="button" data-shot="${i}" aria-label="Open screenshot ${i + 1} of ${m.screenshots.length}" style="aspect-ratio:${s.w} / ${s.h}">
@@ -463,73 +513,74 @@ function scrollHtml(g) {
     </section>` : '';
 
   return `
-    <header class="scroll-head" style="--accent:${esc(g.accent)}">
-      <div class="scroll-portrait rarity-${r.key}">${img(m.poster, `${g.title} artwork`, 'width="600" height="900"')}</div>
-      <div class="scroll-titles">
-        <p class="rarity-label rarity-${r.key}">${esc(r.label)}</p>
-        <h2 id="scroll-title" class="scroll-title" tabindex="-1">${esc(g.title)}</h2>
-        ${g.subtitle ? `<p class="scroll-sub">${esc(g.subtitle)}</p>` : ''}
-        <p class="scroll-tagline">${esc(g.tagline)}</p>
+    <header class="info-head" style="--accent:${esc(g.accent)}">
+      <div class="info-portrait rarity-${r.key}">${img(m.poster, `${g.title} artwork`, 'width="600" height="900"')}</div>
+      <div class="info-titles">
+        <div class="info-tags"><p class="rarity-label rarity-${r.key}">${esc(r.label)}</p>${portTag(g)}</div>
+        <h2 id="info-title" class="info-title" tabindex="-1">${esc(g.title)}</h2>
+        ${portNote(g)}
+        ${g.subtitle ? `<p class="info-sub">${esc(g.subtitle)}</p>` : ''}
+        <p class="info-tagline">${esc(g.tagline)}</p>
       </div>
-      <div class="scroll-facts">
-        <dl class="stats stats-parchment">${statRows(g)}</dl>
-        <div class="scroll-stores">${storeLinks(g)}</div>
-        ${links.length ? `<p class="scroll-links">${links.join('<span aria-hidden="true"> | </span>')}</p>` : ''}
+      <div class="info-facts">
+        <dl class="stats">${statRows(g)}</dl>
+        <div class="info-stores">${storeLinks(g)}</div>
+        ${links.length ? `<p class="info-links">${links.join('<span aria-hidden="true"> | </span>')}</p>` : ''}
       </div>
     </header>
     ${trailer}
-    <div class="scroll-columns">
-      <section class="scroll-section">
-        <h3 class="scroll-h">The tale</h3>
+    <div class="info-columns">
+      <section class="info-section">
+        <h3 class="info-h">The tale</h3>
         ${(g.description.length ? g.description : [g.summary]).map(p => `<p>${esc(p)}</p>`).join('')}
       </section>
       ${g.features.length || g.highlights.length ? `
-        <section class="scroll-section">
-          ${g.features.length ? `<h3 class="scroll-h">Features</h3><ul class="pixel-list" role="list">${g.features.map(f => `<li>${esc(f)}</li>`).join('')}</ul>` : ''}
-          ${g.highlights.length ? `<h3 class="scroll-h">Achievements</h3><ul class="affixes affixes-parchment" role="list">${g.highlights.map(h => `<li>${esc(h)}</li>`).join('')}</ul>` : ''}
+        <section class="info-section">
+          ${g.features.length ? `<h3 class="info-h">Features</h3><ul class="pixel-list" role="list">${g.features.map(f => `<li>${esc(f)}</li>`).join('')}</ul>` : ''}
+          ${g.highlights.length ? `<h3 class="info-h">Achievements</h3><ul class="affixes" role="list">${g.highlights.map(h => `<li>${esc(h)}</li>`).join('')}</ul>` : ''}
         </section>` : ''}
     </div>
     ${shots}
-    ${g.credits ? `<p class="scroll-credits">${esc(g.credits)}</p>` : ''}
-    <div class="scroll-end">
-      <button class="btn" type="button" data-close>Close the scroll</button>
+    ${g.credits ? `<p class="info-credits">${esc(g.credits)}</p>` : ''}
+    <div class="info-end">
+      <button class="btn" type="button" data-close>Close</button>
     </div>`;
 }
 
-function openScroll(g) {
-  if (scroll.open && openId === g.id) return;
-  stopScrollTrailer();
-  if (!scroll.open) returnFocus = document.activeElement;
+function openInfo(g) {
+  if (infoWin.open && openId === g.id) return;
+  stopInfoTrailer();
+  if (!infoWin.open) returnFocus = document.activeElement;
   openId = g.id;
-  $('.scroll-body', scroll).innerHTML = scrollHtml(g);
-  $('.scroll-body', scroll).scrollTop = 0;
-  if (!scroll.open) scroll.showModal();
-  $('#scroll-title').focus({ preventScroll: true });
+  $('.info-body', infoWin).innerHTML = infoHtml(g);
+  $('.info-body', infoWin).scrollTop = 0;
+  if (!infoWin.open) infoWin.showModal();
+  $('#info-title').focus({ preventScroll: true });
 }
 
-function closeScroll() {
-  if (!scroll.open) return;
+function closeInfo() {
+  if (!infoWin.open) return;
   if (lightbox.open) lightbox.close();
-  stopScrollTrailer();
-  scroll.close();
+  stopInfoTrailer();
+  infoWin.close();
   const back = returnFocus?.isConnected && returnFocus !== document.body
     ? returnFocus : $(`.slot[data-id="${CSS.escape(openId || '')}"]`);
   openId = null;
   back?.focus({ preventScroll: true });
 }
 
-function stopScrollTrailer() {
-  const v = $('.trailer-video', scroll);
+function stopInfoTrailer() {
+  const v = $('.trailer-video', infoWin);
   if (v && (v.src || v._hls)) stopTrailer(v);
 }
 
-function setupScroll(catalog) {
-  scroll.addEventListener('cancel', e => { e.preventDefault(); closeGame(); });
-  scroll.addEventListener('click', async e => {
-    if (e.target === scroll || e.target.closest('[data-close]')) return closeGame();
+function setupInfo(catalog) {
+  infoWin.addEventListener('cancel', e => { e.preventDefault(); closeGame(); });
+  infoWin.addEventListener('click', async e => {
+    if (e.target === infoWin || e.target.closest('[data-close]')) return closeGame();
     const play = e.target.closest('[data-trailer]');
     if (play) {
-      const video = $('.trailer-video', scroll);
+      const video = $('.trailer-video', infoWin);
       play.hidden = true;
       try { await playTrailer(video, play.dataset.trailer); video.focus(); }
       catch {
@@ -586,16 +637,17 @@ function setupLightbox() {
 
 // ---------------------------------------------------------------- character sheet, contact, footer
 
-function renderSheet({ studio, games, platforms }) {
+function renderSheet({ studio, originals, ports, platforms }) {
+  // The year itself is shown once, in the achievements; the level is the years since then.
   const years = new Date().getFullYear() - Number(studio.since || new Date().getFullYear());
   $('[data-slot="name"]').textContent = studio.name;
   $('[data-slot="level"]').innerHTML = years > 0
-    ? `Level ${years} <span class="level-note">(years making games)</span>` : '';
+    ? `Level ${years} <span class="level-note">(years of releasing games)</span>` : '';
   const attrs = [
     ['Class', 'Solo developer'],
     studio.location && ['Home', studio.location],
-    studio.since && ['Making games since', studio.since],
-    ['Games released', games.length],
+    ['Games released', originals.length],
+    ports.length && [portsHeading(ports), ports.length],
     ['Platforms', platforms.map(p => PLATFORM_LABELS[p]).join(', ')],
   ].filter(Boolean);
   $('.attrs').innerHTML = attrs.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('');
@@ -656,7 +708,7 @@ async function start() {
   setupQuests(catalog);
   renderSheet(catalog);
   renderContact(catalog);
-  setupScroll(catalog);
+  setupInfo(catalog);
   setupLightbox();
   addStructuredData(catalog);
   document.addEventListener('click', e => {
@@ -665,7 +717,7 @@ async function start() {
   });
   onRoute(catalog, game => {
     setPageMeta(game, catalog.studio);
-    if (game) openScroll(game); else closeScroll();
+    if (game) openInfo(game); else closeInfo();
   });
   document.documentElement.classList.add('is-ready');
 }

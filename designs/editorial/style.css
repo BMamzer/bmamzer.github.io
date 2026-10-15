@@ -110,6 +110,21 @@ ol, ul { padding: 0; list-style: none; }
 .btn-text:hover { color: var(--signal-ink); }
 
 .icon { flex: none; }
+
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+/* Ports (games by other studios that Bart brought to new platforms): a boxed tag in signal red, never confused with genre text. */
+.port {
+  display: inline-flex; align-items: center;
+  padding: 0.32em 0.6em 0.26em;
+  border: 1.5px solid currentColor;
+  color: var(--signal-ink);
+  font: 700 0.6875rem/1 var(--display); font-stretch: 112%; font-style: normal;
+  letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap;
+  vertical-align: 0.2em;
+}
+.port-line { font: italic 400 1.0625rem/1.45 var(--serif); color: var(--ink-2); }
+.port-line .port { margin-right: 0.35em; vertical-align: 0.15em; }
 .fit-word { display: inline-block; white-space: nowrap; overflow-wrap: normal; }
 
 /* ---------------------------------------------------------------- masthead */
@@ -208,6 +223,7 @@ ol, ul { padding: 0; list-style: none; }
 .tally dd.tally__text { font: italic 400 clamp(1.25rem, 2.2vw, 2rem)/1.15 var(--serif); letter-spacing: 0; }
 .tally dd a { text-decoration: none; background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat; }
 .tally dd a:hover { color: var(--signal-ink); }
+.tally dd .port { display: flex; width: fit-content; margin-top: 8px; font-size: 0.625rem; }
 @media (max-width: 760px) {
   .tally { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 24px; }
 }
@@ -345,6 +361,7 @@ section.wrap { padding-bottom: clamp(56px, 9vw, 140px); }
   letter-spacing: -0.025em; text-transform: uppercase; overflow-wrap: anywhere;
 }
 .row__sub { font-style: italic; color: var(--muted); line-height: 1.25; }
+.row__port { display: block; margin-top: 4px; line-height: 1; }
 .row__genre, .row__platforms { font-size: 1rem; color: var(--ink-2); }
 .row__year { font: 600 0.9375rem/1 var(--display); font-variant-numeric: tabular-nums; }
 .row__arrow { justify-self: end; font: 400 1.25rem/1 var(--display); transition: transform 0.3s var(--ease); }
@@ -500,6 +517,12 @@ section.wrap { padding-bottom: clamp(56px, 9vw, 140px); }
   letter-spacing: -0.05em; text-transform: uppercase; overflow-wrap: anywhere; hyphens: auto;
 }
 .article__title:focus { outline: none; }
+.article__port {
+  grid-column: 1 / -1;
+  padding: 14px 0; border-block: 1px solid var(--rule);
+  font-size: clamp(1.125rem, 1.7vw, 1.625rem); font-style: normal; color: var(--ink);
+}
+.article__port .port { font-size: 0.8125rem; padding: 0.4em 0.7em 0.34em; }
 .article__subtitle { grid-column: 1 / span 4; font: italic 400 clamp(1.125rem, 1.6vw, 1.5rem)/1.25 var(--serif); color: var(--muted); padding-top: 0.35em; }
 .article__standfirst { grid-column: 5 / -1; font: 400 clamp(1.375rem, 2.5vw, 2.375rem)/1.2 var(--serif); letter-spacing: -0.01em; text-wrap: pretty; }
 @media (max-width: 760px) {
@@ -630,7 +653,8 @@ section.wrap { padding-bottom: clamp(56px, 9vw, 140px); }
   display: grid; gap: 10px; padding-top: 18px; padding-bottom: calc(clamp(40px, 6vw, 96px) + env(safe-area-inset-bottom));
   text-decoration: none; border: 0;
 }
-.article__next .kicker { color: var(--muted); }
+.article__next .kicker { color: var(--muted); display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
+.article__next .kicker .port { vertical-align: 0; }
 .article__next b {
   font: 800 clamp(2.5rem, 8vw, 9rem)/0.86 var(--display); font-stretch: 112%;
   letter-spacing: -0.045em; text-transform: uppercase; overflow-wrap: anywhere;

@@ -50,7 +50,8 @@ This repo is public: never put an unreleased game in `games.json`, in `assets/` 
 | `stores` | yes | List of `{ "type": "steam" or "appstore" or "googleplay" or "itch" or "crazygames" or "web", "url": "https://..." }` |
 | `badge` | no | Short highlight such as "Free demo on Steam" or "Pay once, no ads" |
 | `highlights` | no | Verified facts such as "1M+ downloads on Google Play" |
-| `credits` | no | For ports and collaborations, e.g. "Created by Silver Lemur Games. Mobile version by Bart Mamzer." |
+| `originalDeveloper` | ports only | The studio that made the original game. Setting it marks the game as a port everywhere on the site |
+| `credits` | no | Credit line, e.g. "Original game by Silver Lemur Games. Mobile port by Bart Mamzer." |
 | `website` | no | The game's own page, e.g. `/powerlust/` |
 | `privacy` | no | The game's privacy policy page. Footer links are built from these |
 | `accent` | yes | Hex colour picked from the art (the import script suggests one; adjust by eye) |

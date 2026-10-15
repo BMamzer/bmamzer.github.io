@@ -1,7 +1,7 @@
 // Holo: the studio's games as a collectible card collection. All content comes from /games.json.
 import {
   loadCatalog, icon, esc, releaseLabel, onRoute, openGame, closeGame, playTrailer, stopTrailer,
-  reducedMotion, setPageMeta, addStructuredData, privacyLinks, PLATFORM_LABELS,
+  reducedMotion, setPageMeta, addStructuredData, privacyLinks, portLabel, PLATFORM_LABELS,
 } from '/assets/site/catalog.js';
 
 const $ = (sel, root = document) => root.querySelector(sel);
@@ -24,6 +24,8 @@ function platformIcon(platform, size = 16) {
   if (!PLATFORM_PATHS[platform]) return icon('web', { size });
   return `<svg class="icon" width="${size}" height="${size}" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="${PLATFORM_PATHS[platform]}"/></svg>`;
 }
+
+const PORT_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h11l-3-3 1.4-1.4L21.8 8l-5.4 5.4L15 12l3-3H7V7Zm10 10H6l3 3-1.4 1.4L2.2 16l5.4-5.4L9 12l-3 3h11v2Z" fill="currentColor"/></svg>';
 
 const SPARKLE = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.5l2.6 7.9 7.9 2.6-7.9 2.6L12 22.5l-2.6-7.9L1.5 12l7.9-2.6Z" fill="currentColor"/></svg>';
 
@@ -54,19 +56,25 @@ function cardHTML(game, { tag = 'li', interactive = true, lazy = true } = {}) {
   const rare = game.featured;
   const art = game.media.hero || game.media.cover;
   const type = game.genres.slice(0, 2).join(' · ');
+  const port = game.isPort;
+  const stamp = port ? `<span class="port-stamp">${PORT_ICON}<span>${esc(portLabel(game))}</span></span>` : '';
+  const lower = port
+    ? `<span class="card-origin"><span>Original by</span> <b>${esc(game.originalDeveloper)}</b></span>`
+    : `<span class="card-flavor">${esc(game.tagline)}</span>`;
   const face = `
     <span class="card-inner">
       <span class="card-face card-front">
         <span class="card-body">
           <span class="card-name">
-            <span class="card-title">${esc(game.title)}</span>
+            <span class="card-title${game.title.length > 16 ? ' card-title-long' : ''}">${esc(game.title)}</span>
             <span class="gem ${rare ? 'gem-rare' : 'gem-common'}" aria-hidden="true"></span>
           </span>
           <span class="card-art">
             <img src="${esc(art)}" alt="" ${lazy ? 'loading="lazy"' : 'fetchpriority="high"'} decoding="async">
+            ${stamp}
           </span>
           <span class="card-type">${esc(type)}</span>
-          <span class="card-flavor">${esc(game.tagline)}</span>
+          ${lower}
           <span class="card-stats">
             <span class="card-year">${esc(releaseLabel(game))}</span>
             <span class="card-plats">${game.platforms.map(p => platformIcon(p)).join('')}</span>
@@ -77,11 +85,12 @@ function cardHTML(game, { tag = 'li', interactive = true, lazy = true } = {}) {
       </span>
       <span class="card-face card-back" aria-hidden="true"><span class="back-emblem">${SPARKLE}</span></span>
     </span>`;
-  const label = `${game.title}, ${rare ? 'rare' : 'common'} card from ${releaseLabel(game)}. Open details`;
+  const kind = port ? `${portLabel(game).toLowerCase()}, original by ${game.originalDeveloper}` : `${rare ? 'rare' : 'common'} card`;
+  const label = `${game.title}, ${kind}, ${releaseLabel(game)}. Open details`;
   const inner = interactive
     ? `<button class="card-btn" type="button" data-open="${esc(game.id)}" aria-label="${esc(label)}">${face}</button>`
     : `<span class="card-btn card-static">${face}</span>`;
-  return `<${tag} class="card ${rare ? 'rare' : 'common'}" style="--accent:${esc(game.accent)}" data-id="${esc(game.id)}">${inner}</${tag}>`;
+  return `<${tag} class="card ${rare ? 'rare' : 'common'}${port ? ' port' : ''}" style="--accent:${esc(game.accent)}" data-id="${esc(game.id)}">${inner}</${tag}>`;
 }
 
 function bindCards(root) {
@@ -170,12 +179,12 @@ function onCardClick(e) {
 // ---------------------------------------------------------------- hero
 
 function renderHero() {
-  const { studio, games, platforms, spotlight } = catalog;
+  const { studio, platforms, spotlight } = catalog;
   $('#hero-eyebrow').textContent = [ 'Independent game studio', studio.location, studio.since && `since ${studio.since}` ]
     .filter(Boolean).join(' · ');
   $('#hero-title').textContent = studio.name;
   $('#hero-lead').textContent = studio.tagline;
-  $('#hero-sub').textContent = `${games.length} released games for ${listOf(platforms.map(p => PLATFORM_LABELS[p]))}. Pick a card.`;
+  $('#hero-sub').textContent = `${catalogSummary()} for ${listOf(platforms.map(p => PLATFORM_LABELS[p]))}. Pick a card.`;
 
   const hand = $('#hand');
   const n = spotlight.length;
@@ -188,6 +197,16 @@ function renderHero() {
     card.style.setProperty('--abs', Math.abs(offset));
   });
   bindCards(hand);
+}
+
+function plural(n, word) {
+  return `${n} ${word}${n === 1 ? '' : 's'}`;
+}
+
+// "5 games and 2 ports" style summary of Bart's own games and his ports.
+function catalogSummary() {
+  const { originals, ports } = catalog;
+  return ports.length ? `${plural(originals.length, 'game')} and ${plural(ports.length, 'port')}` : plural(originals.length, 'game');
 }
 
 function listOf(items) {
@@ -209,6 +228,7 @@ function renderControls() {
     <button class="chip chip-small" type="button" data-genre="${esc(value)}" aria-pressed="${value === state.genre}">${esc(label)}</button>`).join('');
   $('#genre-row').hidden = genres.length < 2;
   $('#search-wrap').hidden = games.length <= 12;
+  $('#ports-note').textContent = `Games by other studios, ported by ${catalog.studio.name}.`;
 
   $('#controls').addEventListener('click', e => {
     const chip = e.target.closest('.chip');
@@ -245,22 +265,44 @@ function visibleGames() {
 
 function renderCollection() {
   const list = visibleGames();
-  const rare = list.filter(g => g.featured);
-  const common = list.filter(g => !g.featured);
-  $('#grid-rare').innerHTML = rare.map((g, i) => cardHTML(g, { lazy: i > 3 })).join('');
+  const own = list.filter(g => !g.isPort && g.featured);
+  const ports = list.filter(g => g.isPort);
+  const common = list.filter(g => !g.isPort && !g.featured);
+  $('#grid-rare').innerHTML = own.map((g, i) => cardHTML(g, { lazy: i > 3 })).join('');
+  $('#grid-ports').innerHTML = ports.map(g => cardHTML(g)).join('');
   $('#grid-common').innerHTML = common.map(g => cardHTML(g)).join('');
-  $('#grid-rare').hidden = !rare.length;
+  $('#grid-rare').hidden = !own.length;
+  $('#ports').hidden = !ports.length;
   $('#common').hidden = !common.length;
   $('#empty').hidden = list.length > 0;
-  $('#count').innerHTML = `<strong>${list.length}</strong> of ${catalog.games.length} cards`;
+  $('#count').innerHTML = countHTML(list);
   bindCards($('#collection'));
+}
+
+// "5 games, 2 ports" when everything shows, "3 of 5 games, 1 of 2 ports" when filtered.
+function countHTML(list) {
+  const { originals, ports } = catalog;
+  const filtered = list.length < catalog.games.length;
+  const part = (shown, total, word) => filtered
+    ? `<strong>${shown}</strong> of ${plural(total, word)}`
+    : `<strong>${total}</strong> ${word}${total === 1 ? '' : 's'}`;
+  const shownPorts = list.filter(g => g.isPort).length;
+  return [
+    part(list.length - shownPorts, originals.length, 'game'),
+    ports.length && part(shownPorts, ports.length, 'port'),
+  ].filter(Boolean).join('<span class="count-sep">, </span>');
 }
 
 // ---------------------------------------------------------------- profile and footer
 
 function renderProfile() {
-  const { studio, games } = catalog;
-  const stats = [...studio.stats, { value: String(games.length), label: 'Games released' }];
+  const { studio, originals, ports } = catalog;
+  // The hero line already says "since <year>", so the profile skips a stat that only repeats that year.
+  const stats = [
+    ...studio.stats.filter(s => s.value !== String(studio.since)),
+    { value: String(originals.length), label: 'Games released' },
+    ...(ports.length ? [{ value: String(ports.length), label: ports.length === 1 ? 'Port released' : 'Ports released' }] : []),
+  ];
   $('#profile-card').innerHTML = `
     <div class="profile-main">
       <div class="profile-id">
@@ -311,11 +353,13 @@ function storeButton(store) {
 
 function detailHTML(game) {
   const m = game.media;
+  const studio = catalog.studio.name;
   const facts = [
     ['Released', releaseLabel(game)],
     ['Platforms', game.platformLabels.join(', ')],
     ['Type', game.genres.join(', ')],
     ['Rarity', game.featured ? 'Rare' : 'Common'],
+    ['Made by', game.isPort ? `${game.originalDeveloper} (original), ${studio} (port)` : studio],
   ];
   const links = [
     game.website && `<a href="${esc(game.website)}">${icon('web', { size: 18 })}<span>Game website</span></a>`,
@@ -344,6 +388,7 @@ function detailHTML(game) {
         <p class="eyebrow">${esc(game.genres.join(' · '))}</p>
         <h2 class="d-title${m.logo ? ' visually-hidden' : ''}" id="detail-title">${esc(game.title)}</h2>
         ${game.subtitle ? `<p class="d-subtitle">${esc(game.subtitle)}</p>` : ''}
+        ${game.isPort ? `<p class="d-port">${PORT_ICON}<span><strong>${esc(portLabel(game))}.</strong> Original game by ${esc(game.originalDeveloper)}.</span></p>` : ''}
         <p class="d-flavor">${esc(game.tagline)}</p>
         ${game.badge ? `<p class="d-badge">${SPARKLE}<span>${esc(game.badge)}</span></p>` : ''}
         <div class="stores">${game.stores.map(storeButton).join('')}</div>

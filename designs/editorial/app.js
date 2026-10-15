@@ -1,7 +1,7 @@
 // Editorial design: renders the studio index from games.json. Layout lives in style.css.
 import {
   loadCatalog, icon, esc, releaseLabel, onRoute, openGame, closeGame, playTrailer, stopTrailer,
-  reducedMotion, setPageMeta, addStructuredData, privacyLinks, PLATFORM_LABELS,
+  reducedMotion, setPageMeta, addStructuredData, privacyLinks, portLabel, PLATFORM_LABELS,
 } from '/assets/site/catalog.js';
 
 document.documentElement.classList.add('js');
@@ -50,13 +50,14 @@ function renderOpening() {
   slot('today').textContent = new Intl.DateTimeFormat('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }).format(new Date());
   slot('place').textContent = studio.location || '';
 
+  // The founding year is in the dateline and the Studio stats, so the tally sticks to counts.
   const latest = catalog.featured[0] || games[0];
   slot('tally').innerHTML = [
-    ['Released games', pad(games.length)],
+    ['Released games', pad(catalog.originals.length)],
+    catalog.ports.length && ['Ports', pad(catalog.ports.length)],
     ['Platforms', pad(catalog.platforms.length)],
-    ['Making games since', studio.since],
-    ['Latest release', `<a href="${latest.url}" data-game="${esc(latest.id)}">${esc(latest.title)}</a>`, true],
-  ].filter(([, value]) => value).map(([label, value, text]) =>
+    ['Latest release', `<a href="${latest.url}" data-game="${esc(latest.id)}">${esc(latest.title)}</a>${portTag(latest)}`, true],
+  ].filter(Boolean).filter(([, value]) => value).map(([label, value, text]) =>
     `<div><dt>${label}</dt><dd${text ? ' class="tally__text"' : ''}>${value}</dd></div>`).join('');
 
   const refit = () => { fitName(); fitWords(); };
@@ -86,6 +87,34 @@ function words(text) {
   return text.split(' ').map(w => `<span class="fit-word">${esc(w)}</span>`).join(' ');
 }
 
+// A boxed tag that marks games Bart ported from another studio. Reads as "Mobile port." to screen readers.
+function portTag(g, extra = '') {
+  return g.isPort ? ` <span class="port${extra}">${esc(portLabel(g))}<span class="sr">.</span></span>` : '';
+}
+
+function portLine(g) {
+  return g.isPort ? `${portTag(g)} Original game by ${esc(g.originalDeveloper)}.` : '';
+}
+
+// "A", "A and B", "A, B and C".
+function joinList(items) {
+  return items.length < 3 ? items.join(' and ') : `${items.slice(0, -1).join(', ')} and ${items.at(-1)}`;
+}
+
+// Bart's own current games lead, then the ports, then the archive. Article numbers and next/prev follow this order.
+function groupsOf(list) {
+  return {
+    own: list.filter(g => g.featured && !g.isPort),
+    ports: list.filter(g => g.isPort),
+    archive: list.filter(g => !g.featured && !g.isPort),
+  };
+}
+
+function indexOrder() {
+  const { own, ports, archive } = groupsOf(games);
+  return [...own, ...ports, ...archive];
+}
+
 function fitWords(root = document) {
   root.querySelectorAll('[data-fit]').forEach(el => {
     el.style.fontSize = '';
@@ -111,6 +140,7 @@ function renderSpreads() {
         <p class="spread__index"><b>${pad(i + 1)}</b> / ${pad(list.length)}</p>
         <h3 class="spread__title" data-fit><a href="${g.url}" data-game="${esc(g.id)}">${words(g.title)}</a></h3>
         <div class="spread__copy">
+          ${g.isPort ? `<p class="port-line">${portLine(g)}</p>` : ''}
           <p class="spread__tagline">${esc(g.tagline)}</p>
           <p class="spread__meta">${esc([g.genres.slice(0, 2).join(', '), g.platformLabels.join(' / '), g.year].join(' · '))}</p>
           <a class="btn-text" href="${g.url}" data-game="${esc(g.id)}" aria-label="View game: ${esc(g.title)}">View game <span aria-hidden="true">→</span></a>
@@ -180,14 +210,16 @@ function filtered() {
 
 function renderIndex() {
   const list = filtered();
-  const current = list.filter(g => g.featured);
-  const archive = list.filter(g => !g.featured);
+  const { own, ports, archive } = groupsOf(list);
+  const developers = [...new Set(ports.map(g => g.originalDeveloper))];
   let n = 0;
   const rows = (items, archived) => `<ol>${items.map(g => row(g, ++n, archived)).join('')}</ol>`;
+  const group = (title, note) => `<h3 class="toc__group">${title} <span>${esc(note)}</span></h3>`;
 
   slot('toc-body').innerHTML = list.length
-    ? (current.length ? rows(current, false) : '') +
-      (archive.length ? `<h3 class="toc__group">Archive <span>Earlier games, still available</span></h3>${rows(archive, true)}` : '')
+    ? (own.length ? rows(own, false) : '') +
+      (ports.length ? group('Ports', `Original games by ${joinList(developers)}`) + rows(ports, false) : '') +
+      (archive.length ? group('Archive', 'Earlier games, still available') + rows(archive, true) : '')
     : '<p class="toc__empty">No games match that. Try another platform or word.</p>';
 
   const filtering = view.platform !== 'all' || view.query;
@@ -206,6 +238,7 @@ function row(g, n, archived) {
         <span class="row__title">
           <span class="row__name">${esc(g.title)}</span>
           ${g.subtitle ? `<span class="row__sub">${esc(g.subtitle)}</span>` : ''}
+          ${g.isPort ? `<span class="row__port">${portTag(g)}</span>` : ''}
         </span>
         <span class="row__genre">${esc(g.genres.slice(0, 2).join(', '))}</span>
         <span class="row__platforms">${esc(g.platformLabels.join(' / '))}</span>
@@ -271,7 +304,7 @@ function setUpPeek() {
 
 function renderStudio() {
   const [lead, ...rest] = studio.about;
-  slot('studio-note').textContent = [studio.location, studio.since && `since ${studio.since}`].filter(Boolean).join(', ');
+  slot('studio-note').textContent = studio.location || '';
   slot('about-lead').textContent = lead || studio.tagline;
   slot('about-rest').innerHTML = rest.map(p => `<p>${esc(p)}</p>`).join('');
   slot('stats').innerHTML = studio.stats.map(s => `<div><dt>${esc(s.label)}</dt><dd>${esc(s.value)}</dd></div>`).join('');
@@ -380,24 +413,27 @@ function hideArticle() {
 }
 
 function articleHtml(g) {
-  const i = games.indexOf(g);
-  const prev = games[(i - 1 + games.length) % games.length];
-  const next = games[(i + 1) % games.length];
+  const order = indexOrder();
+  const i = order.indexOf(g);
+  const prev = order[(i - 1 + order.length) % order.length];
+  const next = order[(i + 1) % order.length];
+  const portNote = item => (item.isPort ? `, ${portLabel(item).toLowerCase()}` : '');
   const shots = g.media.screenshots;
 
   return `
     <div class="article__bar wrap">
       <button class="btn-text" type="button" data-close><span aria-hidden="true">←</span> Index</button>
-      <span class="article__count">No. ${pad(i + 1)} of ${pad(games.length)}</span>
+      <span class="article__count">No. ${pad(i + 1)} of ${pad(order.length)}</span>
       <span class="article__steps">
-        <button class="btn-text" type="button" data-swap="${esc(prev.id)}" aria-label="Previous game: ${esc(prev.title)}">←</button>
-        <button class="btn-text" type="button" data-swap="${esc(next.id)}" aria-label="Next game: ${esc(next.title)}">→</button>
+        <button class="btn-text" type="button" data-swap="${esc(prev.id)}" aria-label="Previous game: ${esc(prev.title)}${portNote(prev)}">←</button>
+        <button class="btn-text" type="button" data-swap="${esc(next.id)}" aria-label="Next game: ${esc(next.title)}${portNote(next)}">→</button>
       </span>
     </div>
 
     <header class="article__head wrap">
       <p class="kicker">${esc([...g.genres, g.year].join(' · '))}</p>
       <h2 class="article__title" id="article-title" tabindex="-1" data-fit>${words(g.title)}</h2>
+      ${g.isPort ? `<p class="article__port port-line">${portLine(g)}</p>` : ''}
       ${g.subtitle ? `<p class="article__subtitle">${esc(g.subtitle)}</p>` : ''}
       <p class="article__standfirst">${esc(g.summary)}</p>
     </header>
@@ -453,7 +489,7 @@ function articleHtml(g) {
       <div class="wrap">
         <div class="article__next-rule"></div>
         <a class="article__next" href="${next.url}" data-swap="${esc(next.id)}">
-          <span class="kicker">Next in the index</span>
+          <span class="kicker">Next in the index${portTag(next, ' port--quiet')}</span>
           <b data-fit>${words(next.title)}</b>
         </a>
       </div>` : ''}`;

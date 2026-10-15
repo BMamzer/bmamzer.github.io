@@ -3,12 +3,12 @@
     "name": "Bart Mamzer",
     "tagline": "Independent games, made by one developer",
     "about": [
-      "I'm Bart, an independent game developer from Poland. I've been making games since 2015, and I make them on my own: design, code, updates and support.",
-      "My biggest game is Powerlust, an old school action RPG with over a million downloads on Google Play. I also make strategy and idle games for PC, and I bring classic PC role playing games to phones, like Silver Lemur Games' Legends of Amberland."
+      "I'm Bart, an independent game developer from Poland. I released my first game in 2014, and I make my games on my own: design, code, updates and support.",
+      "My biggest game is Powerlust, an old school action RPG with over a million downloads on Google Play. I also make strategy and idle games for PC, and I port classic PC role playing games to phones, like Silver Lemur Games' Legends of Amberland."
     ],
     "email": "bartlomiejmamzergames@gmail.com",
     "location": "Poland",
-    "since": 2015,
+    "since": 2014,
     "url": "https://bartmamzer.com",
     "spotlight": [
       "powerlust",
@@ -26,8 +26,8 @@
         "label": "Powerlust rating on the App Store"
       },
       {
-        "value": "2015",
-        "label": "Making games since"
+        "value": "2014",
+        "label": "Releasing games since"
       }
     ],
     "links": [
@@ -189,7 +189,8 @@
         }
       ],
       "badge": "Free to try",
-      "credits": "Created by Silver Lemur Games. Mobile version by Bart Mamzer.",
+      "originalDeveloper": "Silver Lemur Games",
+      "credits": "Original game by Silver Lemur Games. Mobile port by Bart Mamzer.",
       "privacy": "/LoA/PrivacyPolicy.html",
       "accent": "#5cc46a",
       "featured": true,
@@ -271,7 +272,8 @@
         }
       ],
       "badge": "Pay once, no ads",
-      "credits": "Created by Silver Lemur Games. Mobile version by Bart Mamzer.",
+      "originalDeveloper": "Silver Lemur Games",
+      "credits": "Original game by Silver Lemur Games. Mobile port by Bart Mamzer.",
       "privacy": "/LoA/PrivacyPolicy.html",
       "accent": "#e8692c",
       "featured": true,
@@ -557,10 +559,11 @@
       "title": "Zerdian Wars",
       "subtitle": "Arcade Twin Stick Shooter",
       "tagline": "Twin-stick space combat.",
-      "summary": "An arcade twin-stick shooter. Start in a piece of junk, upgrade your weapons and stop an alien swarm before it grows into a galactic empire.",
+      "summary": "My first released game, an arcade twin-stick shooter. Start in a piece of junk, upgrade your weapons and stop an alien swarm before it grows into a galactic empire.",
       "description": [
         "The Galactic Space Agency has hired you, one of three marshals, to stop an alien invasion. Hunt the drones, attack the hives and take down pirate ships before the swarm grows into an empire.",
-        "Move with the left stick and shoot with the right. You start out flying a piece of junk, but new weapons come quickly."
+        "Move with the left stick and shoot with the right. You start out flying a piece of junk, but new weapons come quickly.",
+        "Zerdian came out on Android in 2014 and on iOS in 2015. The Android version is no longer available."
       ],
       "features": [
         "Twin-stick shooting",
@@ -572,7 +575,7 @@
         "Shooter",
         "Space"
       ],
-      "released": "2015-12-23",
+      "released": "2014",
       "platforms": [
         "ios"
       ],

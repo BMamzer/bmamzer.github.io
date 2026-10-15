@@ -55,6 +55,9 @@ function normalize(game) {
     genres: game.genres || [],
     highlights: game.highlights || [],
     featured: game.featured !== false,
+    // A port is someone else's game that Bart brought to another platform; designs must label it as one.
+    isPort: Boolean(game.originalDeveloper),
+    originalDeveloper: game.originalDeveloper || '',
     year,
     sortKey: String(game.released).padEnd(10, '-'),
     stores: (game.stores || []).map(s => ({ ...s, label: s.label || STORE_LABELS[s.type] || s.type })),
@@ -75,6 +78,8 @@ function normalize(game) {
  *   games       every game, newest first
  *   featured    games with featured !== false, newest first
  *   earlier     older games marked featured: false
+ *   originals   Bart's own games (not ports), newest first
+ *   ports       games by other studios that Bart ported (isPort), newest first
  *   spotlight   the games named in studio.spotlight (or the newest featured ones)
  *   platforms   platform keys that appear in the catalog, for filters
  *   genres      genre names that appear in the catalog, for filters
@@ -93,6 +98,8 @@ export async function loadCatalog(url = '/games.json') {
     games,
     featured,
     earlier: games.filter(g => !g.featured),
+    originals: games.filter(g => !g.isPort),
+    ports: games.filter(g => g.isPort),
     spotlight: spotlight.length ? spotlight : featured.slice(0, 4),
     byId,
     platforms: Object.keys(PLATFORM_LABELS).filter(p => games.some(g => g.platforms.includes(p))),
@@ -128,6 +135,13 @@ function sharedName(titles) {
   const common = [];
   for (let i = 0; words.every(w => w[i] && w[i] === words[0][i]); i++) common.push(words[0][i]);
   return common.join(' ') || titles[0];
+}
+
+/** "Mobile port" style label for a port, e.g. "iOS and Android port", or '' for Bart's own games. */
+export function portLabel(game) {
+  if (!game.isPort) return '';
+  const mobile = game.platforms.every(p => p === 'ios' || p === 'android');
+  return mobile ? 'Mobile port' : 'Port';
 }
 
 /** "2026" or "May 2026" (pass { month: true }). */
@@ -213,7 +227,9 @@ export function addStructuredData({ studio, games }) {
       ...games.map(g => ({
         '@type': 'VideoGame', name: g.title, description: g.summary, genre: g.genres,
         datePublished: g.released, image: new URL(g.media.cover, location.origin).href,
-        gamePlatform: g.platformLabels, author: { '@type': 'Person', name: studio.name },
+        gamePlatform: g.platformLabels,
+        author: g.isPort ? { '@type': 'Organization', name: g.originalDeveloper } : { '@type': 'Person', name: studio.name },
+        publisher: { '@type': 'Person', name: studio.name },
         url: g.stores[0]?.url,
       })),
     ],

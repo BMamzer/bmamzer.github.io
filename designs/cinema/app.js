@@ -1,7 +1,7 @@
 // Cinema design: billboard, rows, title page and lightbox, all built from /games.json.
 import {
   loadCatalog, icon, esc, releaseLabel, onRoute, openGame, closeGame, reducedMotion,
-  playTrailer, stopTrailer, setPageMeta, addStructuredData, privacyLinks,
+  playTrailer, stopTrailer, setPageMeta, addStructuredData, privacyLinks, portLabel,
 } from '/assets/site/catalog.js';
 
 const $ = (selector, root = document) => root.querySelector(selector);
@@ -31,6 +31,7 @@ const ARROW_LEFT = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.4 5
 const ARROW_RIGHT = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8.6 19 7-7-7-7L10 3.6 18.4 12 10 20.4Z"/></svg>';
 const EXTERNAL = '<svg class="arrow" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14 3h7v7h-2V6.4l-9.3 9.3-1.4-1.4L17.6 5H14V3ZM5 5h6v2H5v12h12v-6h2v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z"/></svg>';
 const STAR = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.5 2.9 6.2 6.8.8-5 4.7 1.3 6.7L12 17.6l-6 3.3 1.3-6.7-5-4.7 6.8-.8Z"/></svg>';
+const PORT = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 7h11l-3-3 1.4-1.4L21.8 8l-5.4 5.4L15 12l3-3H7V7Zm10 10H6l3 3-1.4 1.4L2.2 16l5.4-5.4L9 12l-3 3h11v2Z"/></svg>';
 const INFO = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 1 0 20 10 10 0 0 1 0-20Zm0 2a8 8 0 1 0 0 16 8 8 0 0 0 0-16Zm1 6v7h-2v-7h2Zm-1-4a1.25 1.25 0 1 1 0 2.5A1.25 1.25 0 0 1 12 6Z"/></svg>';
 
 const ua = navigator.userAgent;
@@ -74,6 +75,18 @@ function storeCta(store) {
   return STORE_CTA[store.type] || ['Get it on', store.label];
 }
 
+/** The port marker: a solid tag, unlike the genre and badge chips. Empty for Bart's own games. */
+function portTag(game) {
+  return game.isPort ? `<span class="port-tag">${PORT}${esc(portLabel(game))}<span class="visually-hidden">.</span></span>` : '';
+}
+
+/** "Mobile port. Original game by Silver Lemur Games." as a tag plus text. */
+function portLine(game, className) {
+  return game.isPort
+    ? `<p class="${className}">${portTag(game)}<span>Original game by ${esc(game.originalDeveloper)}.</span></p>`
+    : '';
+}
+
 function tile(game) {
   const icons = [...new Set(game.stores.map(s => s.type))].map(type => icon(type, { size: 14 })).join('');
   return `
@@ -81,6 +94,7 @@ function tile(game) {
       ${game.media.loop ? `data-loop="${esc(game.media.loop)}"` : ''}>
       <span class="tile-media">
         <img src="${esc(game.media.cover)}" alt="" loading="lazy" decoding="async" width="640" height="360">
+        ${portTag(game)}
       </span>
       <span class="tile-info">
         <span class="tile-title">${esc(game.title)}</span>
@@ -124,8 +138,16 @@ function renderStudio() {
   $('[data-studio-tagline]').textContent = studio.tagline;
   $('#studio-about').innerHTML = studio.about.map(p => `<p>${esc(p)}</p>`).join('');
 
-  const stats = [...studio.stats, { value: String(games.length), label: games.length === 1 ? 'Released game' : 'Released games' }];
-  $('#stats').innerHTML = stats.map(s => `<div class="stat"><dt>${esc(s.label)}</dt><dd>${esc(s.value)}</dd></div>`).join('');
+  // Counts cover Bart's own games; ports are counted on their own line.
+  const own = catalog.originals.length;
+  const ports = catalog.ports.length;
+  const stats = [...studio.stats, {
+    value: String(own),
+    label: own === 1 ? 'Own game released' : 'Own games released',
+    extra: ports ? `plus ${ports} ${ports === 1 ? 'port' : 'ports'}` : '',
+  }];
+  $('#stats').innerHTML = stats.map(s => `<div class="stat"><dt>${esc(s.label)}${s.extra
+    ? `<span class="stat-extra">${esc(s.extra)}</span>` : ''}</dt><dd>${esc(s.value)}</dd></div>`).join('');
 
   const email = $('#email-link');
   email.href = `mailto:${studio.email}`;
@@ -209,6 +231,7 @@ function slideHtml(game, i, count) {
         <h2 class="slide-heading">${m.logo
           ? `<img class="slide-logo" src="${esc(m.logo)}" alt="${esc(game.title)}" decoding="async">`
           : `<span class="slide-title">${esc(game.title)}</span>`}</h2>
+        ${portLine(game, 'slide-port')}
         <p class="slide-meta">${meta}</p>
         <p class="slide-tagline">${esc(game.tagline)}</p>
         <p class="slide-summary">${esc(game.summary)}</p>
@@ -316,12 +339,14 @@ function buildRows(list) {
     rows.push({ title, games, key, compact });
   };
 
+  // Bart's own games lead; ports get a row of their own.
+  const own = featured.filter(g => !g.isPort);
+  const ports = list.filter(g => g.isPort);
+  add(filters.platform === 'all' ? 'Latest releases' : PLATFORM_ROWS[filters.platform] || 'Games', own);
+  add(portsTitle(ports), ports);
   if (filters.platform === 'all') {
-    add('Latest releases', featured);
     add('On PC', featured.filter(g => g.platforms.includes('pc')), 2);
     add('On iPhone and Android', featured.filter(g => g.platforms.some(p => p === 'ios' || p === 'android')), 2);
-  } else {
-    add(PLATFORM_ROWS[filters.platform] || 'Games', featured);
   }
   // A genre row has to be a real slice of the library: 3 or more games, but not nearly all of them.
   let genreRows = 0;
@@ -333,8 +358,18 @@ function buildRows(list) {
     add(group.title, games, 3);
     genreRows += rows.length - before;
   }
-  add('Earlier games', list.filter(g => !g.featured), 1, true);
+  add('Earlier games', list.filter(g => !g.featured && !g.isPort), 1, true);
   return rows;
+}
+
+function portsTitle(ports) {
+  const platforms = new Set(ports.flatMap(g => g.platforms));
+  const ios = platforms.has('ios');
+  const android = platforms.has('android');
+  if (platforms.size === 2 && ios && android) return 'Ported to iPhone and Android';
+  if (platforms.size === 1 && ios) return 'Ported to iPhone and iPad';
+  if (platforms.size === 1 && android) return 'Ported to Android';
+  return 'Ports';
 }
 
 function renderRows() {
@@ -496,6 +531,7 @@ function renderDetail(game) {
         ${m.logo ? `<img class="tp-logo" src="${esc(m.logo)}" alt="" decoding="async">` : ''}
         <h2 class="${m.logo ? 'visually-hidden' : 'tp-title'}" id="detail-title">${esc(game.title)}</h2>
         ${game.subtitle ? `<p class="tp-subtitle">${esc(game.subtitle)}</p>` : ''}
+        ${portLine(game, 'tp-port')}
       </div>
       ${m.trailer ? `<button class="tp-play" type="button"><span class="tp-play-icon">${icon('play')}</span>Watch trailer</button>` : ''}
     </div>

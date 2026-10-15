@@ -1,7 +1,7 @@
 // Grimoire design: renders the catalog from games.json into the stage, the game panels, the chronicle and the codex.
 import {
   loadCatalog, icon, esc, releaseLabel, onRoute, openGame, closeGame, playTrailer, stopTrailer,
-  reducedMotion, setPageMeta, addStructuredData, privacyLinks, PLATFORM_LABELS,
+  reducedMotion, setPageMeta, addStructuredData, privacyLinks, portLabel, PLATFORM_LABELS,
 } from '/assets/site/catalog.js';
 
 const $ = (sel, root = document) => root.querySelector(sel);
@@ -37,6 +37,28 @@ function metaLine(game, { month = false } = {}) {
   return parts.join(dot);
 }
 
+// Ports wear a silver seal, set apart from the gold genre runes and badges.
+const PORT_GLYPH = '<svg class="port-glyph" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M4 8h14m-4-4 4 4-4 4M20 16H6m4-4-4 4 4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+function portMark(game) {
+  return game.isPort ? `<span class="port-mark">${PORT_GLYPH}<span>${esc(portLabel(game))}</span></span>` : '';
+}
+
+function portLine(game, cls = 'port-line') {
+  if (!game.isPort) return '';
+  return `<p class="${cls}">${portMark(game)}<span class="port-by">Original game by ${esc(game.originalDeveloper)}</span></p>`;
+}
+
+// "5 games, 2 ports": Bart's own games are counted apart from the ports.
+function countLabel(games) {
+  const own = games.filter(g => !g.isPort).length;
+  const ports = games.length - own;
+  const parts = [];
+  if (own || !ports) parts.push(`${own} ${own === 1 ? 'game' : 'games'}`);
+  if (ports) parts.push(`${ports} ${ports === 1 ? 'port' : 'ports'}`);
+  return parts.join(', ');
+}
+
 function storeIcons(game) {
   return game.stores.map(s => `
     <a class="icon-btn" href="${esc(s.url)}" target="_blank" rel="noopener"
@@ -65,7 +87,11 @@ function renderStudio() {
   $('[data-studio-tagline]').textContent = studio.tagline;
   $('[data-about]').innerHTML = illuminated(studio.about);
 
-  const stats = [...studio.stats, { value: String(catalog.games.length), label: 'Games released' }];
+  const ports = catalog.ports.length;
+  const stats = [...studio.stats, {
+    value: String(catalog.originals.length),
+    label: ports ? `Own games released, plus ${ports} ${ports === 1 ? 'port' : 'ports'}` : 'Games released',
+  }];
   $('[data-stats]').innerHTML = stats.map(s => `
     <div class="stat"><dt>${esc(s.value)}</dt><dd>${esc(s.label)}</dd></div>`).join('');
 
@@ -74,7 +100,7 @@ function renderStudio() {
   $('[data-timeline]').innerHTML = [...years].map(([year, games]) => `
     <li class="tl-item">
       <span class="tl-year">${year}</span>
-      <span class="tl-games">${games.map(g => `<a href="${g.url}" data-open="${esc(g.id)}">${esc(g.title)}</a>`).join('')}</span>
+      <span class="tl-games">${games.map(g => `<a href="${g.url}" data-open="${esc(g.id)}">${esc(g.title)}${g.isPort ? `<span class="port-mini">${PORT_GLYPH}${esc(portLabel(g))}</span>` : ''}</a>`).join('')}</span>
     </li>`).join('');
 
   $('[data-mail]').innerHTML = `<a href="mailto:${esc(studio.email)}">${icon('mail', { size: 22 })}<span>${esc(studio.email)}</span></a>`;
@@ -102,8 +128,8 @@ function initStage() {
   stage.style.setProperty('--slide-time', `${SLIDE_MS}ms`);
   art.innerHTML = games.map((g, i) => `<div class="slide" data-i="${i}"><img alt="" decoding="async" ${i === 0 ? `src="${esc(g.media.hero)}" fetchpriority="high"` : `data-src="${esc(g.media.hero)}"`}></div>`).join('');
   tabs.innerHTML = games.map((g, i) => `
-    <button class="stage-tab" type="button" data-i="${i}" aria-label="Show ${esc(g.title)}">
-      <span class="num" aria-hidden="true">${toRoman(i + 1)}</span><span class="name" aria-hidden="true">${esc(g.title)}</span>
+    <button class="stage-tab" type="button" data-i="${i}" aria-label="Show ${esc(g.title)}${g.isPort ? `, ${esc(portLabel(g).toLowerCase())}` : ''}">
+      <span class="num" aria-hidden="true">${toRoman(i + 1)}</span><span class="name" aria-hidden="true">${esc(g.title)}${g.isPort ? PORT_GLYPH : ''}</span>
     </button>`).join('');
   if (games.length < 2) $('.stage-controls', stage).hidden = true;
 
@@ -115,6 +141,7 @@ function initStage() {
     box.innerHTML = `
       <p class="sg-label"><span class="featured">Featured</span>${dot}${metaLine(game)}</p>
       <h2 class="sg-title">${game.media.logo ? `<img src="${esc(game.media.logo)}" alt="${esc(game.title)}">` : esc(game.title)}</h2>
+      ${portLine(game)}
       <p class="sg-tagline">${esc(game.tagline)}</p>
       <div class="sg-actions">
         <a class="btn btn-primary" href="${game.url}" data-open="${esc(game.id)}">Explore<span class="visually-hidden"> ${esc(game.title)}</span></a>
@@ -247,10 +274,11 @@ function initEmbers(canvas, host) {
 // ---------------------------------------------------------------- games grid and filters
 
 function initFilters() {
-  const state = { platform: 'all', genre: 'all', limit: PAGE_SIZE };
+  const state = { platform: 'all', genre: 'all', limit: PAGE_SIZE, portLimit: PAGE_SIZE };
   const tabBox = $('[data-platforms]');
   const select = $('[data-genre]');
   const moreBtn = $('[data-more]');
+  const portsMore = $('[data-ports-more]');
 
   if (catalog.platforms.length > 1) {
     tabBox.innerHTML = [['all', 'All'], ...catalog.platforms.map(p => [p, PLATFORM_LABELS[p] || p])]
@@ -271,16 +299,22 @@ function initFilters() {
     const btn = e.target.closest('[data-platform]');
     if (!btn) return;
     state.platform = btn.dataset.platform;
-    state.limit = PAGE_SIZE;
+    state.limit = state.portLimit = PAGE_SIZE;
     tabBox.querySelectorAll('[data-platform]').forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
     update();
   });
-  select.addEventListener('change', () => { state.genre = select.value; state.limit = PAGE_SIZE; update(); });
+  select.addEventListener('change', () => { state.genre = select.value; state.limit = state.portLimit = PAGE_SIZE; update(); });
   moreBtn.addEventListener('click', () => {
     const firstNew = state.limit;
     state.limit = Infinity;
     update();
     $('[data-grid]').children[firstNew]?.querySelector('.card-title a')?.focus();
+  });
+  portsMore.addEventListener('click', () => {
+    const firstNew = state.portLimit;
+    state.portLimit = Infinity;
+    update();
+    $('[data-ports-grid]').children[firstNew]?.querySelector('.card-title a')?.focus();
   });
   $('[data-reset]').addEventListener('click', () => {
     state.platform = 'all';
@@ -293,28 +327,33 @@ function initFilters() {
   const matches = g => (state.platform === 'all' || g.platforms.includes(state.platform))
     && (state.genre === 'all' || g.genres.includes(state.genre));
 
+  // Bart's own games lead; ports follow in their own group; older titles go to the archive.
   function update() {
-    const featured = catalog.featured.filter(matches);
+    const own = catalog.featured.filter(g => !g.isPort && matches(g));
+    const ports = catalog.featured.filter(g => g.isPort && matches(g));
     const earlier = catalog.earlier.filter(matches);
-    const total = featured.length + earlier.length;
-    const shown = featured.slice(0, state.limit);
+    const all = [...own, ...ports, ...earlier];
 
-    renderGrid(shown);
+    renderGrid($('[data-grid]'), own.slice(0, state.limit));
+    moreBtn.hidden = own.length <= state.limit;
+    moreBtn.textContent = `Show all ${own.length} games`;
+
+    $('[data-ports]').hidden = !ports.length;
+    renderGrid($('[data-ports-grid]'), ports.slice(0, state.portLimit));
+    portsMore.hidden = ports.length <= state.portLimit;
+    portsMore.textContent = `Show all ${ports.length} ports`;
+
     renderArchive(earlier);
-    moreBtn.hidden = featured.length <= shown.length;
-    moreBtn.textContent = `Show all ${featured.length} games`;
-    $('[data-empty]').hidden = total > 0;
-    $('[data-count]').textContent = total === catalog.games.length
-      ? `${total} released ${total === 1 ? 'game' : 'games'}`
-      : `${total} of ${catalog.games.length} games`;
+    $('[data-empty]').hidden = all.length > 0;
+    const filtered = state.platform !== 'all' || state.genre !== 'all';
+    $('[data-count]').textContent = filtered ? `${countLabel(all)} match` : countLabel(all);
   }
 
   update();
-  for (const mq of ['(min-width: 720px)', '(min-width: 1100px)']) matchMedia(mq).addEventListener('change', layoutGrid);
+  for (const mq of ['(min-width: 720px)', '(min-width: 1100px)']) matchMedia(mq).addEventListener('change', layoutGrids);
 }
 
-function renderGrid(games) {
-  const grid = $('[data-grid]');
+function renderGrid(grid, games) {
   grid.innerHTML = games.map((g, i) => `
     <article class="card" style="--accent:${esc(g.accent)}" data-id="${esc(g.id)}">
       <div class="card-media">
@@ -323,6 +362,7 @@ function renderGrid(games) {
       </div>
       <div class="card-body">
         <p class="meta">${metaLine(g)}</p>
+        ${portLine(g)}
         <h3 class="card-title"><a href="${g.url}" data-open="${esc(g.id)}">${esc(g.title)}</a></h3>
         ${g.subtitle ? `<p class="card-sub">${esc(g.subtitle)}</p>` : ''}
         <p class="card-tagline">${esc(g.tagline)}</p>
@@ -331,12 +371,16 @@ function renderGrid(games) {
       </div>
     </article>`).join('');
   [...grid.children].forEach((card, i) => hoverLoop(card, games[i]));
-  layoutGrid();
+  layoutGrid(grid);
+}
+
+function layoutGrids() {
+  document.querySelectorAll('.grid').forEach(layoutGrid);
 }
 
 // Makes every row full: on desktop (3 per row) the first card spans the row or the first two share it.
-function layoutGrid() {
-  const cards = [...$('[data-grid]').children];
+function layoutGrid(grid) {
+  const cards = [...grid.children];
   const n = cards.length;
   cards.forEach(c => c.classList.remove('wide', 'big'));
   if (!n) return;
@@ -378,6 +422,7 @@ function renderArchive(games) {
       <div class="relic-text">
         <h4><a href="${g.url}" data-open="${esc(g.id)}">${esc(g.title)}</a></h4>
         <p class="meta">${metaLine(g)}</p>
+        ${portLine(g)}
         <p>${esc(g.tagline)}</p>
       </div>
     </li>`).join('');
@@ -480,13 +525,14 @@ function renderCodex(game) {
           <span>Watch the trailer</span>
         </button>
       </div>`
-    : `<div class="plate-inner"><img src="${esc(m.cover)}" alt="${esc(game.title)} cover art" decoding="async"></div>`;
+    : `<div class="plate-inner"><img src="${esc(m.hero)}" alt="${esc(game.title)} key art" decoding="async"></div>`;
 
   page.innerHTML = `
     <header class="codex-head">
       <p class="meta">${metaLine(game, { month: true })}${game.genres.length ? `${dot}<span>${esc(game.genres.join(', '))}</span>` : ''}</p>
       <h2 class="codex-title" id="codex-title">${m.logo ? `<img src="${esc(m.logo)}" alt="${esc(game.title)}">` : esc(game.title)}</h2>
       ${game.subtitle ? `<p class="codex-sub">${esc(game.subtitle)}</p>` : ''}
+      ${game.isPort ? `<p class="port-banner">${PORT_GLYPH}<span><strong>${esc(portLabel(game))}.</strong> Original game by ${esc(game.originalDeveloper)}.</span></p>` : ''}
       <p class="codex-tagline">${esc(game.tagline)}</p>
       ${seals ? `<ul class="seals">${seals}</ul>` : ''}
       <ul class="stores">${game.stores.map(s => `
@@ -509,6 +555,7 @@ function renderCodex(game) {
         <section>
           <h3>Details</h3>
           <dl class="facts">
+            ${game.isPort ? `<dt>Original game</dt><dd>${esc(game.originalDeveloper)}</dd>` : ''}
             <dt>Released</dt><dd>${esc(releaseLabel(game, { month: true }))}</dd>
             <dt>Platforms</dt><dd>${esc(game.platformLabels.join(', '))}</dd>
             ${game.genres.length ? `<dt>Genres</dt><dd>${esc(game.genres.join(', '))}</dd>` : ''}
@@ -529,8 +576,8 @@ function renderCodex(game) {
 
     ${all.length > 1 ? `
     <nav class="codex-nav" aria-label="More games">
-      <a href="${prev.url}" data-step="${esc(prev.id)}"><small>Previous</small><span>${esc(prev.title)}</span></a>
-      <a href="${next.url}" data-step="${esc(next.id)}"><small>Next</small><span>${esc(next.title)}</span></a>
+      <a href="${prev.url}" data-step="${esc(prev.id)}"><small>Previous</small><span>${esc(prev.title)}</span>${portMark(prev)}</a>
+      <a href="${next.url}" data-step="${esc(next.id)}"><small>Next</small><span>${esc(next.title)}</span>${portMark(next)}</a>
     </nav>` : ''}`;
 }
 
