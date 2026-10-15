@@ -51,6 +51,13 @@ const SPRITES = {
     palette: { a: '#d9cdf5', b: '#6fd3ff' },
     rows: ['..a......', '.aaaaaaa.', '..a......', '.........', '......b..', '.bbbbbbb.', '......b..'],
   },
+  mug: {
+    palette: { w: '#f4ecd8', s: '#b9ab8c', r: '#d8413a' },
+    rows: [
+      'wwwwwwwwww..', 'wwrrwwrrwwww', 'wrrrrrrrrw.w', 'wrrrrrrrrw.w', 'wwrrrrrrww.w',
+      'wwwrrrrwwwww', 'wwwwrrwwww..', 'wwwwwwwwww..', 'swwwwwwwws..', '.ssssssss...',
+    ],
+  },
   hero: {
     palette: { C: '#3d2a66', c: '#6b46a8', s: '#f2c9a0', e: '#15100c', b: '#e8b64c', B: '#5a3720', t: '#8a5a2c', g: '#56d6f0' },
     rows: [
@@ -666,6 +673,17 @@ function renderContact(catalog) {
   $('.guilds').hidden = !studio.links.length;
   $('.links').innerHTML = studio.links.map(l => `
     <li><a class="btn btn-link" href="${esc(l.url)}" rel="me noopener">${icon(l.type)}<span>${esc(l.label)}</span></a></li>`).join('');
+
+  const { support } = studio;
+  if (support) {
+    const box = $('.support');
+    $('h2', box).textContent = support.title;
+    $('p', box).textContent = support.text;
+    const link = $('.btn', box);
+    link.href = support.url;
+    link.innerHTML = `${icon('kofi')}<span>${esc(support.label)}</span>`;
+    box.hidden = false;
+  }
 
   $('[data-slot="copyright"]').textContent = `© ${new Date().getFullYear()} ${studio.name}`;
 }

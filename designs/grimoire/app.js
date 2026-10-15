@@ -107,6 +107,15 @@ function renderStudio() {
   $('[data-links]').innerHTML = studio.links.map(l => `
     <li><a href="${esc(l.url)}" target="_blank" rel="noopener me">${icon(l.type)}<span>${esc(l.label)}</span></a></li>`).join('');
 
+  if (studio.support) {
+    $('[data-support-title]').textContent = studio.support.title;
+    $('[data-support-text]').textContent = studio.support.text;
+    const link = $('[data-support-link]');
+    link.href = studio.support.url;
+    link.innerHTML = `${icon('kofi', { size: 20 })}<span>${esc(studio.support.label)}</span>`;
+    $('[data-support]').hidden = false;
+  }
+
   $('[data-copy]').textContent = `© ${new Date().getFullYear()} ${studio.name}${studio.location ? `. Made in ${studio.location}.` : ''}`;
 }
 

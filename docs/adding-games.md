@@ -58,8 +58,8 @@ This repo is public: never put an unreleased game in `games.json`, in `assets/` 
 | `featured` | no | `false` moves an older game to the quieter "Earlier games" area |
 | `media` | yes | Paths written by the import script (see below) |
 
-`studio` at the top of `games.json` holds the studio name, tagline, about text, email, stats, links and `spotlight`
-(the game ids shown in the opening section, in order).
+`studio` at the top of `games.json` holds the studio name, tagline, about text, email, stats, links, `support` (the Ko-fi button at the bottom of the
+page; remove it to hide the button) and `spotlight` (the game ids shown in the opening section, in order).
 
 ## Images
 

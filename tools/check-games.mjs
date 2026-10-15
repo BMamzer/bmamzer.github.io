@@ -22,6 +22,7 @@ try {
 
 const s = data.studio || {};
 for (const key of ['name', 'tagline', 'email']) if (!s[key]) errors.push(`studio.${key} is missing`);
+if (s.support && !(s.support.label && /^https:\/\//.test(s.support.url || ''))) errors.push('studio.support needs a label and an https url');
 
 const ids = new Set();
 for (const [i, g] of (data.games || []).entries()) {

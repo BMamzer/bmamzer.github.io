@@ -59,6 +59,7 @@ async function init() {
   renderControls();
   renderCollection();
   renderProfile();
+  renderSupport();
   renderFooter();
   addStructuredData(catalog);
   setupGyro();
@@ -345,6 +346,17 @@ function renderProfile() {
         </ul>
       </div>
     </div>`;
+}
+
+function renderSupport() {
+  const { support } = catalog.studio;
+  if (!support) return;
+  $('#support-title').textContent = support.title;
+  $('#support-text').textContent = support.text;
+  const link = $('#support-link');
+  link.href = support.url;
+  link.innerHTML = `${icon('kofi', { size: 22 })}<span>${esc(support.label)}</span>`;
+  $('#support').hidden = false;
 }
 
 function renderFooter() {

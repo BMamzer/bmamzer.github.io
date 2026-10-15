@@ -7,6 +7,12 @@
       "My biggest game is Powerlust, an old school action RPG with over a million downloads on Google Play. I also make strategy and idle games for PC, and I port classic PC role playing games to phones, like Silver Lemur Games' Legends of Amberland."
     ],
     "email": "bartmamzer@gmail.com",
+    "support": {
+      "title": "Enjoying the games?",
+      "text": "I'm a solo developer. If you'd like to help me make the next game, you can buy me a coffee on Ko-fi.",
+      "label": "Support me on Ko-fi",
+      "url": "https://ko-fi.com/bartmamzer"
+    },
     "location": "Poland",
     "since": 2014,
     "url": "https://bartmamzer.com",

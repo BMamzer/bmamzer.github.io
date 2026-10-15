@@ -794,7 +794,7 @@ p { margin: 0 0 0.8em; }
 
 /* ------------------------------------------------------------ contact */
 
-.contact { display: grid; gap: 22px; margin-bottom: 64px; }
+.contact { display: grid; gap: 22px; margin-bottom: 28px; }
 @media (min-width: 1000px) { .contact { grid-template-columns: 1.1fr 1fr; align-items: stretch; } }
 .contact-card { display: flex; gap: 18px; align-items: flex-start; padding: 24px 22px; }
 .contact-text p { color: #f0e6cc; }
@@ -809,6 +809,14 @@ p { margin: 0 0 0.8em; }
 @media (min-width: 1000px) { .links { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); } }
 .btn-link { width: 100%; justify-content: flex-start; padding-inline: 12px; gap: 8px; }
 .btn-link span { text-align: left; }
+
+/* ------------------------------------------------------------ support */
+
+.support { margin-bottom: 64px; }
+.support-card { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 22px; padding: 24px 22px; }
+.support-text { flex: 1 1 320px; }
+.support-text p { margin: 0; color: #f0e6cc; }
+@media (max-width: 480px) { .support-card .btn { width: 100%; } }
 
 /* ------------------------------------------------------------ footer */
 
