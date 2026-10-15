@@ -197,7 +197,6 @@
       "badge": "Free to try",
       "originalDeveloper": "Silver Lemur Games",
       "credits": "Original game by Silver Lemur Games. Mobile port by Bart Mamzer.",
-      "privacy": "/LoA/PrivacyPolicy.html",
       "accent": "#5cc46a",
       "featured": true,
       "media": {
@@ -280,7 +279,6 @@
       "badge": "Pay once, no ads",
       "originalDeveloper": "Silver Lemur Games",
       "credits": "Original game by Silver Lemur Games. Mobile port by Bart Mamzer.",
-      "privacy": "/LoA/PrivacyPolicy.html",
       "accent": "#e8692c",
       "featured": true,
       "media": {
@@ -449,8 +447,6 @@
         "1M+ downloads on Google Play",
         "4.8 stars on the App Store from 1,000+ ratings"
       ],
-      "website": "/powerlust/",
-      "privacy": "/powerlust/policy/",
       "accent": "#d9453b",
       "featured": true,
       "media": {

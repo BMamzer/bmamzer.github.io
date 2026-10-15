@@ -480,7 +480,6 @@ function detailHTML(game) {
   ];
   const links = [
     game.website && `<a href="${esc(game.website)}">${icon('web', { size: 18 })}<span>Game website</span></a>`,
-    game.privacy && `<a href="${esc(game.privacy)}">Privacy policy</a>`,
   ].filter(Boolean);
   return `
     <button class="close-btn sheet-close" type="button" id="detail-close" aria-label="Close ${esc(game.title)}">

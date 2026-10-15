@@ -521,7 +521,6 @@ function renderCodex(game) {
 
   const sideLinks = [
     game.website && `<a href="${esc(game.website)}">Official ${esc(game.title)} page</a>`,
-    game.privacy && `<a href="${esc(game.privacy)}">Privacy policy</a>`,
   ].filter(Boolean).join('');
 
   const plate = m.trailer

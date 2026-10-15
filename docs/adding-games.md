@@ -53,7 +53,6 @@ This repo is public: never put an unreleased game in `games.json`, in `assets/` 
 | `originalDeveloper` | ports only | The studio that made the original game. Setting it marks the game as a port everywhere on the site |
 | `credits` | no | Credit line, e.g. "Original game by Silver Lemur Games. Mobile port by Bart Mamzer." |
 | `website` | no | The game's own page, e.g. `/powerlust/` |
-| `privacy` | no | The game's privacy policy page, linked from its detail view |
 | `accent` | yes | Hex colour picked from the art (the import script suggests one; adjust by eye) |
 | `featured` | no | `false` moves an older game to the quieter "Earlier games" area |
 | `media` | yes | Paths written by the import script (see below) |

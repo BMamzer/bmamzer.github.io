@@ -499,7 +499,6 @@ function infoHtml(g) {
   const m = g.media;
   const links = [
     g.website && `<a href="${esc(g.website)}">Official ${esc(g.title)} page</a>`,
-    g.privacy && `<a href="${esc(g.privacy)}">Privacy policy</a>`,
   ].filter(Boolean);
   const trailer = m.trailer ? `
     <section class="info-section trailer-section" aria-label="Trailer">

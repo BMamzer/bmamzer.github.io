@@ -55,7 +55,9 @@ for (const [i, g] of (data.games || []).entries()) {
   need(m.cover, 'media.cover is missing');
   const files = [m.cover, m.hero, m.poster, m.logo, m.icon, m.loop, m.loopPoster, ...(m.screenshots || []).map(x => x.src)];
   for (const f of files.filter(Boolean)) need(existsSync(join(ROOT, f)), `file not found: ${f}`);
-  for (const local of [g.website, g.privacy].filter(u => u && u.startsWith('/'))) {
+  // Privacy policies are linked from the store listings only, never from the site.
+  need(!g.privacy, 'remove "privacy": the site does not link privacy policies (the stores do)');
+  for (const local of [g.website].filter(u => u && u.startsWith('/'))) {
     const path = join(ROOT, local);
     need(existsSync(path) || existsSync(join(path, 'index.html')) || existsSync(`${path}.html`), `page not found: ${local}`);
   }
