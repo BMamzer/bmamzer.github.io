@@ -21,12 +21,12 @@
   <meta name="twitter:image" content="https://bartmamzer.com/assets/site/og.jpg">
   <link rel="icon" href="/designs/collector/favicon.svg" type="image/svg+xml">
   <script>
-    // Design poll only: ?font=cinzel, chakra or unbounded swaps the display font (Sora is the default) and
+    // Design poll only: ?font=cinzel or grimoire (Cinzel with Alegreya) swaps the fonts (Sora is the default) and
     // ?palette=ember or ice the colours. Drop this and the unused font links once both are picked.
     (() => {
       const q = new URLSearchParams(location.search);
       const font = q.get('font');
-      if (['cinzel', 'chakra', 'unbounded'].includes(font)) document.documentElement.dataset.font = font;
+      if (['cinzel', 'grimoire'].includes(font)) document.documentElement.dataset.font = font;
       const palette = q.get('palette');
       const theme = { ember: '#170c0b', ice: '#08151c' }[palette];
       if (!theme) return;
@@ -39,8 +39,7 @@
   <link rel="stylesheet" href="/assets/fonts/inter/font.css">
   <link rel="stylesheet" href="/assets/fonts/sora/font.css">
   <link rel="stylesheet" href="/assets/fonts/cinzel/font.css">
-  <link rel="stylesheet" href="/assets/fonts/chakra-petch/font.css">
-  <link rel="stylesheet" href="/assets/fonts/unbounded/font.css">
+  <link rel="stylesheet" href="/assets/fonts/alegreya/font.css">
   <link rel="stylesheet" href="/designs/collector/style.css">
   <script type="module" src="/designs/collector/app.js"></script>
 </head>

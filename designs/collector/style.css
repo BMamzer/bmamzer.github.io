@@ -121,7 +121,7 @@
   --mark-c: #b6f2ff;
 }
 
-/* Type options for the design poll: html[data-font] swaps the display font. Body text is always Inter. */
+/* Type options for the design poll: html[data-font] swaps the fonts. Body text is Inter except in the Grimoire pairing. */
 :root[data-font="cinzel"] {
   --display: 'Cinzel', Georgia, serif;
   --d-track: 0.01em;
@@ -130,23 +130,16 @@
   --title-lh: 1.05;
   --card-scale: 0.84;
 }
-:root[data-font="chakra"] {
-  --display: 'Chakra Petch', system-ui, sans-serif;
-  --d-track: 0;
-  --d-case: uppercase;
-  --d-scale: 1;
-  --title-scale: 0.92;
-  --title-lh: 0.95;
-  --card-scale: 0.9;
-}
-:root[data-font="unbounded"] {
-  --display: 'Unbounded', system-ui, sans-serif;
+:root[data-font="grimoire"] {
+  --display: 'Cinzel', Georgia, serif;
+  --body: 'Alegreya', Georgia, 'Times New Roman', serif;
   --d-weight: 600;
-  --d-track: -0.02em;
-  --d-scale: 0.84;
-  --title-scale: 0.68;
+  --d-track: 0.02em;
+  --d-scale: 0.92;
+  --title-scale: 0.78;
   --title-lh: 1.05;
-  --card-scale: 0.78;
+  --card-scale: 0.84;
+  font-size: 106.25%;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
