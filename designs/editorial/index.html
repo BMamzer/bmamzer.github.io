@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Bart Mamzer | Indie games</title>
+  <meta name="description" content="Bart Mamzer is an independent game developer from Poland. Powerlust, Crownbound, Arcane Plunder and more for PC, iOS and Android.">
+  <link rel="canonical" href="https://bartmamzer.com/">
+  <meta name="theme-color" content="#f3f0e8" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#121210" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Bart Mamzer">
+  <meta property="og:title" content="Bart Mamzer | Indie games">
+  <meta property="og:description" content="Independent games, made by one developer. PC, iOS and Android.">
+  <meta property="og:url" content="https://bartmamzer.com/">
+  <meta property="og:image" content="https://bartmamzer.com/assets/site/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@bartmamzer">
+  <meta name="twitter:title" content="Bart Mamzer | Indie games">
+  <meta name="twitter:description" content="Independent games, made by one developer. PC, iOS and Android.">
+  <meta name="twitter:image" content="https://bartmamzer.com/assets/site/og.jpg">
+
+  <link rel="icon" href="/designs/editorial/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="/assets/fonts/archivo/archivo-400-800-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/fonts/archivo/font.css">
+  <link rel="stylesheet" href="/assets/fonts/newsreader/font.css">
+  <link rel="stylesheet" href="/designs/editorial/style.css">
+  <script type="module" src="/designs/editorial/app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#index">Skip to the games</a>
+
+  <div class="page" id="page">
+    <header class="masthead">
+      <div class="wrap masthead__bar">
+        <a class="wordmark" href="#top" data-scroll aria-label="Bart Mamzer, back to top">Bart Mamzer</a>
+        <nav class="masthead__nav" aria-label="Sections">
+          <a href="#work" data-scroll>Work</a>
+          <a href="#index" data-scroll>Index</a>
+          <a href="#studio" data-scroll>Studio</a>
+          <a href="#contact" data-scroll>Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="opening wrap" aria-labelledby="opening-title">
+        <div class="dateline rule-top">
+          <span data-slot="volume">Independent game studio</span>
+          <span data-slot="today"></span>
+          <span data-slot="place">Poland</span>
+        </div>
+        <h1 class="statement" id="opening-title">
+          <span class="statement__line"><span class="statement__name" data-slot="studio-name">Bart Mamzer</span></span>
+          <span class="statement__line statement__line--serif"><span data-slot="studio-tagline">Independent games, made by one developer.</span></span>
+        </h1>
+        <dl class="tally" data-slot="tally" aria-label="At a glance"></dl>
+      </section>
+
+      <section class="work wrap" id="work" aria-labelledby="work-title">
+        <header class="section-head rule-top">
+          <span class="section-head__no">A</span>
+          <h2 class="section-head__title" id="work-title">Selected work</h2>
+          <p class="section-head__note" data-slot="work-note"></p>
+        </header>
+        <div class="spreads" data-slot="spreads"></div>
+      </section>
+
+      <section class="index wrap" id="index" aria-labelledby="index-title" tabindex="-1">
+        <header class="section-head rule-top">
+          <span class="section-head__no">B</span>
+          <h2 class="section-head__title" id="index-title">Index</h2>
+          <p class="section-head__note">Every released game, on every platform.</p>
+        </header>
+
+        <div class="controls" data-slot="controls">
+          <div class="controls__group" role="group" aria-label="Platform">
+            <span class="controls__label" aria-hidden="true">Platform</span>
+            <div class="controls__options" data-slot="platforms"></div>
+          </div>
+          <div class="controls__group" role="group" aria-label="Sort">
+            <span class="controls__label" aria-hidden="true">Sort</span>
+            <div class="controls__options" data-slot="sorts"></div>
+          </div>
+          <div class="controls__group controls__group--search">
+            <label class="controls__label" for="search">Find</label>
+            <input class="controls__search" id="search" type="search" placeholder="Title or genre" autocomplete="off" spellcheck="false">
+          </div>
+        </div>
+
+        <div class="toc" data-slot="toc">
+          <div class="toc__head" aria-hidden="true">
+            <span>No.</span><span>Title</span><span>Genre</span><span>Platforms</span><span>Year</span>
+          </div>
+          <div data-slot="toc-body"></div>
+        </div>
+        <p class="toc__status" data-slot="status" role="status" aria-live="polite"></p>
+      </section>
+
+      <section class="studio wrap" id="studio" aria-labelledby="studio-title">
+        <header class="section-head rule-top">
+          <span class="section-head__no">C</span>
+          <h2 class="section-head__title" id="studio-title">Studio</h2>
+          <p class="section-head__note" data-slot="studio-note"></p>
+        </header>
+        <div class="studio__body">
+          <p class="studio__pull" data-slot="about-lead"></p>
+          <div class="studio__text" data-slot="about-rest"></div>
+          <dl class="studio__stats" data-slot="stats"></dl>
+        </div>
+      </section>
+
+      <section class="contact wrap" id="contact" aria-labelledby="contact-title">
+        <header class="section-head rule-top">
+          <span class="section-head__no">D</span>
+          <h2 class="section-head__title" id="contact-title">Contact</h2>
+          <p class="section-head__note">Feedback, press and business. I read everything.</p>
+        </header>
+        <a class="contact__mail" data-slot="mail" href="mailto:bartlomiejmamzergames@gmail.com">bartlomiejmamzergames@gmail.com</a>
+        <ul class="contact__links" data-slot="links" aria-label="Stores and social media"></ul>
+      </section>
+    </main>
+
+    <footer class="colophon wrap">
+      <div class="colophon__row rule-top">
+        <p data-slot="copyright">© Bart Mamzer</p>
+        <ul class="colophon__legal" data-slot="legal" aria-label="Privacy policies"></ul>
+        <a class="colophon__top" href="#top" data-scroll>Back to top <span aria-hidden="true">↑</span></a>
+      </div>
+    </footer>
+
+    <noscript>
+      <div class="noscript wrap">
+        <p>This site shows its games with JavaScript. You can find all of them here:</p>
+        <ul>
+          <li><a href="https://store.steampowered.com/developer/BartMamzer">Steam</a></li>
+          <li><a href="https://apps.apple.com/developer/id1033646930">App Store</a></li>
+          <li><a href="https://play.google.com/store/apps/developer?id=Bartlomiej+Mamzer">Google Play</a></li>
+        </ul>
+      </div>
+    </noscript>
+  </div>
+
+  <figure class="peek" aria-hidden="true" data-slot="peek"><img alt="" decoding="async"></figure>
+
+  <dialog class="article" data-slot="article" aria-labelledby="article-title">
+    <div class="article__scroll" data-slot="article-scroll"></div>
+  </dialog>
+
+  <dialog class="viewer" data-slot="viewer" aria-label="Screenshot viewer">
+    <figure class="viewer__figure">
+      <img data-slot="viewer-img" alt="">
+      <figcaption data-slot="viewer-caption"></figcaption>
+    </figure>
+    <div class="viewer__bar">
+      <button class="btn-text" type="button" data-viewer="prev">Previous</button>
+      <span data-slot="viewer-count"></span>
+      <button class="btn-text" type="button" data-viewer="next">Next</button>
+      <button class="btn-text viewer__close" type="button" data-viewer="close">Close</button>
+    </div>
+  </dialog>
+</body>
+</html>

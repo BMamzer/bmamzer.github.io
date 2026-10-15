@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Bart Mamzer | Indie games</title>
+  <meta name="description" content="Indie games by Bart Mamzer, a solo developer from Poland: action RPGs, kingdom sims, idle games and classic party RPGs for PC, iOS and Android.">
+  <link rel="canonical" href="https://bartmamzer.com/">
+  <meta name="theme-color" content="#08090c">
+  <meta name="color-scheme" content="dark">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Bart Mamzer">
+  <meta property="og:title" content="Bart Mamzer | Indie games">
+  <meta property="og:description" content="Indie games by Bart Mamzer, a solo developer from Poland, for PC, iOS and Android.">
+  <meta property="og:url" content="https://bartmamzer.com/">
+  <meta property="og:image" content="https://bartmamzer.com/assets/site/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@bartmamzer">
+  <meta name="twitter:title" content="Bart Mamzer | Indie games">
+  <meta name="twitter:description" content="Indie games by Bart Mamzer, a solo developer from Poland, for PC, iOS and Android.">
+  <meta name="twitter:image" content="https://bartmamzer.com/assets/site/og.jpg">
+
+  <link rel="icon" href="/designs/cinema/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="/assets/fonts/outfit/outfit-300-800-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/fonts/outfit/font.css">
+  <link rel="stylesheet" href="/assets/fonts/manrope/font.css">
+  <link rel="stylesheet" href="/designs/cinema/style.css">
+  <script type="module" src="/designs/cinema/app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#games">Skip to games</a>
+
+  <header class="topbar" id="topbar">
+    <a class="brand" href="#top" aria-label="Bart Mamzer, back to top">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><use href="#mark"/></svg>
+      <span class="brand-name" data-studio-name>Bart Mamzer</span>
+    </a>
+    <nav class="topnav" aria-label="Main">
+      <a href="#games">Games</a>
+      <a href="#studio">Studio</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="billboard" id="billboard" aria-roledescription="carousel" aria-label="Featured games">
+      <div class="billboard-slides" id="slides" aria-live="off"></div>
+      <div class="billboard-controls" id="billboard-controls" hidden>
+        <div class="progress" id="progress" role="group" aria-label="Choose a featured game"></div>
+        <button class="round-btn pause-btn" id="pause" type="button" aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-pause" d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/><path class="i-play" d="M8 5.5v13a1 1 0 0 0 1.5.86l10.6-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z"/></svg>
+          <span class="visually-hidden">Pause rotation</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="library" id="games" aria-labelledby="games-title" tabindex="-1">
+      <div class="library-head">
+        <h2 id="games-title" class="section-title">Games</h2>
+        <div class="library-tools">
+          <div class="segmented" id="platform-filter" role="group" aria-label="Filter by platform"></div>
+          <label class="search">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10.5 3a7.5 7.5 0 0 1 5.96 12.05l4.25 4.24-1.42 1.42-4.24-4.25A7.5 7.5 0 1 1 10.5 3Zm0 2a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11Z"/></svg>
+            <span class="visually-hidden">Search games</span>
+            <input id="search" type="search" placeholder="Search games" autocomplete="off" spellcheck="false">
+          </label>
+        </div>
+      </div>
+      <p class="library-status visually-hidden" id="library-status" aria-live="polite"></p>
+      <div class="rows" id="rows"></div>
+    </section>
+
+    <section class="studio" id="studio" aria-labelledby="studio-title">
+      <div class="studio-inner">
+        <div class="studio-copy">
+          <p class="eyebrow">About the studio</p>
+          <h2 id="studio-title" class="studio-title" data-studio-tagline></h2>
+          <div class="studio-about" id="studio-about"></div>
+        </div>
+        <dl class="stats" id="stats"></dl>
+      </div>
+    </section>
+
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+      <div class="contact-inner">
+        <div>
+          <h2 id="contact-title" class="section-title">Get in touch</h2>
+          <p class="contact-text">Questions, feedback, support or press. I read every email.</p>
+        </div>
+        <a class="btn btn-primary btn-lg" id="email-link" href="#">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm9 7.2L4.4 7H4v1.3l8 5.4 8-5.4V7h-.4L12 12.2Z"/></svg>
+          <span id="email-text">Email me</span>
+        </a>
+      </div>
+      <ul class="links" id="studio-links" aria-label="Find Bart Mamzer elsewhere"></ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <p class="copyright" id="copyright"></p>
+      <ul class="legal" id="legal" aria-label="Privacy policies"></ul>
+    </div>
+  </footer>
+
+  <noscript>
+    <div class="noscript">
+      <p>This site needs JavaScript to show the games. You can find them all here:</p>
+      <ul>
+        <li><a href="https://store.steampowered.com/developer/BartMamzer">Bart Mamzer on Steam</a></li>
+        <li><a href="https://apps.apple.com/developer/id1033646930">Bartlomiej Mamzer on the App Store</a></li>
+        <li><a href="https://play.google.com/store/apps/developer?id=Bartlomiej+Mamzer">Bartlomiej Mamzer on Google Play</a></li>
+      </ul>
+    </div>
+  </noscript>
+
+  <dialog class="title-page" id="detail" aria-labelledby="detail-title">
+    <button class="round-btn close-btn" id="detail-close" type="button">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.4 5 12 10.6 17.6 5 19 6.4 13.4 12 19 17.6 17.6 19 12 13.4 6.4 19 5 17.6 10.6 12 5 6.4Z"/></svg>
+      <span class="visually-hidden">Close</span>
+    </button>
+    <div class="title-page-inner" id="detail-body"></div>
+  </dialog>
+
+  <dialog class="lightbox" id="lightbox" aria-label="Screenshot viewer">
+    <figure class="lightbox-figure">
+      <img id="lightbox-img" alt="">
+      <figcaption id="lightbox-caption"></figcaption>
+    </figure>
+    <button class="round-btn lightbox-prev" id="lightbox-prev" type="button">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.4 5 8.4 12l7 7-1.4 1.4L5.6 12 14 3.6Z"/></svg>
+      <span class="visually-hidden">Previous screenshot</span>
+    </button>
+    <button class="round-btn lightbox-next" id="lightbox-next" type="button">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8.6 19 7-7-7-7L10 3.6 18.4 12 10 20.4Z"/></svg>
+      <span class="visually-hidden">Next screenshot</span>
+    </button>
+    <button class="round-btn lightbox-close" id="lightbox-close" type="button">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.4 5 12 10.6 17.6 5 19 6.4 13.4 12 19 17.6 17.6 19 12 13.4 6.4 19 5 17.6 10.6 12 5 6.4Z"/></svg>
+      <span class="visually-hidden">Close screenshot viewer</span>
+    </button>
+  </dialog>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="mark" viewBox="0 0 32 32">
+      <rect x="1" y="1" width="30" height="30" rx="9" fill="url(#mark-fill)"/>
+      <path d="M12.5 9.6v12.8a1 1 0 0 0 1.53.85l10.1-6.4a1 1 0 0 0 0-1.7l-10.1-6.4a1 1 0 0 0-1.53.85Z" fill="#0b0c10"/>
+      <path d="M7.5 9.5h2.2v13H7.5z" fill="#0b0c10" opacity=".55"/>
+      <defs>
+        <linearGradient id="mark-fill" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#ffd27a"/>
+          <stop offset="1" stop-color="#ff7a45"/>
+        </linearGradient>
+      </defs>
+    </symbol>
+  </svg>
+</body>
+</html>
