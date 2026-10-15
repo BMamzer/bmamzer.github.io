@@ -560,9 +560,8 @@ html.gyro .card.rare .foil { animation: none; background-position: calc(50% + va
 .footer { border-top: 1px solid var(--line); background: color-mix(in srgb, var(--void) 50%, transparent); }
 .footer-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 28px; padding: 26px 0 calc(26px + env(safe-area-inset-bottom)); }
 .footer-brand { display: flex; align-items: center; gap: 10px; margin: 0; font-weight: 600; }
-.footer-links { display: flex; flex-wrap: wrap; gap: 4px 18px; }
-.footer-links a, .footer-top { display: inline-flex; align-items: center; min-height: 44px; color: var(--muted); font-weight: 600; }
-.footer-links a:hover, .footer-top:hover { color: var(--ink); }
+.footer-top { display: inline-flex; align-items: center; min-height: 44px; color: var(--muted); font-weight: 600; }
+.footer-top:hover { color: var(--ink); }
 
 /* ---------------------------------------------------------------- detail dialog */
 

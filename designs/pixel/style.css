@@ -820,8 +820,7 @@ p { margin: 0 0 0.8em; }
 }
 .footer-inner { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 28px; }
 .copyright { margin: 0; font: 400 1.3rem/1 var(--mono); color: var(--muted); }
-.legal { display: flex; flex-wrap: wrap; gap: 4px 20px; margin: 0; padding: 0; list-style: none; }
-.legal a, .to-top { display: inline-flex; align-items: center; min-height: 44px; color: var(--text); }
+.to-top { display: inline-flex; align-items: center; min-height: 44px; color: var(--text); }
 .to-top { margin-left: auto; }
 @media (max-width: 639px) {
   .footer-inner { flex-direction: column; align-items: flex-start; }

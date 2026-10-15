@@ -1,7 +1,7 @@
 // Grimoire design: renders the catalog from games.json into the stage, the game panels, the chronicle and the codex.
 import {
   loadCatalog, icon, esc, releaseLabel, onRoute, openGame, closeGame, playTrailer, stopTrailer,
-  reducedMotion, setPageMeta, addStructuredData, privacyLinks, portLabel, PLATFORM_LABELS,
+  reducedMotion, setPageMeta, addStructuredData, portLabel, PLATFORM_LABELS,
 } from '/assets/site/catalog.js';
 
 const $ = (sel, root = document) => root.querySelector(sel);
@@ -107,7 +107,6 @@ function renderStudio() {
   $('[data-links]').innerHTML = studio.links.map(l => `
     <li><a href="${esc(l.url)}" target="_blank" rel="noopener me">${icon(l.type)}<span>${esc(l.label)}</span></a></li>`).join('');
 
-  $('[data-legal]').innerHTML = privacyLinks(catalog).map(l => `<li><a href="${esc(l.url)}">${esc(l.label)}</a></li>`).join('');
   $('[data-copy]').textContent = `© ${new Date().getFullYear()} ${studio.name}${studio.location ? `. Made in ${studio.location}.` : ''}`;
 }
 

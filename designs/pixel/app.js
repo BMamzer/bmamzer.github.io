@@ -1,7 +1,7 @@
 // "Pixel" design: the studio site as a 90s party RPG screen. All game content comes from /games.json.
 import {
   loadCatalog, icon, esc, releaseLabel, onRoute, openGame, closeGame, playTrailer, stopTrailer,
-  reducedMotion, setPageMeta, addStructuredData, privacyLinks, portLabel, PLATFORM_LABELS,
+  reducedMotion, setPageMeta, addStructuredData, portLabel, PLATFORM_LABELS,
 } from '/assets/site/catalog.js';
 
 const $ = (sel, root = document) => root.querySelector(sel);
@@ -668,7 +668,6 @@ function renderContact(catalog) {
     <li><a class="btn btn-link" href="${esc(l.url)}" rel="me noopener">${icon(l.type)}<span>${esc(l.label)}</span></a></li>`).join('');
 
   $('[data-slot="copyright"]').textContent = `© ${new Date().getFullYear()} ${studio.name}`;
-  $('.legal').innerHTML = privacyLinks(catalog).map(l => `<li><a href="${esc(l.url)}">${esc(l.label)}</a></li>`).join('');
 }
 
 // ---------------------------------------------------------------- CRT toggle

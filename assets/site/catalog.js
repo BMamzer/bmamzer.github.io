@@ -118,25 +118,6 @@ function stressTest(data) {
   }
 }
 
-/** Privacy policy links for the footer, one per policy page, e.g. "Powerlust privacy policy". */
-export function privacyLinks({ games }) {
-  const byUrl = new Map();
-  for (const g of games) {
-    if (!g.privacy) continue;
-    byUrl.set(g.privacy, [...(byUrl.get(g.privacy) || []), g.title]);
-  }
-  return [...byUrl].map(([url, titles]) => ({ url, label: `${sharedName(titles)} privacy policy` }));
-}
-
-// "Legends of Amberland" for ["Legends of Amberland II", "Legends of Amberland"].
-function sharedName(titles) {
-  if (titles.length === 1) return titles[0];
-  const words = titles.map(t => t.split(' '));
-  const common = [];
-  for (let i = 0; words.every(w => w[i] && w[i] === words[0][i]); i++) common.push(words[0][i]);
-  return common.join(' ') || titles[0];
-}
-
 /** "Mobile port" style label for a port, e.g. "iOS and Android port", or '' for Bart's own games. */
 export function portLabel(game) {
   if (!game.isPort) return '';

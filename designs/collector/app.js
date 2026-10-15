@@ -1,7 +1,7 @@
 // Holo: the studio's games as a collectible card collection. All content comes from /games.json.
 import {
   loadCatalog, icon, esc, releaseLabel, onRoute, openGame, closeGame, playTrailer, stopTrailer,
-  reducedMotion, setPageMeta, addStructuredData, privacyLinks, portLabel, PLATFORM_LABELS,
+  reducedMotion, setPageMeta, addStructuredData, portLabel, PLATFORM_LABELS,
 } from '/assets/site/catalog.js';
 
 const $ = (sel, root = document) => root.querySelector(sel);
@@ -349,12 +349,8 @@ function renderProfile() {
 
 function renderFooter() {
   const { studio } = catalog;
-  const policies = privacyLinks(catalog);
   $('#footer').innerHTML = `
     <p class="footer-brand">${mark(28)}<span>© ${new Date().getFullYear()} ${esc(studio.name)}</span></p>
-    ${policies.length ? `<nav aria-label="Privacy policies"><ul class="footer-links">
-      ${policies.map(p => `<li><a href="${esc(p.url)}">${esc(p.label)}</a></li>`).join('')}
-    </ul></nav>` : ''}
     <a class="footer-top" href="#top">Back to top</a>`;
 }
 
