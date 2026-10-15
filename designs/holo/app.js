@@ -27,11 +27,28 @@ function platformIcon(platform, size = 16) {
 
 const PORT_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h11l-3-3 1.4-1.4L21.8 8l-5.4 5.4L15 12l3-3H7V7Zm10 10H6l3 3-1.4 1.4L2.2 16l5.4-5.4L9 12l-3 3h11v2Z" fill="currentColor"/></svg>';
 
+// The studio mark: a card with a star, drawn inline so it follows the palette tokens.
+let markCount = 0;
+function mark(size) {
+  const id = `mark-foil-${++markCount}`;
+  return `<svg viewBox="0 0 64 64" width="${size}" height="${size}" aria-hidden="true">
+    <defs><linearGradient id="${id}" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" style="stop-color: var(--mark-a)"/><stop offset=".5" style="stop-color: var(--mark-b)"/><stop offset="1" style="stop-color: var(--mark-c)"/>
+    </linearGradient></defs>
+    <g transform="rotate(-10 32 32)">
+      <rect x="13" y="5" width="38" height="54" rx="7" fill="url(#${id})"/>
+      <rect x="18" y="10" width="28" height="44" rx="4" style="fill: var(--bg-deep)"/>
+    </g>
+    <path d="M32 18.5l3.3 9.2 9.2 3.3-9.2 3.3L32 43.5l-3.3-9.2-9.2-3.3 9.2-3.3Z" style="fill: var(--hi)"/>
+  </svg>`;
+}
+
 const SPARKLE = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.5l2.6 7.9 7.9 2.6-7.9 2.6L12 22.5l-2.6-7.9L1.5 12l7.9-2.6Z" fill="currentColor"/></svg>';
 
 init();
 
 async function init() {
+  $('[data-mark]').innerHTML = mark(34);
   try {
     catalog = await loadCatalog();
   } catch {
@@ -182,7 +199,8 @@ function renderHero() {
   const { studio, platforms, spotlight } = catalog;
   $('#hero-eyebrow').textContent = [ 'Independent game studio', studio.location, studio.since && `since ${studio.since}` ]
     .filter(Boolean).join(' · ');
-  $('#hero-title').textContent = studio.name;
+  // One span per word, so each line of the title gets the full metallic gradient.
+  $('#hero-title').innerHTML = studio.name.split(' ').map(w => `<span>${esc(w)}</span>`).join(' ');
   $('#hero-lead').textContent = studio.tagline;
   $('#hero-sub').textContent = `${catalogSummary()} for ${listOf(platforms.map(p => PLATFORM_LABELS[p]))}. Pick a card.`;
 
@@ -306,10 +324,10 @@ function renderProfile() {
   $('#profile-card').innerHTML = `
     <div class="profile-main">
       <div class="profile-id">
-        <div class="avatar" aria-hidden="true"><img src="/designs/holo/favicon.svg" alt="" width="72" height="72"></div>
+        <div class="avatar" aria-hidden="true">${mark(72)}</div>
         <div>
           <p class="profile-name">${esc(studio.name)}</p>
-          <p class="profile-class">Independent developer${studio.location ? ` from ${esc(studio.location)}` : ''}</p>
+          <p class="profile-class">Solo developer${studio.location ? ` from ${esc(studio.location)}` : ''}</p>
         </div>
       </div>
       <div class="profile-about">${studio.about.map(p => `<p>${esc(p)}</p>`).join('')}</div>
@@ -321,7 +339,7 @@ function renderProfile() {
       <div class="profile-contact" id="contact" tabindex="-1">
         <h3 class="sub-title">Say hello</h3>
         <p>Questions, press, feedback or support: email me and I'll get back to you.</p>
-        <a class="btn btn-primary btn-mail" href="mailto:${esc(studio.email)}">${icon('mail', { size: 22 })}<span>${esc(studio.email)}</span></a>
+        <a class="btn btn-primary btn-mail" href="mailto:${esc(studio.email)}">${icon('mail', { size: 22 })}<span>${esc(studio.email).replace('@', '<wbr>@')}</span></a>
         <ul class="links" aria-label="Find me online">
           ${studio.links.map(l => `<li><a class="link-btn" href="${esc(l.url)}" rel="noopener" target="_blank">${icon(l.type, { size: 20 })}<span>${esc(l.label)}</span></a></li>`).join('')}
         </ul>
@@ -333,7 +351,7 @@ function renderFooter() {
   const { studio } = catalog;
   const policies = privacyLinks(catalog);
   $('#footer').innerHTML = `
-    <p class="footer-brand"><img src="/designs/holo/favicon.svg" alt="" width="28" height="28"><span>© ${new Date().getFullYear()} ${esc(studio.name)}</span></p>
+    <p class="footer-brand">${mark(28)}<span>© ${new Date().getFullYear()} ${esc(studio.name)}</span></p>
     ${policies.length ? `<nav aria-label="Privacy policies"><ul class="footer-links">
       ${policies.map(p => `<li><a href="${esc(p.url)}">${esc(p.label)}</a></li>`).join('')}
     </ul></nav>` : ''}

@@ -6,20 +6,31 @@
   <title>Bart Mamzer | Indie games</title>
   <meta name="description" content="Indie games for PC, iOS and Android, made by Bart Mamzer, an independent game developer from Poland.">
   <link rel="canonical" href="https://bartmamzer.com/">
-  <meta name="theme-color" content="#140a35">
+  <meta name="theme-color" content="#0d1226">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Bart Mamzer">
   <meta property="og:title" content="Bart Mamzer | Indie games">
-  <meta property="og:description" content="Indie games for PC, iOS and Android, made by one developer.">
+  <meta property="og:description" content="Indie games for PC, iOS and Android, by a solo developer.">
   <meta property="og:url" content="https://bartmamzer.com/">
   <meta property="og:image" content="https://bartmamzer.com/assets/site/og.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Bart Mamzer | Indie games">
-  <meta name="twitter:description" content="Indie games for PC, iOS and Android, made by one developer.">
+  <meta name="twitter:description" content="Indie games for PC, iOS and Android, by a solo developer.">
   <meta name="twitter:image" content="https://bartmamzer.com/assets/site/og.jpg">
   <link rel="icon" href="/designs/holo/favicon.svg" type="image/svg+xml">
+  <script>
+    // Design poll only: ?palette=ember or ?palette=ice shows the other colour sets. Drop this once a palette is picked.
+    (() => {
+      const palette = new URLSearchParams(location.search).get('palette');
+      const theme = { ember: '#170c0b', ice: '#08151c' }[palette];
+      if (!theme) return;
+      document.documentElement.dataset.palette = palette;
+      document.querySelector('meta[name="theme-color"]').content = theme;
+      document.querySelector('link[rel="icon"]').href = `/designs/holo/favicon-${palette}.svg`;
+    })();
+  </script>
   <link rel="preload" href="/assets/fonts/lilita-one/lilita-one-400-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/nunito/nunito-400-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/fonts/lilita-one/font.css">
@@ -40,7 +51,7 @@
   <header class="topbar">
     <div class="wrap topbar-inner">
       <a class="brand" href="#top" aria-label="Bart Mamzer, back to top">
-        <img src="/designs/holo/favicon.svg" alt="" width="34" height="34">
+        <span class="mark" data-mark></span>
         <span class="brand-name">Bart Mamzer</span>
       </a>
       <nav aria-label="Sections">
@@ -144,7 +155,7 @@
     <section class="profile-section" id="profile" aria-labelledby="profile-title">
       <div class="wrap">
         <p class="eyebrow">Developer profile</p>
-        <h2 class="section-title" id="profile-title">One developer, every role</h2>
+        <h2 class="section-title" id="profile-title">Meet the solo dev</h2>
         <article class="profile" id="profile-card"></article>
       </div>
     </section>
