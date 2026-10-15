@@ -283,7 +283,6 @@ p { margin: 0 0 0.8em; }
     grid-template-rows: auto 1fr auto;
   }
   .log { display: flex; flex-direction: column; justify-content: flex-end; }
-  .intro-actions { margin-bottom: 22px; }
   .intro-stats { margin-top: auto; }
 }
 
@@ -306,7 +305,6 @@ p { margin: 0 0 0.8em; }
 }
 .studio-tagline { margin-bottom: 10px; font: 400 1.6rem/1.15 var(--ui); color: #fff7e0; }
 .intro-lead { color: #eadcbf; }
-.intro-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
 .intro-stats {
   display: grid;
   gap: 8px;
@@ -329,7 +327,6 @@ p { margin: 0 0 0.8em; }
    The stats and store links appear again in the character sheet and contact sections. */
 @media (max-width: 999px) {
   .intro-stats, .intro-stores { display: none; }
-  .intro-actions .btn { flex: 1 1 auto; }
 }
 
 /* The view window, like the first-person view of a dungeon crawler. */
