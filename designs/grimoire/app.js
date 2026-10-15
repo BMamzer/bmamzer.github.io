@@ -542,11 +542,12 @@ function renderCodex(game) {
       ${game.isPort ? `<p class="port-banner">${PORT_GLYPH}<span><strong>${esc(portLabel(game))}.</strong> Original game by ${esc(game.originalDeveloper)}.</span></p>` : ''}
       <p class="codex-tagline">${esc(game.tagline)}</p>
       ${seals ? `<ul class="seals">${seals}</ul>` : ''}
-      <ul class="stores">${game.stores.map(s => `
+      ${game.stores.length ? `<ul class="stores">${game.stores.map(s => `
         <li><a class="store-btn" href="${esc(s.url)}" target="_blank" rel="noopener">
           ${icon(s.type, { size: 26 })}<span><small>Get it on</small><strong>${esc(s.label)}</strong></span>
         </a></li>`).join('')}
-      </ul>
+      </ul>` : ''}
+      ${game.unavailable ? `<p class="store-gone">${esc(game.unavailable)}</p>` : ''}
       ${sideLinks ? `<p class="side-links">${sideLinks}</p>` : ''}
     </header>
 

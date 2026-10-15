@@ -530,7 +530,7 @@ function infoHtml(g) {
       </div>
       <div class="info-facts">
         <dl class="stats">${statRows(g)}</dl>
-        <div class="info-stores">${storeLinks(g)}</div>
+        <div class="info-stores">${storeLinks(g)}${g.unavailable ? `<p class="store-gone">${esc(g.unavailable)}</p>` : ''}</div>
         ${links.length ? `<p class="info-links">${links.join('<span aria-hidden="true"> | </span>')}</p>` : ''}
       </div>
     </header>

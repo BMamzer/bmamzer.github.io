@@ -37,7 +37,9 @@ for (const [i, g] of (data.games || []).entries()) {
   need(/^\d{4}(-\d{2}(-\d{2})?)?$/.test(g.released || ''), 'released must be YYYY, YYYY-MM or YYYY-MM-DD');
   need(Array.isArray(g.platforms) && g.platforms.length && g.platforms.every(p => PLATFORMS.includes(p)),
     `platforms must be a list of ${PLATFORMS.join(', ')}`);
-  need(Array.isArray(g.stores) && g.stores.length, 'needs at least one store link (only released games go on the site)');
+  need(Array.isArray(g.stores) && (g.stores.length || g.unavailable),
+    'needs at least one store link, or "unavailable" (a short note) for a released game that left the stores');
+  if ('unavailable' in g) need(typeof g.unavailable === 'string' && g.unavailable.trim(), 'unavailable must be a short note, e.g. "No longer on Google Play"');
   for (const st of g.stores || []) {
     need(STORES.includes(st.type), `unknown store type "${st.type}" (use ${STORES.join(', ')})`);
     need(/^https:\/\//.test(st.url || ''), `store link for ${st.type} must start with https://`);
@@ -53,7 +55,8 @@ for (const [i, g] of (data.games || []).entries()) {
 
   const m = g.media || {};
   need(m.cover, 'media.cover is missing');
-  const files = [m.cover, m.hero, m.poster, m.logo, m.icon, m.loop, m.loopPoster, ...(m.screenshots || []).map(x => x.src)];
+  const local = m.trailer && !/^https?:/.test(m.trailer) ? m.trailer : null;
+  const files = [m.cover, m.hero, m.poster, m.logo, m.icon, m.loop, m.loopPoster, local, ...(m.screenshots || []).map(x => x.src)];
   for (const f of files.filter(Boolean)) need(existsSync(join(ROOT, f)), `file not found: ${f}`);
   // Privacy policies are linked from the store listings only, never from the site.
   need(!g.privacy, 'remove "privacy": the site does not link privacy policies (the stores do)');

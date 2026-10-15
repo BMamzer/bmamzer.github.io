@@ -508,7 +508,8 @@ function detailHTML(game) {
         ${game.isPort ? `<p class="d-port">${PORT_GLYPH}<span><strong>${esc(portLabel(game))}.</strong> Original game by ${esc(game.originalDeveloper)}.</span></p>` : ''}
         <p class="d-flavor">${esc(game.tagline)}</p>
         ${game.badge ? `<p class="d-badge">${SPARKLE}<span>${esc(game.badge)}</span></p>` : ''}
-        <div class="stores">${game.stores.map(storeButton).join('')}</div>
+        ${game.stores.length ? `<div class="stores">${game.stores.map(storeButton).join('')}</div>` : ''}
+        ${game.unavailable ? `<p class="store-gone">${esc(game.unavailable)}</p>` : ''}
         ${game.highlights.length ? `<ul class="highlights" aria-label="Highlights">${game.highlights.map(h => `<li>${trophy()}<span>${esc(h)}</span></li>`).join('')}</ul>` : ''}
         <div class="d-text">${(game.description.length ? game.description : [game.summary]).map(p => `<p>${esc(p)}</p>`).join('')}</div>
         ${game.features.length ? `<h3 class="sub-title">Features</h3>

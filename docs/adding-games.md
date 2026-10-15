@@ -48,6 +48,7 @@ This repo is public: never put an unreleased game in `games.json`, in `assets/` 
 | `released` | yes | First release on any store: `YYYY-MM-DD`, `YYYY-MM` or `YYYY`. Sets the order (newest first); the site shows the year |
 | `platforms` | yes | Any of `pc`, `ios`, `android`, `web` |
 | `stores` | yes | List of `{ "type": "steam" or "appstore" or "googleplay" or "itch" or "crazygames" or "web", "url": "https://..." }` |
+| `unavailable` | no | For a released game that left the stores: a short note shown instead of store buttons, e.g. "No longer on Google Play". Then `stores` may be `[]` |
 | `badge` | no | Short highlight such as "Free demo on Steam" or "Pay once, no ads" |
 | `highlights` | no | Verified facts such as "1M+ downloads on Google Play" |
 | `originalDeveloper` | ports only | The studio that made the original game. Setting it marks the game as a port everywhere on the site |
@@ -72,7 +73,9 @@ page; remove it to hide the button) and `spotlight` (the game ids shown in the o
 | `loop.mp4`, `loop.webp` | 8 s, 720p, silent | Autoplay backgrounds (Steam games) |
 | `shots/NN.webp` | 1600 wide | Screenshot gallery, landscape or portrait |
 
-`media.trailer` is the full Steam trailer stream; the page plays it only when a visitor asks.
+`media.trailer` is the full Steam trailer stream, or a local `trailer.mp4` for games without Steam (re-encode it for the
+web with `ffmpeg -i in.mp4 -vf scale=1280:-2 -c:v libx264 -crf 26 -pix_fmt yuv420p -movflags +faststart -c:a aac out.mp4`;
+portrait app previews work too and get a tall player). The page plays it only when a visitor asks.
 
 ## Removing a game
 

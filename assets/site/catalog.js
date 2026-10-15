@@ -54,6 +54,8 @@ function normalize(game) {
     description: game.description || [],
     features: game.features || [],
     genres: game.genres || [],
+    // A released game that is no longer on any store: a short note shown where the store buttons go.
+    unavailable: game.unavailable || '',
     highlights: game.highlights || [],
     featured: game.featured !== false,
     // A port is someone else's game that Bart brought to another platform; designs must label it as one.
@@ -157,13 +159,15 @@ export const reducedMotion = () => matchMedia('(prefers-reduced-motion: reduce)'
 
 let hlsLoading;
 /**
- * Plays a game's full trailer (an HLS stream from Steam) in a <video> element.
- * Safari plays HLS natively; other browsers load hls.js on first use.
+ * Plays a game's full trailer in a <video> element: a Steam HLS stream (.m3u8) or a plain MP4 file.
+ * Safari plays HLS natively; other browsers load hls.js on first use. A portrait trailer gets the
+ * class "tall", so designs can give its box a portrait shape.
  */
 export async function playTrailer(video, src) {
   video.controls = true;
   video.playsInline = true;
-  if (video.canPlayType('application/vnd.apple.mpegurl')) {
+  video.addEventListener('loadedmetadata', () => video.classList.toggle('tall', video.videoHeight > video.videoWidth), { once: true });
+  if (!/\.m3u8(\?|$)/.test(src) || video.canPlayType('application/vnd.apple.mpegurl')) {
     video.src = src;
   } else {
     hlsLoading ||= new Promise((resolve, reject) => {

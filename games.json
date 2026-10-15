@@ -511,7 +511,7 @@
         "Word",
         "Puzzle"
       ],
-      "released": "2017-03-16",
+      "released": "2016",
       "platforms": [
         "ios"
       ],
@@ -553,7 +553,81 @@
             "w": 1242,
             "h": 2208
           }
-        ]
+        ],
+        "trailer": "/assets/games/cryptograms/trailer.mp4"
+      }
+    },
+    {
+      "id": "christmas-santa-ragdoll-run",
+      "title": "Christmas Santa Ragdoll Run",
+      "subtitle": "Puzzle Runner",
+      "tagline": "Run, jump and solve puzzles to deliver every gift.",
+      "summary": "A Christmas puzzle runner with ragdoll physics. Run through snowy paths, jump over snowmen, cut ropes and throw snow to collect every gift before Christmas.",
+      "description": [
+        "Santa has left his sleigh and his reindeer at the North Pole and has to run to collect all the gifts as quickly as possible, so that every kid gets their presents for Christmas and New Year's Eve.",
+        "Run through snowy paths and jump over obstacles and snowmen. Some paths need a puzzle solved first: cut a rope, break an obstacle by throwing snow at it, and more. But look out: if you fall, Santa ends up as a ragdoll.",
+        "Tap the bottom half of the screen to jump, pick things up and throw them, and swipe across a rope to cut it."
+      ],
+      "features": [
+        "Ragdoll physics",
+        "Runner gameplay",
+        "Plenty of puzzles"
+      ],
+      "genres": [
+        "Runner",
+        "Puzzle",
+        "Physics"
+      ],
+      "released": "2015",
+      "platforms": [
+        "android"
+      ],
+      "stores": [],
+      "unavailable": "No longer on Google Play",
+      "accent": "#e2453c",
+      "featured": false,
+      "media": {
+        "icon": "/assets/games/christmas-santa-ragdoll-run/icon.webp",
+        "cover": "/assets/games/christmas-santa-ragdoll-run/cover.webp",
+        "hero": "/assets/games/christmas-santa-ragdoll-run/hero.webp",
+        "screenshots": [
+          {
+            "src": "/assets/games/christmas-santa-ragdoll-run/shots/01.webp",
+            "w": 1600,
+            "h": 782
+          },
+          {
+            "src": "/assets/games/christmas-santa-ragdoll-run/shots/02.webp",
+            "w": 1600,
+            "h": 782
+          },
+          {
+            "src": "/assets/games/christmas-santa-ragdoll-run/shots/03.webp",
+            "w": 1600,
+            "h": 782
+          },
+          {
+            "src": "/assets/games/christmas-santa-ragdoll-run/shots/04.webp",
+            "w": 1600,
+            "h": 782
+          },
+          {
+            "src": "/assets/games/christmas-santa-ragdoll-run/shots/05.webp",
+            "w": 1600,
+            "h": 782
+          },
+          {
+            "src": "/assets/games/christmas-santa-ragdoll-run/shots/06.webp",
+            "w": 1600,
+            "h": 782
+          },
+          {
+            "src": "/assets/games/christmas-santa-ragdoll-run/shots/07.webp",
+            "w": 1600,
+            "h": 782
+          }
+        ],
+        "trailer": "/assets/games/christmas-santa-ragdoll-run/trailer.mp4"
       }
     },
     {
@@ -614,7 +688,8 @@
           }
         ],
         "cover": "/assets/games/zerdian-wars/cover.webp",
-        "hero": "/assets/games/zerdian-wars/hero.webp"
+        "hero": "/assets/games/zerdian-wars/hero.webp",
+        "trailer": "/assets/games/zerdian-wars/trailer.mp4"
       }
     }
   ]

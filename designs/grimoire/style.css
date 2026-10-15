@@ -1214,6 +1214,9 @@ p { margin: 0; }
 .plate-inner { position: relative; width: 100%; height: 100%; overflow: hidden; background: #000; }
 .plate img, .plate video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .plate .trailer-video { object-fit: contain; background: #000; }
+/* A portrait trailer (a phone game's app preview) gets a tall plate. */
+.plate:has(.trailer-video.tall) { aspect-ratio: auto; height: min(84vh, 900px); max-width: 620px; }
+.store-gone { margin-top: 18px; font-style: italic; color: var(--muted, #a89a86); }
 
 .trailer-play {
   position: absolute;
