@@ -1,4 +1,5 @@
-// Holo: the studio's games as a collectible card collection. All content comes from /games.json.
+// Holo: the studio's games as collectible holo cards, dealt onto a dark fantasy page in the Grimoire style.
+// All content comes from /games.json.
 import {
   loadCatalog, icon, esc, releaseLabel, onRoute, openGame, closeGame, playTrailer, stopTrailer,
   reducedMotion, setPageMeta, addStructuredData, portLabel, PLATFORM_LABELS,
@@ -26,8 +27,9 @@ function platformIcon(platform, size = 16) {
 }
 
 const PORT_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h11l-3-3 1.4-1.4L21.8 8l-5.4 5.4L15 12l3-3H7V7Zm10 10H6l3 3-1.4 1.4L2.2 16l5.4-5.4L9 12l-3 3h11v2Z" fill="currentColor"/></svg>';
+const PORT_GLYPH = '<svg class="port-glyph" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true"><path d="M4 8h14m-4-4 4 4-4 4M20 16H6m4-4-4 4 4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
-// The studio mark: a card with a star, drawn inline so it follows the palette tokens.
+// The studio mark: a gilded card with a star, drawn inline so it follows the colour tokens.
 let markCount = 0;
 function mark(size) {
   const id = `mark-foil-${++markCount}`;
@@ -37,9 +39,9 @@ function mark(size) {
     </linearGradient></defs>
     <g transform="rotate(-10 32 32)">
       <rect x="13" y="5" width="38" height="54" rx="7" fill="url(#${id})"/>
-      <rect x="18" y="10" width="28" height="44" rx="4" style="fill: var(--bg-deep)"/>
+      <rect x="18" y="10" width="28" height="44" rx="4" style="fill: var(--bg)"/>
     </g>
-    <path d="M32 18.5l3.3 9.2 9.2 3.3-9.2 3.3L32 43.5l-3.3-9.2-9.2-3.3 9.2-3.3Z" style="fill: var(--hi)"/>
+    <path d="M32 18.5l3.3 9.2 9.2 3.3-9.2 3.3L32 43.5l-3.3-9.2-9.2-3.3 9.2-3.3Z" style="fill: var(--gold-hi)"/>
   </svg>`;
 }
 
@@ -48,24 +50,26 @@ const SPARKLE = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.5l2.
 init();
 
 async function init() {
-  $('[data-mark]').innerHTML = mark(34);
+  $$('[data-mark]').forEach(el => { el.innerHTML = mark(30); });
+  initTopbar();
   try {
     catalog = await loadCatalog();
   } catch {
     $('#grid-rare').innerHTML = '<li class="load-error">The games could not be loaded. Please refresh the page.</li>';
     return;
   }
-  renderHero();
+  renderStage();
   renderControls();
   renderCollection();
-  renderProfile();
-  renderSupport();
-  renderFooter();
+  renderChronicle();
+  renderContact();
   addStructuredData(catalog);
   setupGyro();
   setupDetail();
   document.addEventListener('click', onCardClick);
+  document.addEventListener('click', onLinkClick);
   onRoute(catalog, game => (game ? showDetail(game) : hideDetail()));
+  initEmbers($('.embers'), $('.stage'));
 }
 
 // ---------------------------------------------------------------- cards
@@ -194,16 +198,22 @@ function onCardClick(e) {
   }, 380);
 }
 
-// ---------------------------------------------------------------- hero
+// Timeline links open the card in place; modified clicks keep normal link behaviour.
+function onLinkClick(e) {
+  const link = e.target.closest('a[data-open]');
+  if (!link || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+  e.preventDefault();
+  returnFocus = link;
+  openGame(link.dataset.open);
+}
 
-function renderHero() {
+// ---------------------------------------------------------------- stage
+
+function renderStage() {
   const { studio, platforms, spotlight } = catalog;
-  $('#hero-eyebrow').textContent = [ 'Independent game studio', studio.location, studio.since && `since ${studio.since}` ]
-    .filter(Boolean).join(' · ');
-  // One span per word, so each line of the title gets the full metallic gradient.
-  $('#hero-title').innerHTML = studio.name.split(' ').map(w => `<span>${esc(w)}</span>`).join(' ');
-  $('#hero-lead').textContent = studio.tagline;
-  $('#hero-sub').textContent = `${catalogSummary()} for ${listOf(platforms.map(p => PLATFORM_LABELS[p]))}. Pick a card.`;
+  $('#kicker').textContent = studio.since ? `Independent games since ${studio.since}` : 'Independent games';
+  $('#tagline').textContent = studio.tagline;
+  $('#summary').textContent = `${catalogSummary()} for ${listOf(platforms.map(p => PLATFORM_LABELS[p]))}. Pick a card.`;
 
   const hand = $('#hand');
   const n = spotlight.length;
@@ -216,6 +226,20 @@ function renderHero() {
     card.style.setProperty('--abs', Math.abs(offset));
   });
   bindCards(hand);
+
+  // Behind the hand, the art of the card you point at fades in, like the Grimoire slideshow.
+  const art = $('#stage-art');
+  art.innerHTML = spotlight.map((g, i) => `<img alt="" decoding="async" data-art="${esc(g.id)}" data-src="${esc(g.media.hero || g.media.cover)}"${i ? '' : ' class="on"'}>`).join('');
+  const show = id => $$('img', art).forEach(img => {
+    if (img.dataset.art !== id) return img.classList.remove('on');
+    if (!img.src) img.src = img.dataset.src;
+    img.classList.add('on');
+  });
+  const first = $('img', art);
+  if (first) first.src = first.dataset.src;
+  const pick = e => { const card = e.target.closest('.card'); if (card) show(card.dataset.id); };
+  hand.addEventListener('pointerover', pick);
+  hand.addEventListener('focusin', pick);
 }
 
 function plural(n, word) {
@@ -232,44 +256,119 @@ function listOf(items) {
   return items.length < 2 ? items.join('') : `${items.slice(0, -1).join(', ')} and ${items.at(-1)}`;
 }
 
+// Drifting embers over the stage. Off for reduced motion, paused when off screen or in a background tab.
+function initEmbers(canvas, host) {
+  if (reducedMotion()) return;
+  const ctx = canvas.getContext('2d');
+  const sprite = document.createElement('canvas');
+  sprite.width = sprite.height = 64;
+  const sc = sprite.getContext('2d');
+  const grad = sc.createRadialGradient(32, 32, 0, 32, 32, 32);
+  grad.addColorStop(0, 'rgba(255, 240, 200, 1)');
+  grad.addColorStop(0.18, 'rgba(255, 170, 80, 0.9)');
+  grad.addColorStop(0.45, 'rgba(255, 110, 40, 0.25)');
+  grad.addColorStop(1, 'rgba(255, 90, 20, 0)');
+  sc.fillStyle = grad;
+  sc.fillRect(0, 0, 64, 64);
+
+  let w = 0, h = 0, parts = [], raf = 0, last = 0, onScreen = true;
+
+  const spawn = (anywhere) => ({
+    x: Math.random() * w,
+    y: anywhere ? Math.random() * h : h + 20,
+    size: 3 + Math.random() * 9,
+    speed: 14 + Math.random() * 34,
+    phase: Math.random() * Math.PI * 2,
+    drift: 0.3 + Math.random() * 1.1,
+    sway: 6 + Math.random() * 22,
+    age: 0,
+    life: 5 + Math.random() * 9,
+  });
+
+  function resize() {
+    const dpr = Math.min(devicePixelRatio || 1, 2);
+    w = canvas.clientWidth;
+    h = canvas.clientHeight;
+    canvas.width = Math.round(w * dpr);
+    canvas.height = Math.round(h * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    parts = Array.from({ length: Math.round(Math.min(80, (w * h) / 17000)) }, () => spawn(true));
+  }
+
+  function frame(t) {
+    const dt = Math.min((t - last) / 1000, 0.05);
+    last = t;
+    ctx.clearRect(0, 0, w, h);
+    ctx.globalCompositeOperation = 'lighter';
+    for (const p of parts) {
+      p.age += dt;
+      p.y -= p.speed * dt;
+      p.phase += p.drift * dt;
+      const x = p.x + Math.sin(p.phase) * p.sway;
+      const fadeIn = Math.min(1, p.age / 1.2);
+      const fadeOut = Math.max(0, 1 - p.age / p.life);
+      const height = Math.min(1, Math.max(0, p.y / h) * 1.6);
+      ctx.globalAlpha = fadeIn * fadeOut * height * (0.55 + 0.45 * Math.sin(t / 240 + p.phase * 3) ** 2);
+      ctx.drawImage(sprite, x - p.size / 2, p.y - p.size / 2, p.size, p.size);
+      if (p.age > p.life || p.y < -20) Object.assign(p, spawn(false));
+    }
+    raf = requestAnimationFrame(frame);
+  }
+
+  const run = () => {
+    cancelAnimationFrame(raf);
+    if (onScreen && !document.hidden) { last = performance.now(); raf = requestAnimationFrame(frame); }
+  };
+  new ResizeObserver(resize).observe(canvas);
+  new IntersectionObserver(([entry]) => { onScreen = entry.isIntersecting; run(); }).observe(host);
+  document.addEventListener('visibilitychange', run);
+  resize();
+  run();
+}
+
+function initTopbar() {
+  const bar = $('.topbar');
+  const update = () => bar.classList.toggle('scrolled', scrollY > 40);
+  addEventListener('scroll', update, { passive: true });
+  update();
+}
+
 // ---------------------------------------------------------------- collection
 
 function renderControls() {
   const { platforms, genres, games } = catalog;
-  const platformChips = [['all', 'All'], ...platforms.map(p => [p, PLATFORM_LABELS[p]])];
-  $('#platform-chips').innerHTML = platformChips.map(([value, label]) => `
-    <button class="chip" type="button" data-platform="${value}" aria-pressed="${value === state.platform}">
-      ${value === 'all' ? '' : platformIcon(value, 16)}<span>${esc(label)}</span>
-    </button>`).join('');
-  $('#platform-row').hidden = platforms.length < 2;
+  const tabs = $('#platform-tabs');
+  tabs.innerHTML = [['all', 'All'], ...platforms.map(p => [p, PLATFORM_LABELS[p] || p])].map(([value, label]) => `
+    <button class="tab" type="button" data-platform="${value}" aria-pressed="${value === state.platform}">${esc(label)}</button>`).join('');
+  tabs.hidden = platforms.length < 2;
 
-  $('#genre-chips').innerHTML = [['all', 'Any type'], ...genres.map(g => [g, g])].map(([value, label]) => `
-    <button class="chip chip-small" type="button" data-genre="${esc(value)}" aria-pressed="${value === state.genre}">${esc(label)}</button>`).join('');
-  $('#genre-row').hidden = genres.length < 2;
+  const genre = $('#genre');
+  genre.innerHTML = `<option value="all">All genres</option>${[...genres].sort((a, b) => a.localeCompare(b)).map(g => `<option value="${esc(g)}">${esc(g)}</option>`).join('')}`;
+  $('#genre-wrap').hidden = genres.length < 2;
   $('#search-wrap').hidden = games.length <= 12;
   $('#ports-note').textContent = `Games by other studios, ported by ${catalog.studio.name}.`;
 
-  $('#controls').addEventListener('click', e => {
-    const chip = e.target.closest('.chip');
-    if (!chip) return;
-    if (chip.dataset.platform) state.platform = chip.dataset.platform;
-    if (chip.dataset.genre) state.genre = chip.dataset.genre;
-    syncChips();
+  tabs.addEventListener('click', e => {
+    const tab = e.target.closest('[data-platform]');
+    if (!tab) return;
+    state.platform = tab.dataset.platform;
+    syncTabs();
     renderCollection();
   });
+  genre.addEventListener('change', () => { state.genre = genre.value; renderCollection(); });
   $('#sort').addEventListener('change', e => { state.sort = e.target.value; renderCollection(); });
   $('#search').addEventListener('input', e => { state.query = e.target.value.trim().toLowerCase(); renderCollection(); });
   $('#reset').addEventListener('click', () => {
     Object.assign(state, { platform: 'all', genre: 'all', query: '' });
     $('#search').value = '';
-    syncChips();
+    genre.value = 'all';
+    syncTabs();
     renderCollection();
   });
 }
 
-function syncChips() {
-  $$('[data-platform]').forEach(c => c.setAttribute('aria-pressed', c.dataset.platform === state.platform));
-  $$('[data-genre]').forEach(c => c.setAttribute('aria-pressed', c.dataset.genre === state.genre));
+function syncTabs() {
+  $$('[data-platform]').forEach(t => t.setAttribute('aria-pressed', t.dataset.platform === state.platform));
 }
 
 function visibleGames() {
@@ -295,7 +394,7 @@ function renderCollection() {
   $('#common').hidden = !common.length;
   $('#empty').hidden = list.length > 0;
   $('#count').innerHTML = countHTML(list);
-  bindCards($('#collection'));
+  bindCards($('#games'));
 }
 
 // "5 games, 2 ports" when everything shows, "3 of 5 games, 1 of 2 ports" when filtered.
@@ -309,61 +408,53 @@ function countHTML(list) {
   return [
     part(list.length - shownPorts, originals.length, 'game'),
     ports.length && part(shownPorts, ports.length, 'port'),
-  ].filter(Boolean).join('<span class="count-sep">, </span>');
+  ].filter(Boolean).join(', ');
 }
 
-// ---------------------------------------------------------------- profile and footer
+// ---------------------------------------------------------------- chronicle, contact, support, footer
 
-function renderProfile() {
-  const { studio, originals, ports } = catalog;
-  // The hero line already says "since <year>", so the profile skips a stat that only repeats that year.
-  const stats = [
-    ...studio.stats.filter(s => s.value !== String(studio.since)),
-    { value: String(originals.length), label: 'Games released' },
-    ...(ports.length ? [{ value: String(ports.length), label: ports.length === 1 ? 'Port released' : 'Ports released' }] : []),
-  ];
-  $('#profile-card').innerHTML = `
-    <div class="profile-main">
-      <div class="profile-id">
-        <div class="avatar" aria-hidden="true">${mark(72)}</div>
-        <div>
-          <p class="profile-name">${esc(studio.name)}</p>
-          <p class="profile-class">Solo developer${studio.location ? ` from ${esc(studio.location)}` : ''}</p>
-        </div>
-      </div>
-      <div class="profile-about">${studio.about.map(p => `<p>${esc(p)}</p>`).join('')}</div>
-    </div>
-    <div class="profile-side">
-      <dl class="profile-stats">
-        ${stats.map(s => `<div class="stat"><dt>${esc(s.label)}</dt><dd>${esc(s.value)}</dd></div>`).join('')}
-      </dl>
-      <div class="profile-contact" id="contact" tabindex="-1">
-        <h3 class="sub-title">Say hello</h3>
-        <p>Questions, press, feedback or support: email me and I'll get back to you.</p>
-        <a class="btn btn-primary btn-mail" href="mailto:${esc(studio.email)}">${icon('mail', { size: 22 })}<span>${esc(studio.email).replace('@', '<wbr>@')}</span></a>
-        <ul class="links" aria-label="Find me online">
-          ${studio.links.map(l => `<li><a class="link-btn" href="${esc(l.url)}" rel="noopener" target="_blank">${icon(l.type, { size: 20 })}<span>${esc(l.label)}</span></a></li>`).join('')}
-        </ul>
-      </div>
-    </div>`;
+// Paragraphs with an illuminated first letter. A span (not ::first-letter) keeps "I'm" from losing its apostrophe.
+function illuminated(paragraphs) {
+  return paragraphs.map((p, i) => {
+    const text = esc(p);
+    if (i > 0 || !/^[A-Za-z]/.test(p)) return `<p>${text}</p>`;
+    return `<p><span class="dropcap">${text[0]}</span>${text.slice(1)}</p>`;
+  }).join('');
 }
 
-function renderSupport() {
-  const { support } = catalog.studio;
-  if (!support) return;
-  $('#support-title').textContent = support.title;
-  $('#support-text').textContent = support.text;
-  const link = $('#support-link');
-  link.href = support.url;
-  link.innerHTML = `${icon('kofi', { size: 22 })}<span>${esc(support.label)}</span>`;
-  $('#support').hidden = false;
+function renderChronicle() {
+  const { studio, originals, ports, games } = catalog;
+  $('#about').innerHTML = illuminated(studio.about);
+  const stats = [...studio.stats, {
+    value: String(originals.length),
+    label: ports.length ? `Own games released, plus ${plural(ports.length, 'port')}` : 'Games released',
+  }];
+  $('#stats').innerHTML = stats.map(s => `<div class="stat"><dt>${esc(s.value)}</dt><dd>${esc(s.label)}</dd></div>`).join('');
+
+  const years = new Map();
+  for (const g of [...games].reverse()) years.set(g.year, [...(years.get(g.year) || []), g]);
+  $('#timeline').innerHTML = [...years].map(([year, list]) => `
+    <li class="tl-item">
+      <span class="tl-year">${year}</span>
+      <span class="tl-games">${list.map(g => `<a href="${g.url}" data-open="${esc(g.id)}">${esc(g.title)}${g.isPort ? `<span class="port-mini">${PORT_GLYPH}${esc(portLabel(g))}</span>` : ''}</a>`).join('')}</span>
+    </li>`).join('');
 }
 
-function renderFooter() {
+function renderContact() {
   const { studio } = catalog;
-  $('#footer').innerHTML = `
-    <p class="footer-brand">${mark(28)}<span>© ${new Date().getFullYear()} ${esc(studio.name)}</span></p>
-    <a class="footer-top" href="#top">Back to top</a>`;
+  $('#mail').innerHTML = `<a href="mailto:${esc(studio.email)}">${icon('mail', { size: 22 })}<span>${esc(studio.email)}</span></a>`;
+  $('#links').innerHTML = studio.links.map(l => `
+    <li><a href="${esc(l.url)}" target="_blank" rel="noopener me">${icon(l.type)}<span>${esc(l.label)}</span></a></li>`).join('');
+
+  if (studio.support) {
+    $('#support-title').textContent = studio.support.title;
+    $('#support-text').textContent = studio.support.text;
+    const link = $('#support-link');
+    link.href = studio.support.url;
+    link.innerHTML = `${icon('kofi', { size: 20 })}<span>${esc(studio.support.label)}</span>`;
+    $('#support').hidden = false;
+  }
+  $('#copy').textContent = `© ${new Date().getFullYear()} ${studio.name}${studio.location ? `. Made in ${studio.location}.` : ''}`;
 }
 
 // ---------------------------------------------------------------- detail view
@@ -371,8 +462,8 @@ function renderFooter() {
 const STORE_PREFIX = { web: 'Play now', crazygames: 'Play on' };
 
 function storeButton(store) {
-  return `<a class="store-btn store-${esc(store.type)}" href="${esc(store.url)}" rel="noopener" target="_blank">
-    ${icon(store.type, { size: 28 })}
+  return `<a class="store-btn" href="${esc(store.url)}" rel="noopener" target="_blank">
+    ${icon(store.type, { size: 26 })}
     <span><small>${STORE_PREFIX[store.type] || 'Get it on'}</small><strong>${esc(store.label)}</strong></span>
   </a>`;
 }
@@ -392,8 +483,9 @@ function detailHTML(game) {
     game.privacy && `<a href="${esc(game.privacy)}">Privacy policy</a>`,
   ].filter(Boolean);
   return `
-    <button class="round-btn sheet-close" type="button" id="detail-close" aria-label="Close ${esc(game.title)}">
-      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M18.3 7.1 16.9 5.7 12 10.6 7.1 5.7 5.7 7.1l4.9 4.9-4.9 4.9 1.4 1.4 4.9-4.9 4.9 4.9 1.4-1.4-4.9-4.9z" fill="currentColor"/></svg>
+    <button class="close-btn sheet-close" type="button" id="detail-close" aria-label="Close ${esc(game.title)}">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <span aria-hidden="true">Close</span>
     </button>
     <div class="d-hero">
       <img class="d-hero-art" src="${esc(m.hero)}" alt="" decoding="async">
@@ -402,7 +494,7 @@ function detailHTML(game) {
       <div class="d-hero-content">
         ${m.logo ? `<img class="d-logo" src="${esc(m.logo)}" alt="${esc(game.title)}">` : ''}
       </div>
-      ${m.trailer ? `<button class="btn btn-primary d-trailer-btn" type="button" id="trailer-btn">${icon('play', { size: 20 })}<span>Watch trailer</span></button>` : ''}
+      ${m.trailer ? `<button class="btn btn-primary d-trailer-btn" type="button" id="trailer-btn">${icon('play', { size: 18 })}<span>Watch trailer</span></button>` : ''}
       ${m.trailer ? '<video class="d-trailer" id="trailer" playsinline hidden></video>' : ''}
     </div>
     <div class="d-body">
@@ -411,17 +503,17 @@ function detailHTML(game) {
         <dl class="facts">${facts.map(([k, v]) => `<div><dt>${k}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>
       </aside>
       <div class="d-main">
-        <p class="eyebrow">${esc(game.genres.join(' · '))}</p>
+        <p class="d-genres">${esc(game.genres.join(' · '))}</p>
         <h2 class="d-title${m.logo ? ' visually-hidden' : ''}" id="detail-title">${esc(game.title)}</h2>
         ${game.subtitle ? `<p class="d-subtitle">${esc(game.subtitle)}</p>` : ''}
-        ${game.isPort ? `<p class="d-port">${PORT_ICON}<span><strong>${esc(portLabel(game))}.</strong> Original game by ${esc(game.originalDeveloper)}.</span></p>` : ''}
+        ${game.isPort ? `<p class="d-port">${PORT_GLYPH}<span><strong>${esc(portLabel(game))}.</strong> Original game by ${esc(game.originalDeveloper)}.</span></p>` : ''}
         <p class="d-flavor">${esc(game.tagline)}</p>
         ${game.badge ? `<p class="d-badge">${SPARKLE}<span>${esc(game.badge)}</span></p>` : ''}
         <div class="stores">${game.stores.map(storeButton).join('')}</div>
         ${game.highlights.length ? `<ul class="highlights" aria-label="Highlights">${game.highlights.map(h => `<li>${trophy()}<span>${esc(h)}</span></li>`).join('')}</ul>` : ''}
         <div class="d-text">${(game.description.length ? game.description : [game.summary]).map(p => `<p>${esc(p)}</p>`).join('')}</div>
-        ${game.features.length ? `<h3 class="sub-title">Abilities</h3>
-          <ul class="features">${game.features.map(f => `<li>${SPARKLE}<span>${esc(f)}</span></li>`).join('')}</ul>` : ''}
+        ${game.features.length ? `<h3 class="sub-title">Features</h3>
+          <ul class="features">${game.features.map(f => `<li>${esc(f)}</li>`).join('')}</ul>` : ''}
         ${m.screenshots.length ? `<h3 class="sub-title">Screenshots</h3>
           <ul class="shots" aria-label="Screenshots">${m.screenshots.map((s, i) => `
             <li><button class="shot" type="button" data-shot="${i}" aria-label="Open screenshot ${i + 1} of ${m.screenshots.length}">
@@ -491,7 +583,7 @@ function hideDetail() {
   document.documentElement.classList.remove('modal-open');
   setPageMeta(null, catalog.studio);
   const target = (returnFocus && document.contains(returnFocus) && returnFocus) ||
-    $(`#collection button[data-open="${CSS.escape(current?.id || '')}"]`);
+    $(`#games button[data-open="${CSS.escape(current?.id || '')}"]`);
   target?.focus({ preventScroll: true });
   returnFocus = null;
   current = null;

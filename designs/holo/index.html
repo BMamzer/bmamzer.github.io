@@ -6,7 +6,8 @@
   <title>Bart Mamzer | Indie games</title>
   <meta name="description" content="Indie games for PC, iOS and Android, made by Bart Mamzer, an independent game developer from Poland.">
   <link rel="canonical" href="https://bartmamzer.com/">
-  <meta name="theme-color" content="#0d1226">
+  <meta name="theme-color" content="#0d0907">
+  <meta name="color-scheme" content="dark">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Bart Mamzer">
   <meta property="og:title" content="Bart Mamzer | Indie games">
@@ -20,148 +21,142 @@
   <meta name="twitter:description" content="Indie games for PC, iOS and Android, by a solo developer.">
   <meta name="twitter:image" content="https://bartmamzer.com/assets/site/og.jpg">
   <link rel="icon" href="/designs/holo/favicon.svg" type="image/svg+xml">
-  <link rel="preload" href="/assets/fonts/lilita-one/lilita-one-400-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/assets/fonts/nunito/nunito-400-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/fonts/lilita-one/font.css">
+  <link rel="preload" href="/assets/fonts/cinzel/cinzel-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/alegreya/alegreya-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/fonts/cinzel/font.css">
+  <link rel="stylesheet" href="/assets/fonts/alegreya/font.css">
   <link rel="stylesheet" href="/designs/holo/style.css">
   <script type="module" src="/designs/holo/app.js"></script>
 </head>
 <body>
-  <a class="skip" href="#collection">Skip to the games</a>
+  <a class="skip" href="#games">Skip to the games</a>
 
-  <div class="sky" aria-hidden="true">
-    <span class="blob blob-a"></span>
-    <span class="blob blob-b"></span>
-    <span class="blob blob-c"></span>
-    <span class="stars"></span>
-    <span class="stars stars-twinkle"></span>
-  </div>
-
-  <header class="topbar">
-    <div class="wrap topbar-inner">
-      <a class="brand" href="#top" aria-label="Bart Mamzer, back to top">
-        <span class="mark" data-mark></span>
-        <span class="brand-name">Bart Mamzer</span>
-      </a>
-      <nav aria-label="Sections">
-        <ul class="nav">
-          <li><a href="#collection">Games</a></li>
-          <li><a href="#profile">About</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
+  <header class="topbar" id="top">
+    <a class="brand" href="#top" aria-label="Bart Mamzer, back to top">
+      <span class="mark" data-mark></span>
+      <span class="brand-name">Bart Mamzer</span>
+    </a>
+    <nav class="topnav" aria-label="Sections">
+      <a href="#games">Games</a>
+      <a href="#chronicle">Chronicle</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </header>
 
-  <main id="top">
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="wrap hero-inner">
-        <div class="hero-copy">
-          <p class="eyebrow" id="hero-eyebrow">Independent game studio</p>
-          <h1 class="hero-title" id="hero-title">Bart Mamzer</h1>
-          <p class="hero-lead" id="hero-lead"></p>
-          <p class="hero-sub" id="hero-sub"></p>
-          <div class="hero-cta">
-            <a class="btn btn-primary" href="#collection">Browse the collection</a>
-            <a class="btn btn-ghost" href="#profile">Meet the developer</a>
+  <main id="main">
+    <section class="stage" aria-labelledby="stage-title">
+      <div class="stage-art" id="stage-art" aria-hidden="true"></div>
+      <canvas class="embers" aria-hidden="true"></canvas>
+      <div class="stage-veil" aria-hidden="true"></div>
+
+      <div class="stage-inner">
+        <div class="stage-intro">
+          <p class="kicker"><span class="rule" aria-hidden="true"></span><span id="kicker">Independent games</span></p>
+          <h1 class="studio-name" id="stage-title">Bart Mamzer</h1>
+          <p class="studio-tagline" id="tagline"></p>
+          <p class="studio-summary" id="summary"></p>
+          <div class="stage-cta">
+            <a class="btn btn-primary" href="#games">Explore the games</a>
+            <a class="btn btn-ghost" href="#chronicle">The chronicle</a>
           </div>
         </div>
         <ul class="hand" id="hand" aria-label="Spotlight games"></ul>
       </div>
     </section>
 
-    <section class="collection" id="collection" aria-labelledby="collection-title" tabindex="-1">
-      <div class="wrap">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">The collection</p>
-            <h2 class="section-title" id="collection-title">Every card is a game you can play</h2>
-          </div>
-          <p class="count" id="count" aria-live="polite"></p>
-        </div>
+    <section class="games section" id="games" aria-labelledby="games-title" tabindex="-1">
+      <header class="section-head">
+        <p class="chapter">Chapter I</p>
+        <h2 id="games-title">The Collection</h2>
+        <svg class="flourish" viewBox="0 0 240 16" aria-hidden="true"><path d="M0 8h96M144 8h96" stroke="currentColor" stroke-width="1"/><path d="M120 1l7 7-7 7-7-7z M104 8l6-3v6zM136 8l-6-3v6z" fill="currentColor"/></svg>
+      </header>
 
-        <div class="controls" id="controls">
-          <div class="chip-row" id="platform-row">
-            <span class="chip-label" id="platform-label">Platform</span>
-            <div class="chips" id="platform-chips" role="group" aria-labelledby="platform-label"></div>
-          </div>
-          <div class="control-line">
-            <label class="search" id="search-wrap" hidden>
-              <span class="visually-hidden">Find a game</span>
-              <input type="search" id="search" placeholder="Find a card" autocomplete="off">
-            </label>
-            <label class="sort">
-              <span>Sort</span>
-              <select id="sort">
-                <option value="newest">Newest first</option>
-                <option value="oldest">Oldest first</option>
-                <option value="az">A to Z</option>
-              </select>
-            </label>
-          </div>
-          <div class="chip-row genre-row" id="genre-row">
-            <span class="chip-label" id="genre-label">Type</span>
-            <div class="chips chips-scroll" id="genre-chips" role="group" aria-labelledby="genre-label"></div>
-          </div>
-        </div>
-
-        <noscript>
-          <div class="noscript">
-            <p>This site needs JavaScript to deal out the game cards. You can find every game here:</p>
-            <p>
-              <a href="https://store.steampowered.com/developer/BartMamzer">Steam</a> ·
-              <a href="https://apps.apple.com/developer/id1033646930">App Store</a> ·
-              <a href="https://play.google.com/store/apps/developer?id=Bartlomiej+Mamzer">Google Play</a>
-            </p>
-          </div>
-        </noscript>
-
-        <ul class="grid" id="grid-rare" aria-label="Games"></ul>
-
-        <div class="sub-set ports-set" id="ports" hidden>
-          <div class="set-head">
-            <h3 class="sub-title"><span class="set-stamp">Ports</span></h3>
-            <p id="ports-note"></p>
-          </div>
-          <ul class="grid" id="grid-ports" aria-label="Ports"></ul>
-        </div>
-
-        <div class="sub-set common-set" id="common" hidden>
-          <div class="set-head">
-            <h3 class="sub-title">Common cards</h3>
-            <p>Earlier games, from where it all started.</p>
-          </div>
-          <ul class="grid" id="grid-common" aria-label="Earlier games"></ul>
-        </div>
-
-        <div class="empty" id="empty" hidden>
-          <p>No cards match these filters.</p>
-          <button class="btn btn-ghost" type="button" id="reset">Show all cards</button>
-        </div>
+      <div class="filters" id="controls" role="search" aria-label="Filter the games">
+        <div class="tabs" id="platform-tabs" role="group" aria-label="Platform"></div>
+        <label class="pick" id="genre-wrap">
+          <span class="visually-hidden">Genre</span>
+          <select id="genre"></select>
+        </label>
+        <label class="pick">
+          <span class="visually-hidden">Sort</span>
+          <select id="sort">
+            <option value="newest">Newest first</option>
+            <option value="oldest">Oldest first</option>
+            <option value="az">A to Z</option>
+          </select>
+        </label>
+        <label class="search" id="search-wrap" hidden>
+          <span class="visually-hidden">Find a game</span>
+          <input type="search" id="search" placeholder="Find a card" autocomplete="off">
+        </label>
+        <p class="count" id="count" aria-live="polite"></p>
       </div>
+
+      <noscript>
+        <div class="noscript">
+          <p>This site needs JavaScript to deal out the game cards. You can find every game here:</p>
+          <p>
+            <a href="https://store.steampowered.com/developer/BartMamzer">Steam</a>
+            <a href="https://apps.apple.com/developer/id1033646930">App Store</a>
+            <a href="https://play.google.com/store/apps/developer?id=Bartlomiej+Mamzer">Google Play</a>
+          </p>
+        </div>
+      </noscript>
+
+      <ul class="grid" id="grid-rare" aria-label="Games"></ul>
+
+      <section class="sub-set" id="ports" aria-labelledby="ports-title" hidden>
+        <h3 class="sub-title" id="ports-title">Ports</h3>
+        <p class="sub-lead" id="ports-note"></p>
+        <ul class="grid" id="grid-ports" aria-label="Ports"></ul>
+      </section>
+
+      <section class="sub-set" id="common" aria-labelledby="common-title" hidden>
+        <h3 class="sub-title" id="common-title">From the archive</h3>
+        <p class="sub-lead">Earlier games, from where it all started.</p>
+        <ul class="grid" id="grid-common" aria-label="Earlier games"></ul>
+      </section>
+
+      <p class="empty" id="empty" hidden>No cards match these filters. <button class="link-btn" type="button" id="reset">Show all cards</button></p>
     </section>
 
-    <section class="profile-section" id="profile" aria-labelledby="profile-title">
-      <div class="wrap">
-        <p class="eyebrow">Developer profile</p>
-        <h2 class="section-title" id="profile-title">Meet the solo dev</h2>
-        <article class="profile" id="profile-card"></article>
+    <section class="chronicle section" id="chronicle" aria-labelledby="chronicle-title">
+      <header class="section-head">
+        <p class="chapter">Chapter II</p>
+        <h2 id="chronicle-title">The Chronicle</h2>
+        <svg class="flourish" viewBox="0 0 240 16" aria-hidden="true"><path d="M0 8h96M144 8h96" stroke="currentColor" stroke-width="1"/><path d="M120 1l7 7-7 7-7-7z M104 8l6-3v6zM136 8l-6-3v6z" fill="currentColor"/></svg>
+      </header>
+      <div class="chronicle-body">
+        <div class="about" id="about"></div>
+        <dl class="stats" id="stats"></dl>
       </div>
+      <ol class="timeline" id="timeline" aria-label="Releases by year"></ol>
     </section>
 
-    <section class="support" id="support" aria-labelledby="support-title" hidden>
-      <div class="wrap">
-        <div class="support-card">
-          <h2 class="section-title" id="support-title"></h2>
-          <p class="support-text" id="support-text"></p>
-          <a class="btn btn-primary" id="support-link" target="_blank" rel="noopener"></a>
-        </div>
+    <section class="contact section" id="contact" aria-labelledby="contact-title">
+      <header class="section-head">
+        <p class="chapter">Chapter III</p>
+        <h2 id="contact-title">Send a Raven</h2>
+        <svg class="flourish" viewBox="0 0 240 16" aria-hidden="true"><path d="M0 8h96M144 8h96" stroke="currentColor" stroke-width="1"/><path d="M120 1l7 7-7 7-7-7z M104 8l6-3v6zM136 8l-6-3v6z" fill="currentColor"/></svg>
+      </header>
+      <p class="contact-lead">Questions, feedback, press or a bug in one of the games? Write to me.</p>
+      <p class="contact-mail" id="mail"></p>
+      <ul class="links" id="links" aria-label="Bart Mamzer on stores and social media"></ul>
+    </section>
+
+    <section class="support section" id="support" aria-labelledby="support-title" hidden>
+      <div class="support-box">
+        <h2 id="support-title"></h2>
+        <p class="support-text" id="support-text"></p>
+        <a class="btn btn-primary" id="support-link" target="_blank" rel="noopener"></a>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <div class="wrap footer-inner" id="footer"></div>
+    <span class="mark" data-mark></span>
+    <p class="copy" id="copy"></p>
+    <a class="to-top" href="#top">Back to top</a>
   </footer>
 
   <dialog class="detail" id="detail" aria-labelledby="detail-title">
@@ -172,13 +167,13 @@
         <figcaption id="lightbox-count"></figcaption>
       </figure>
       <button class="round-btn lightbox-prev" type="button" id="lightbox-prev" aria-label="Previous screenshot">
-        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15.4 5.4 14 4l-8 8 8 8 1.4-1.4L8.8 12z" fill="currentColor"/></svg>
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2"/></svg>
       </button>
       <button class="round-btn lightbox-next" type="button" id="lightbox-next" aria-label="Next screenshot">
-        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M8.6 18.6 10 20l8-8-8-8-1.4 1.4 6.6 6.6z" fill="currentColor"/></svg>
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2"/></svg>
       </button>
       <button class="round-btn lightbox-close" type="button" id="lightbox-close" aria-label="Close screenshot">
-        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M18.3 7.1 16.9 5.7 12 10.6 7.1 5.7 5.7 7.1l4.9 4.9-4.9 4.9 1.4 1.4 4.9-4.9 4.9 4.9 1.4-1.4-4.9-4.9z" fill="currentColor"/></svg>
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
       </button>
     </div>
   </dialog>
