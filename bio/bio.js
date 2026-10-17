@@ -4,7 +4,7 @@
 // straight to that game's store page instead of showing the list.
 (() => {
   // App Store Connect campaign provider token (the pt= in a campaign link from App Analytics > Campaigns).
-  const APP_STORE_PROVIDER_TOKEN = '';
+  const APP_STORE_PROVIDER_TOKEN = '117938829';
 
   const GAMES = [
     {
