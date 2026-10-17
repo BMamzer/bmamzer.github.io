@@ -265,10 +265,11 @@ function setupLog(catalog) {
     studio.location && `Forged in ${studio.location}.`,
   ].filter(Boolean);
   const lines = $('.log-lines');
-  const visible = 3;
+  // On wide screens the log box is as tall as the art beside it and clips the oldest lines, so keep them all.
+  const visible = () => (wide.matches ? facts.length : 3);
 
   if (reducedMotion()) {
-    lines.innerHTML = facts.slice(0, visible).map(f => `<li>${esc(f)}</li>`).join('');
+    lines.innerHTML = facts.slice(0, visible()).map(f => `<li>${esc(f)}</li>`).join('');
     return;
   }
 
@@ -280,7 +281,7 @@ function setupLog(catalog) {
     const li = document.createElement('li');
     li.className = 'is-typing';
     lines.append(li);
-    while (lines.children.length > visible) lines.firstElementChild.remove();
+    while (lines.children.length > visible()) lines.firstElementChild.remove();
     const text = facts[next++ % facts.length];
     let i = 0;
     typing = true;
@@ -292,9 +293,9 @@ function setupLog(catalog) {
     step();
   }
   // Start with the first lines already written, so the box never looks empty.
-  lines.innerHTML = facts.slice(0, visible - 1).map(f => `<li>${esc(f)}</li>`).join('');
-  next = visible - 1;
-  new IntersectionObserver(([e]) => { onScreen = e.isIntersecting; }, { threshold: 0.5 }).observe(lines);
+  lines.innerHTML = facts.slice(0, visible() - 1).map(f => `<li>${esc(f)}</li>`).join('');
+  next = visible() - 1;
+  new IntersectionObserver(([e]) => { onScreen = e.isIntersecting; }, { threshold: 0.5 }).observe($('.log'));
   setInterval(push, 3800);
 }
 

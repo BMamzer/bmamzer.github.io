@@ -279,11 +279,33 @@ p { margin: 0 0 0.8em; }
 @media (min-width: 1000px) {
   .title-screen {
     grid-template-columns: minmax(320px, 1fr) minmax(0, 2fr);
-    grid-template-areas: 'intro view' 'intro log' 'party party';
+    grid-template-areas: 'intro view' 'log view' 'party party';
     grid-template-rows: auto 1fr auto;
   }
-  .log { display: flex; flex-direction: column; justify-content: flex-end; }
-  .intro-stats { margin-top: auto; }
+  /* The log sits under the intro and takes the height the art leaves over; when the intro is the
+     taller side, the art window grows instead. Either way neither column ends in an empty gap.
+     contain: size keeps the typing lines from resizing the log, which clips its oldest lines. */
+  .intro { container-type: inline-size; }
+  .viewport { display: flex; flex-direction: column; }
+  .view-window { flex: 1 0 auto; }
+  .log {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: calc(3 * 1.35rem * 1.15 + 28px);
+    overflow: clip;
+    contain: size;
+    position: relative;
+  }
+  .log::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto;
+    height: 2.6rem;
+    background: linear-gradient(var(--sunk) 35%, transparent);
+    pointer-events: none;
+  }
+  .log-lines { flex: none; }
 }
 
 .kicker {
@@ -301,7 +323,7 @@ p { margin: 0 0 0.8em; }
   text-shadow: 3px 3px 0 var(--wood-lo), 6px 6px 0 rgba(0, 0, 0, 0.45);
 }
 @media (min-width: 1000px) {
-  .studio-title { font-size: clamp(1.6rem, 2.4vw, 2.5rem); }
+  .studio-title { font-size: min(2.5rem, 8.6cqi); }
 }
 .studio-tagline { margin-bottom: 10px; font: 400 1.6rem/1.15 var(--ui); color: #fff7e0; }
 .intro-lead { color: #eadcbf; }
@@ -321,12 +343,16 @@ p { margin: 0 0 0.8em; }
 .intro-stores { margin-top: auto; padding-top: 24px; }
 .intro-stores[hidden] { display: none; }
 .intro-stores-label { margin: 0 0 10px; font: 400 1.25rem/1 var(--mono); color: var(--gold-hi); letter-spacing: 0.06em; text-transform: uppercase; }
-.intro-store-links { display: flex; flex-wrap: wrap; gap: 10px; }
-.intro-store-links .btn { flex: 1 1 auto; }
+.intro-store-links { display: flex; flex-wrap: wrap; gap: 8px; }
+.intro-store-links .btn { flex: 1 1 auto; gap: 8px; padding-inline: 10px; }
 /* Phones and tablets: keep the opening short so the first game art shows on the first screen.
-   The stats and store links appear again in the character sheet and contact sections. */
-@media (max-width: 999px) {
-  .intro-stats, .intro-stores { display: none; }
+   The stats and store links appear again in the character sheet and contact sections (and the stats in the log).
+   Narrow desktops drop them too, so the intro never outgrows the art: the store links would wrap to two rows. */
+@media (max-width: 1199px) {
+  .intro-stats { display: none; }
+}
+@media (max-width: 1399px) {
+  .intro-stores { display: none; }
 }
 
 /* The view window, like the first-person view of a dungeon crawler. */
