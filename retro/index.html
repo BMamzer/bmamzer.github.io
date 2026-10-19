@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en" data-era="past">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Bart Mamzer | Indie games</title>
+  <meta name="description" content="Bart Mamzer is an independent game developer from Poland. Action RPGs, kingdom sims, idle games and classic party RPGs for PC, iOS and Android.">
+  <link rel="canonical" href="https://bartmamzer.com/">
+  <meta name="theme-color" content="#1b1c21">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Bart Mamzer">
+  <meta property="og:title" content="Bart Mamzer | Indie games">
+  <meta property="og:description" content="Indie games by a solo developer. Powerlust, Crownbound, Arcane Plunder and more for PC, iOS and Android.">
+  <meta property="og:url" content="https://bartmamzer.com/">
+  <meta property="og:image" content="https://bartmamzer.com/assets/site/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@bartmamzer">
+  <meta name="twitter:title" content="Bart Mamzer | Indie games">
+  <meta name="twitter:description" content="Indie games by a solo developer.">
+  <meta name="twitter:image" content="https://bartmamzer.com/assets/site/og.jpg">
+  <link rel="icon" href="/assets/site/favicon.svg" type="image/svg+xml">
+  <script>try { if (sessionStorage.getItem('time-machine') === document.documentElement.dataset.era) document.documentElement.classList.add('tm-arrive'); sessionStorage.removeItem('time-machine'); } catch (e) {}</script>
+  <link rel="preload" href="/assets/fonts/press-start-2p/press-start-2p-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/vt323/vt323-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/jersey-15/jersey-15-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/fonts/press-start-2p/font.css">
+  <link rel="stylesheet" href="/assets/fonts/jersey-15/font.css">
+  <link rel="stylesheet" href="/assets/fonts/vt323/font.css">
+  <link rel="stylesheet" href="/assets/site/pixel.css">
+  <link rel="stylesheet" href="/assets/site/time-machine.css">
+  <script type="module" src="/assets/site/pixel.js"></script>
+  <script type="module" src="/assets/site/time-machine.js"></script>
+</head>
+<body>
+  <a class="skip" href="#quest-log">Skip to the games</a>
+
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="#main" aria-label="Bart Mamzer, back to top">
+        <span class="brand-mark" data-sprite="sword" aria-hidden="true"></span>
+        <span class="brand-name">Bart Mamzer</span>
+      </a>
+      <nav class="topnav" aria-label="Main">
+        <a href="#quest-log">Games</a>
+        <a href="#character">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="time-machine" href="/" data-time-machine title="Return to the present day and the modern site">
+        <span class="time-machine-icon" data-sprite="hourglass" aria-hidden="true"></span><span class="time-machine-label">Time Machine</span>
+      </a>
+      <button class="crt-toggle" type="button" aria-pressed="false" title="Old monitor effect">
+        <span class="crt-led" aria-hidden="true"></span>CRT
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="title-screen wrap" aria-labelledby="studio-title">
+      <div class="intro panel panel-wood">
+        <p class="kicker">Indie game studio</p>
+        <h1 id="studio-title" class="studio-title">Bart Mamzer</h1>
+        <p class="studio-tagline" data-slot="tagline"></p>
+        <p class="intro-lead" data-slot="lead"></p>
+        <ul class="intro-stats" role="list"></ul>
+        <div class="intro-stores" hidden>
+          <p class="intro-stores-label">Find the games on</p>
+          <div class="intro-store-links"></div>
+        </div>
+      </div>
+
+      <figure class="viewport panel panel-stone" aria-label="Featured game">
+        <div class="view-window">
+          <img class="view-art" alt="" decoding="async" fetchpriority="high">
+          <video class="view-loop" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+          <img class="view-logo" alt="" decoding="async">
+          <span class="view-corner tl" aria-hidden="true"></span><span class="view-corner tr" aria-hidden="true"></span>
+          <span class="view-corner bl" aria-hidden="true"></span><span class="view-corner br" aria-hidden="true"></span>
+        </div>
+        <figcaption class="view-caption">
+          <p class="view-label"><span class="accent-dot" aria-hidden="true"></span>Now exploring</p>
+          <h2 class="view-title"></h2>
+          <p class="view-port" hidden></p>
+          <p class="view-tagline"></p>
+          <div class="view-actions"></div>
+        </figcaption>
+      </figure>
+
+      <div class="party panel panel-stone">
+        <h2 class="party-label">Spotlight</h2>
+        <ul class="portraits" role="list"></ul>
+      </div>
+
+      <div class="log panel panel-dark" role="log" aria-live="off" aria-label="Message log">
+        <ol class="log-lines"></ol>
+      </div>
+    </section>
+
+    <section id="quest-log" class="quests wrap" aria-labelledby="quests-title">
+      <header class="section-head">
+        <span class="section-icon" data-sprite="chest" aria-hidden="true"></span>
+        <div>
+          <h2 id="quests-title" class="section-title">Quest log</h2>
+          <p class="section-sub">Every released game. Pick a game to see more.</p>
+        </div>
+      </header>
+
+      <div class="quest-controls panel panel-stone">
+        <div class="tabs" role="tablist" aria-label="Platform"></div>
+        <div class="filters">
+          <label class="field field-genre" hidden>
+            <span class="field-label">Type</span>
+            <select class="genre-select"></select>
+          </label>
+          <label class="field field-search" hidden>
+            <span class="field-label">Search</span>
+            <input class="search-input" type="search" placeholder="Name a quest" autocomplete="off">
+          </label>
+        </div>
+      </div>
+
+      <div class="quest-layout">
+        <div class="inventory panel panel-dark" role="tabpanel" aria-labelledby="quests-title">
+          <p class="inventory-hint">Arrow keys move, Enter opens the game.</p>
+          <ul class="slots" role="list"></ul>
+          <p class="empty" hidden>No quests match. Try another tab.</p>
+        </div>
+        <aside class="item-panel panel panel-wood" aria-label="Selected game"></aside>
+      </div>
+    </section>
+
+    <section id="character" class="character wrap" aria-labelledby="character-title">
+      <header class="section-head">
+        <span class="section-icon" data-sprite="helm" aria-hidden="true"></span>
+        <div>
+          <h2 id="character-title" class="section-title">Character sheet</h2>
+          <p class="section-sub">A solo adventurer who hires companions for the big quests.</p>
+        </div>
+      </header>
+
+      <div class="sheet">
+        <div class="sheet-portrait panel panel-wood">
+          <div class="hero-sprite" data-sprite="hero" role="img" aria-label="Pixel art portrait of a developer in a hood"></div>
+          <p class="sheet-name" data-slot="name"></p>
+          <p class="sheet-level" data-slot="level"></p>
+        </div>
+        <div class="sheet-attrs panel panel-stone">
+          <h3 class="sheet-heading">Attributes</h3>
+          <dl class="attrs"></dl>
+        </div>
+        <div class="sheet-bio panel panel-parchment">
+          <h3 class="sheet-heading">Biography</h3>
+          <div class="bio" data-slot="about"></div>
+        </div>
+        <div class="sheet-feats panel panel-stone">
+          <h3 class="sheet-heading">Achievements</h3>
+          <ul class="feats" role="list"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact wrap" aria-labelledby="contact-title">
+      <div class="contact-card panel panel-wood">
+        <span class="section-icon" data-sprite="letter" aria-hidden="true"></span>
+        <div class="contact-text">
+          <h2 id="contact-title" class="section-title">Send a raven</h2>
+          <p>Questions, feedback, press or business: email is the fastest way to reach me.</p>
+          <a class="btn btn-gold mail-btn" data-slot="mail"></a>
+        </div>
+      </div>
+      <div class="guilds panel panel-stone">
+        <h3 class="sheet-heading">Find me at</h3>
+        <ul class="links" role="list"></ul>
+      </div>
+    </section>
+
+    <section class="support wrap" aria-labelledby="support-title" hidden>
+      <div class="support-card panel panel-stone">
+        <span class="section-icon" data-sprite="mug" aria-hidden="true"></span>
+        <div class="support-text">
+          <h2 id="support-title" class="section-title"></h2>
+          <p></p>
+        </div>
+        <a class="btn btn-gold" target="_blank" rel="noopener"></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <p class="copyright" data-slot="copyright"></p>
+      <a class="to-top" href="#main">Back to top</a>
+    </div>
+  </footer>
+
+  <noscript>
+    <div class="noscript panel panel-parchment">
+      <p><strong>This site needs JavaScript to show the games.</strong> You can still find them here:</p>
+      <ul>
+        <li><a href="https://store.steampowered.com/developer/BartMamzer">Bart Mamzer on Steam</a></li>
+        <li><a href="https://apps.apple.com/developer/id1033646930">Bart Mamzer on the App Store</a></li>
+        <li><a href="https://play.google.com/store/apps/developer?id=Bartlomiej+Mamzer">Bart Mamzer on Google Play</a></li>
+      </ul>
+    </div>
+  </noscript>
+
+  <dialog class="info" aria-labelledby="info-title">
+    <div class="info-bar">
+      <span class="info-icon" data-sprite="sword" aria-hidden="true"></span>
+      <p class="info-kicker">Game info</p>
+      <button class="close-btn" type="button" data-close aria-label="Close">
+        <span aria-hidden="true">X</span>
+      </button>
+    </div>
+    <article class="info-body"></article>
+  </dialog>
+
+  <dialog class="lightbox" aria-label="Screenshot viewer">
+    <div class="lightbox-frame panel panel-stone">
+      <img class="lightbox-img" alt="">
+      <div class="lightbox-bar">
+        <button class="btn btn-small" type="button" data-step="-1" aria-label="Previous screenshot">&lt; Prev</button>
+        <p class="lightbox-count" aria-live="polite"></p>
+        <button class="btn btn-small" type="button" data-step="1" aria-label="Next screenshot">Next &gt;</button>
+        <button class="close-btn" type="button" data-close aria-label="Close screenshot viewer"><span aria-hidden="true">X</span></button>
+      </div>
+    </div>
+  </dialog>
+</body>
+</html>

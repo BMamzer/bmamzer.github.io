@@ -1,0 +1,700 @@
+{
+  "studio": {
+    "name": "Bart Mamzer",
+    "tagline": "Indie games by a solo developer",
+    "about": [
+      "I'm Bart, a solo game developer from Poland, releasing games since 2014. I run the studio myself and handle design, code, updates and player support, and I bring in help when a bigger project needs it, as I did for two years on Powerlust.",
+      "My biggest game is Powerlust, an old school action RPG with over a million downloads on Google Play. I also make strategy and idle games for PC, and I port classic PC role playing games to phones, like Silver Lemur Games' Legends of Amberland."
+    ],
+    "email": "bartmamzer@gmail.com",
+    "support": {
+      "title": "Enjoying the games?",
+      "text": "I'm a solo developer. If you'd like to help me make the next game, you can buy me a coffee on Ko-fi.",
+      "label": "Support me on Ko-fi",
+      "url": "https://ko-fi.com/bartmamzer"
+    },
+    "location": "Poland",
+    "since": 2014,
+    "url": "https://bartmamzer.com",
+    "spotlight": [
+      "powerlust",
+      "crownbound",
+      "arcane-plunder",
+      "legends-of-amberland"
+    ],
+    "stats": [
+      {
+        "value": "1M+",
+        "label": "Powerlust downloads on Google Play"
+      },
+      {
+        "value": "4.8",
+        "label": "Powerlust rating on the App Store"
+      },
+      {
+        "value": "2014",
+        "label": "Releasing games since"
+      }
+    ],
+    "links": [
+      {
+        "type": "steam",
+        "label": "Steam",
+        "url": "https://store.steampowered.com/developer/BartMamzer"
+      },
+      {
+        "type": "appstore",
+        "label": "App Store",
+        "url": "https://apps.apple.com/developer/id1033646930"
+      },
+      {
+        "type": "googleplay",
+        "label": "Google Play",
+        "url": "https://play.google.com/store/apps/developer?id=Bartlomiej+Mamzer"
+      },
+      {
+        "type": "youtube",
+        "label": "YouTube",
+        "url": "https://www.youtube.com/@BartMamzer"
+      },
+      {
+        "type": "x",
+        "label": "X",
+        "url": "https://x.com/bartmamzer"
+      },
+      {
+        "type": "bluesky",
+        "label": "Bluesky",
+        "url": "https://bsky.app/profile/bartmamzer.bsky.social"
+      },
+      {
+        "type": "facebook",
+        "label": "Facebook",
+        "url": "https://www.facebook.com/BartMamzer/"
+      },
+      {
+        "type": "linkedin",
+        "label": "LinkedIn",
+        "url": "https://www.linkedin.com/in/BartMamzer"
+      }
+    ]
+  },
+  "games": [
+    {
+      "id": "arcane-plunder",
+      "title": "Arcane Plunder",
+      "subtitle": "Incremental Dungeon Game",
+      "tagline": "Clear the fog. Loot with your mind.",
+      "summary": "A bite-sized idle clicker adventure. Dispel magical fog tile by tile, reveal forgotten dungeons and pull treasure out of the shadows with telekinesis.",
+      "description": [
+        "Uncover the secrets of forgotten dungeons in a short, satisfying idle adventure. Click to dispel the magical fog, reveal hidden chambers and telekinetically loot ancient treasures.",
+        "Spend your loot on range, telekinesis power and mana to reach deeper into the dungeon, then reset for permanent bonuses and go again. It's built to be finished: a few relaxed evenings, no endless grind.",
+        "Find legendary artifacts, and make your own skill trees to share with friends through the Steam Workshop."
+      ],
+      "features": [
+        "An idle game with a real ending",
+        "Fog-covered dungeons to uncover",
+        "Telekinetic looting and upgrades",
+        "Prestige resets with permanent bonuses",
+        "Steam Workshop skill trees"
+      ],
+      "genres": [
+        "Idle",
+        "Clicker",
+        "Dungeon"
+      ],
+      "released": "2026-05-08",
+      "platforms": [
+        "pc"
+      ],
+      "stores": [
+        {
+          "type": "steam",
+          "url": "https://store.steampowered.com/app/4042600/"
+        }
+      ],
+      "badge": "Free demo on Steam",
+      "accent": "#3cc6e6",
+      "featured": true,
+      "media": {
+        "hero": "/assets/games/arcane-plunder/hero.webp",
+        "cover": "/assets/games/arcane-plunder/cover.webp",
+        "poster": "/assets/games/arcane-plunder/poster.webp",
+        "screenshots": [
+          {
+            "src": "/assets/games/arcane-plunder/shots/01.webp",
+            "w": 1600,
+            "h": 900
+          },
+          {
+            "src": "/assets/games/arcane-plunder/shots/02.webp",
+            "w": 1600,
+            "h": 900
+          },
+          {
+            "src": "/assets/games/arcane-plunder/shots/03.webp",
+            "w": 1600,
+            "h": 900
+          },
+          {
+            "src": "/assets/games/arcane-plunder/shots/04.webp",
+            "w": 1600,
+            "h": 900
+          },
+          {
+            "src": "/assets/games/arcane-plunder/shots/05.webp",
+            "w": 1600,
+            "h": 900
+          },
+          {
+            "src": "/assets/games/arcane-plunder/shots/06.webp",
+            "w": 1600,
+            "h": 900
+          }
+        ],
+        "trailer": "https://video.akamai.steamstatic.com/store_trailers/4042600/1199968815/fb22c91cab7d627bd3d1c0d46df9fb2878e8244e/1758184333/hls_264_master.m3u8?t=1758623080",
+        "loop": "/assets/games/arcane-plunder/loop.mp4",
+        "loopPoster": "/assets/games/arcane-plunder/loop.webp"
+      }
+    },
+    {
+      "id": "legends-of-amberland-2",
+      "title": "Legends of Amberland II",
+      "subtitle": "The Song of Trees",
+      "tagline": "A new quest in Amberland. Start for free.",
+      "summary": "The sequel: a first-person, turn-based party RPG with a brand-new story. Start for free, then unlock the full game with one purchase. No ads, no loot boxes, no energy timers.",
+      "description": [
+        "A new evil lurks in Amberland. Return to a vibrant fantasy world in a brand-new, self-contained story: you don't need to have played the first game.",
+        "Classic party-based RPG mechanics in the spirit of the golden era of 90s PC role playing games, straight to your phone and fully offline.",
+        "Begin your adventure for free, then unlock the full game with a single one-time purchase. No ads, no loot boxes, no energy timers, no endless grind."
+      ],
+      "features": [
+        "A brand-new, self-contained story",
+        "First-person, turn-based dungeon crawling",
+        "Free to start, one purchase unlocks it all",
+        "Fully offline, no ads"
+      ],
+      "genres": [
+        "Party RPG",
+        "Dungeon crawler",
+        "Turn-based"
+      ],
+      "released": "2026-10",
+      "platforms": [
+        "ios",
+        "android"
+      ],
+      "stores": [
+        {
+          "type": "appstore",
+          "url": "https://apps.apple.com/app/id6809402268"
+        },
+        {
+          "type": "googleplay",
+          "url": "https://play.google.com/store/apps/details?id=bartmamzer.games.classic.offline.turn.based.rpg.legends.of.amberland.ii"
+        }
+      ],
+      "badge": "Free to try",
+      "originalDeveloper": "Silver Lemur Games",
+      "credits": "Original game by Silver Lemur Games. Mobile port by Bart Mamzer.",
+      "accent": "#5cc46a",
+      "featured": true,
+      "media": {
+        "icon": "/assets/games/legends-of-amberland-2/icon.webp",
+        "screenshots": [
+          {
+            "src": "/assets/games/legends-of-amberland-2/shots/01.webp",
+            "w": 1600,
+            "h": 737
+          },
+          {
+            "src": "/assets/games/legends-of-amberland-2/shots/02.webp",
+            "w": 1600,
+            "h": 737
+          },
+          {
+            "src": "/assets/games/legends-of-amberland-2/shots/03.webp",
+            "w": 1600,
+            "h": 737
+          },
+          {
+            "src": "/assets/games/legends-of-amberland-2/shots/04.webp",
+            "w": 1600,
+            "h": 737
+          },
+          {
+            "src": "/assets/games/legends-of-amberland-2/shots/05.webp",
+            "w": 1600,
+            "h": 737
+          },
+          {
+            "src": "/assets/games/legends-of-amberland-2/shots/06.webp",
+            "w": 1600,
+            "h": 737
+          }
+        ],
+        "cover": "/assets/games/legends-of-amberland-2/cover.webp",
+        "hero": "/assets/games/legends-of-amberland-2/hero.webp",
+        "poster": "/assets/games/legends-of-amberland-2/poster.webp"
+      }
+    },
+    {
+      "id": "legends-of-amberland",
+      "title": "Legends of Amberland",
+      "subtitle": "The Forgotten Crown",
+      "tagline": "A love letter to 90s party RPGs.",
+      "summary": "A classic first-person, turn-based party RPG you play fully offline. Pay once: no ads, no in-app purchases, no endless grind.",
+      "description": [
+        "A royal wizard uncovers a forgotten crown, hidden from an entire kingdom by a spell of forgetfulness. He summons seven heroes to find it and learn who erased it from memory. So begins a light, heroic, fairy-tale journey across a living open world.",
+        "Grid-based movement and turn-based combat in the spirit of Might and Magic, Eye of the Beholder and the Gold Box classics, rebuilt for touch screens.",
+        "Lead a party of up to seven heroes through towns, dungeons and the wilds, and play it all offline."
+      ],
+      "features": [
+        "A party of up to seven heroes",
+        "First-person, grid-based exploration",
+        "Turn-based combat",
+        "Open world, fully offline",
+        "Pay once: no ads, no in-app purchases"
+      ],
+      "genres": [
+        "Party RPG",
+        "Dungeon crawler",
+        "Turn-based"
+      ],
+      "released": "2026-08-18",
+      "platforms": [
+        "ios",
+        "android"
+      ],
+      "stores": [
+        {
+          "type": "appstore",
+          "url": "https://apps.apple.com/app/id6783288687"
+        },
+        {
+          "type": "googleplay",
+          "url": "https://play.google.com/store/apps/details?id=bartmamzer.games.classic.offline.turn.based.rpg.legends.of.amberland.i"
+        }
+      ],
+      "badge": "Pay once, no ads",
+      "originalDeveloper": "Silver Lemur Games",
+      "credits": "Original game by Silver Lemur Games. Mobile port by Bart Mamzer.",
+      "accent": "#e8692c",
+      "featured": true,
+      "media": {
+        "hero": "/assets/games/legends-of-amberland/hero.webp",
+        "cover": "/assets/games/legends-of-amberland/cover.webp",
+        "poster": "/assets/games/legends-of-amberland/poster.webp",
+        "logo": "/assets/games/legends-of-amberland/logo.webp",
+        "icon": "/assets/games/legends-of-amberland/icon.webp",
+        "screenshots": [
+          {
+            "src": "/assets/games/legends-of-amberland/shots/01.webp",
+            "w": 1600,
+            "h": 737
+          },
+          {
+            "src": "/assets/games/legends-of-amberland/shots/02.webp",
+            "w": 1600,
+            "h": 737
+          },
+          {
+            "src": "/assets/games/legends-of-amberland/shots/03.webp",
+            "w": 1600,
+            "h": 737
+          },
+          {
+            "src": "/assets/games/legends-of-amberland/shots/04.webp",
+            "w": 1600,
+            "h": 737
+          },
+          {
+            "src": "/assets/games/legends-of-amberland/shots/05.webp",
+            "w": 1600,
+            "h": 737
+          },
+          {
+            "src": "/assets/games/legends-of-amberland/shots/06.webp",
+            "w": 1600,
+            "h": 737
+          }
+        ]
+      }
+    },
+    {
+      "id": "crownbound",
+      "title": "Crownbound",
+      "subtitle": "Fantasy Kingdom Sim",
+      "tagline": "Rule with gold, not with force.",
+      "summary": "A fantasy kingdom sim where your heroes have minds of their own. Recruit them, set bounties, grow your realm and hope they fight monsters instead of chasing squirrels.",
+      "description": [
+        "You rule a growing fantasy kingdom, but you can't command your heroes directly. Warriors, mages, rogues and clerics roam freely with their own goals, fears and ambitions. You steer them with spells, rewards and smart kingdom management.",
+        "Set bounties to send heroes after monsters and into dungeons. Build guilds, mage towers and forges, research upgrades and attract the right mix of adventurers.",
+        "Heroes level up, learn new skills, buy gear at the market and loot it from fallen foes. They can also die, or wander off right when you need them."
+      ],
+      "features": [
+        "Indirect control: lead with bounties and rewards",
+        "Heroes with their own goals and fears",
+        "Build and upgrade your kingdom",
+        "Heroes level up and find legendary loot"
+      ],
+      "genres": [
+        "Kingdom sim",
+        "Strategy",
+        "RPG"
+      ],
+      "released": "2025-11-16",
+      "platforms": [
+        "pc"
+      ],
+      "stores": [
+        {
+          "type": "steam",
+          "url": "https://store.steampowered.com/app/3539200/"
+        }
+      ],
+      "badge": "Free demo on Steam",
+      "accent": "#f0a032",
+      "featured": true,
+      "media": {
+        "hero": "/assets/games/crownbound/hero.webp",
+        "cover": "/assets/games/crownbound/cover.webp",
+        "poster": "/assets/games/crownbound/poster.webp",
+        "logo": "/assets/games/crownbound/logo.webp",
+        "screenshots": [
+          {
+            "src": "/assets/games/crownbound/shots/01.webp",
+            "w": 1600,
+            "h": 900
+          },
+          {
+            "src": "/assets/games/crownbound/shots/02.webp",
+            "w": 1600,
+            "h": 900
+          },
+          {
+            "src": "/assets/games/crownbound/shots/03.webp",
+            "w": 1600,
+            "h": 900
+          },
+          {
+            "src": "/assets/games/crownbound/shots/04.webp",
+            "w": 1600,
+            "h": 900
+          },
+          {
+            "src": "/assets/games/crownbound/shots/05.webp",
+            "w": 1600,
+            "h": 900
+          },
+          {
+            "src": "/assets/games/crownbound/shots/06.webp",
+            "w": 1600,
+            "h": 900
+          }
+        ],
+        "trailer": "https://video.akamai.steamstatic.com/store_trailers/3539200/841216/3c576ffd80edac75a74d57b2acb7a92c55064d6a/1750859186/hls_264_master.m3u8?t=1762333707",
+        "loop": "/assets/games/crownbound/loop.mp4",
+        "loopPoster": "/assets/games/crownbound/loop.webp"
+      }
+    },
+    {
+      "id": "powerlust",
+      "title": "Powerlust",
+      "subtitle": "Old School Action RPG",
+      "tagline": "Old school action RPG. Every hit and dodge is yours.",
+      "summary": "A dark, old school action RPG roguelike with manual combat, an open world and no rigid classes. Free and offline on mobile, with optional permadeath for hardcore fans.",
+      "description": [
+        "Travel through an open world, fight through procedurally generated dungeons and feed your lust for power. There's no auto combat: stats matter, but so does dodging attacks and aiming your own.",
+        "Nothing is locked. Mix spells, weapons, abilities and masteries into your own class, like a fire mage with a two handed sword or a necromancer archer. Collect legendary and set items, craft gear and try the next build.",
+        "Play it your way with isometric, top down, third person and first person cameras. On iOS and Android it's free, fully offline, with no forced ads and no pay to win."
+      ],
+      "features": [
+        "Skill-based combat, no auto battle",
+        "Build your own class from any mix of skills",
+        "Open world and procedural dungeons",
+        "Four camera modes",
+        "Optional permadeath",
+        "Free and offline on mobile, no pay to win"
+      ],
+      "genres": [
+        "Action RPG",
+        "Roguelike",
+        "Dark fantasy"
+      ],
+      "released": "2018",
+      "platforms": [
+        "pc",
+        "ios",
+        "android"
+      ],
+      "stores": [
+        {
+          "type": "steam",
+          "url": "https://store.steampowered.com/app/1829520/"
+        },
+        {
+          "type": "appstore",
+          "url": "https://apps.apple.com/app/id1439088319"
+        },
+        {
+          "type": "googleplay",
+          "url": "https://play.google.com/store/apps/details?id=bartmamzer.powerlust.actionrpg.roguelike"
+        }
+      ],
+      "badge": "Free on mobile",
+      "highlights": [
+        "1M+ downloads on Google Play",
+        "4.8 stars on the App Store from 1,000+ ratings"
+      ],
+      "accent": "#d9453b",
+      "featured": true,
+      "media": {
+        "hero": "/assets/games/powerlust/hero.webp",
+        "cover": "/assets/games/powerlust/cover.webp",
+        "poster": "/assets/games/powerlust/poster.webp",
+        "logo": "/assets/games/powerlust/logo.webp",
+        "icon": "/assets/games/powerlust/icon.webp",
+        "screenshots": [
+          {
+            "src": "/assets/games/powerlust/shots/01.webp",
+            "w": 1600,
+            "h": 900
+          },
+          {
+            "src": "/assets/games/powerlust/shots/02.webp",
+            "w": 1600,
+            "h": 900
+          },
+          {
+            "src": "/assets/games/powerlust/shots/03.webp",
+            "w": 1600,
+            "h": 900
+          },
+          {
+            "src": "/assets/games/powerlust/shots/04.webp",
+            "w": 1600,
+            "h": 900
+          },
+          {
+            "src": "/assets/games/powerlust/shots/05.webp",
+            "w": 1600,
+            "h": 900
+          },
+          {
+            "src": "/assets/games/powerlust/shots/06.webp",
+            "w": 1600,
+            "h": 900
+          }
+        ],
+        "trailer": "https://video.akamai.steamstatic.com/store_trailers/1829520/418938/00ab88647775279839431a0c740b197d5ca85636/1751035933/hls_264_master.m3u8?t=1705172087",
+        "loop": "/assets/games/powerlust/loop.mp4",
+        "loopPoster": "/assets/games/powerlust/loop.webp"
+      }
+    },
+    {
+      "id": "cryptograms",
+      "title": "Cryptograms",
+      "subtitle": "Word Puzzle Game",
+      "tagline": "Crack the code, learn a fact.",
+      "summary": "A word puzzle game of substitution ciphers. Decode each sentence to reveal a surprising fact, with a daily challenge and two game modes.",
+      "description": [
+        "Every letter in the sentence has been swapped for another. Work out the code to reveal a surprising fact you can share with your friends.",
+        "Two game modes, a new cryptogram every day of the year, and local multiplayer: encrypt a sentence and hand your phone to a friend to crack it."
+      ],
+      "features": [
+        "A daily challenge",
+        "Two game modes",
+        "Local multiplayer"
+      ],
+      "genres": [
+        "Word",
+        "Puzzle"
+      ],
+      "released": "2016",
+      "platforms": [
+        "ios",
+        "android"
+      ],
+      "stores": [
+        {
+          "type": "appstore",
+          "url": "https://apps.apple.com/app/id1211388542"
+        }
+      ],
+      "accent": "#f2b233",
+      "featured": false,
+      "media": {
+        "hero": "/assets/games/cryptograms/hero.webp",
+        "cover": "/assets/games/cryptograms/cover.webp",
+        "icon": "/assets/games/cryptograms/icon.webp",
+        "screenshots": [
+          {
+            "src": "/assets/games/cryptograms/shots/01.webp",
+            "w": 1242,
+            "h": 2208
+          },
+          {
+            "src": "/assets/games/cryptograms/shots/02.webp",
+            "w": 1242,
+            "h": 2208
+          },
+          {
+            "src": "/assets/games/cryptograms/shots/03.webp",
+            "w": 1242,
+            "h": 2208
+          },
+          {
+            "src": "/assets/games/cryptograms/shots/04.webp",
+            "w": 1242,
+            "h": 2208
+          },
+          {
+            "src": "/assets/games/cryptograms/shots/05.webp",
+            "w": 1242,
+            "h": 2208
+          }
+        ],
+        "trailer": "/assets/games/cryptograms/trailer.mp4"
+      },
+      "unavailable": "No longer on Google Play"
+    },
+    {
+      "id": "christmas-santa-ragdoll-run",
+      "title": "Christmas Santa Ragdoll Run",
+      "subtitle": "Puzzle Runner",
+      "tagline": "Run, jump and solve puzzles to deliver every gift.",
+      "summary": "A Christmas puzzle runner with ragdoll physics. Run through snowy paths, jump over snowmen, cut ropes and throw snow to collect every gift before Christmas.",
+      "description": [
+        "Santa has left his sleigh and his reindeer at the North Pole and has to run to collect all the gifts as quickly as possible, so that every kid gets their presents for Christmas and New Year's Eve.",
+        "Run through snowy paths and jump over obstacles and snowmen. Some paths need a puzzle solved first: cut a rope, break an obstacle by throwing snow at it, and more. But look out: if you fall, Santa ends up as a ragdoll.",
+        "Tap the bottom half of the screen to jump, pick things up and throw them, and swipe across a rope to cut it."
+      ],
+      "features": [
+        "Ragdoll physics",
+        "Runner gameplay",
+        "Plenty of puzzles"
+      ],
+      "genres": [
+        "Runner",
+        "Puzzle",
+        "Physics"
+      ],
+      "released": "2015",
+      "platforms": [
+        "android"
+      ],
+      "stores": [],
+      "unavailable": "No longer on Google Play",
+      "accent": "#e2453c",
+      "featured": false,
+      "media": {
+        "icon": "/assets/games/christmas-santa-ragdoll-run/icon.webp",
+        "cover": "/assets/games/christmas-santa-ragdoll-run/cover.webp",
+        "hero": "/assets/games/christmas-santa-ragdoll-run/hero.webp",
+        "screenshots": [
+          {
+            "src": "/assets/games/christmas-santa-ragdoll-run/shots/01.webp",
+            "w": 1600,
+            "h": 782
+          },
+          {
+            "src": "/assets/games/christmas-santa-ragdoll-run/shots/02.webp",
+            "w": 1600,
+            "h": 782
+          },
+          {
+            "src": "/assets/games/christmas-santa-ragdoll-run/shots/03.webp",
+            "w": 1600,
+            "h": 782
+          },
+          {
+            "src": "/assets/games/christmas-santa-ragdoll-run/shots/04.webp",
+            "w": 1600,
+            "h": 782
+          },
+          {
+            "src": "/assets/games/christmas-santa-ragdoll-run/shots/05.webp",
+            "w": 1600,
+            "h": 782
+          },
+          {
+            "src": "/assets/games/christmas-santa-ragdoll-run/shots/06.webp",
+            "w": 1600,
+            "h": 782
+          },
+          {
+            "src": "/assets/games/christmas-santa-ragdoll-run/shots/07.webp",
+            "w": 1600,
+            "h": 782
+          }
+        ],
+        "trailer": "/assets/games/christmas-santa-ragdoll-run/trailer.mp4"
+      }
+    },
+    {
+      "id": "zerdian-wars",
+      "title": "Zerdian Wars",
+      "subtitle": "Arcade Twin Stick Shooter",
+      "tagline": "Twin-stick space combat.",
+      "summary": "My first released game, an arcade twin-stick shooter. Start in a piece of junk, upgrade your weapons and stop an alien swarm before it grows into a galactic empire.",
+      "description": [
+        "The Galactic Space Agency has hired you, one of three marshals, to stop an alien invasion. Hunt the drones, attack the hives and take down pirate ships before the swarm grows into an empire.",
+        "Move with the left stick and shoot with the right. You start out flying a piece of junk, but new weapons come quickly.",
+        "Zerdian came out on Android in 2014 and on iOS in 2015. The Android version is no longer available."
+      ],
+      "features": [
+        "Twin-stick shooting",
+        "Weapon upgrades",
+        "Alien hives and pirate ships"
+      ],
+      "genres": [
+        "Arcade",
+        "Shooter",
+        "Space"
+      ],
+      "released": "2014",
+      "platforms": [
+        "ios",
+        "android"
+      ],
+      "stores": [
+        {
+          "type": "appstore",
+          "url": "https://apps.apple.com/app/id1033646931"
+        }
+      ],
+      "accent": "#38c6f4",
+      "featured": false,
+      "media": {
+        "icon": "/assets/games/zerdian-wars/icon.webp",
+        "screenshots": [
+          {
+            "src": "/assets/games/zerdian-wars/shots/01.webp",
+            "w": 1600,
+            "h": 900
+          },
+          {
+            "src": "/assets/games/zerdian-wars/shots/02.webp",
+            "w": 1600,
+            "h": 900
+          },
+          {
+            "src": "/assets/games/zerdian-wars/shots/03.webp",
+            "w": 1600,
+            "h": 900
+          },
+          {
+            "src": "/assets/games/zerdian-wars/shots/04.webp",
+            "w": 1600,
+            "h": 900
+          }
+        ],
+        "cover": "/assets/games/zerdian-wars/cover.webp",
+        "hero": "/assets/games/zerdian-wars/hero.webp",
+        "trailer": "/assets/games/zerdian-wars/trailer.mp4"
+      },
+      "unavailable": "No longer on Google Play"
+    }
+  ]
+}
