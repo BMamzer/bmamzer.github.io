@@ -58,6 +58,13 @@ const SPRITES = {
       'wwwrrrrwwwww', 'wwwwrrwwww..', 'wwwwwwwwww..', 'swwwwwwwws..', '.ssssssss...',
     ],
   },
+  hourglass: {
+    palette: { F: '#a46c3a', P: '#6e4423', c: '#bfe0f0', s: '#f2c45a' },
+    rows: [
+      'FFFFFFFFFFF', '.P.ccccc.P.', '.P.csssc.P.', '.P..csc..P.', '.P...s...P.',
+      '.P..csc..P.', '.P.ccscc.P.', '.P.csssc.P.', '.P.sssss.P.', 'FFFFFFFFFFF',
+    ],
+  },
   hero: {
     palette: { C: '#3d2a66', c: '#6b46a8', s: '#f2c9a0', e: '#15100c', b: '#e8b64c', B: '#5a3720', t: '#8a5a2c', g: '#56d6f0' },
     rows: [

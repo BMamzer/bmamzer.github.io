@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-era="past">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -21,21 +21,24 @@
   <meta name="twitter:description" content="Indie games by a solo developer.">
   <meta name="twitter:image" content="https://bartmamzer.com/assets/site/og.jpg">
   <link rel="icon" href="/assets/site/favicon.svg" type="image/svg+xml">
+  <script>try { if (sessionStorage.getItem('time-machine') === document.documentElement.dataset.era) document.documentElement.classList.add('tm-arrive'); sessionStorage.removeItem('time-machine'); } catch (e) {}</script>
   <link rel="preload" href="/assets/fonts/press-start-2p/press-start-2p-400-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/vt323/vt323-400-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/jersey-15/jersey-15-400-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/fonts/press-start-2p/font.css">
   <link rel="stylesheet" href="/assets/fonts/jersey-15/font.css">
   <link rel="stylesheet" href="/assets/fonts/vt323/font.css">
-  <link rel="stylesheet" href="/designs/pixel/style.css">
-  <script type="module" src="/designs/pixel/app.js"></script>
+  <link rel="stylesheet" href="/assets/site/pixel.css">
+  <link rel="stylesheet" href="/assets/site/time-machine.css">
+  <script type="module" src="/assets/site/pixel.js"></script>
+  <script type="module" src="/assets/site/time-machine.js"></script>
 </head>
 <body>
   <a class="skip" href="#quest-log">Skip to the games</a>
 
   <header class="topbar">
     <div class="wrap topbar-inner">
-      <a class="brand" href="/" aria-label="Bart Mamzer, home">
+      <a class="brand" href="#main" aria-label="Bart Mamzer, back to top">
         <span class="brand-mark" data-sprite="sword" aria-hidden="true"></span>
         <span class="brand-name">Bart Mamzer</span>
       </a>
@@ -44,6 +47,9 @@
         <a href="#character">About</a>
         <a href="#contact">Contact</a>
       </nav>
+      <a class="time-machine" href="/" data-time-machine title="Return to the present day and the modern site">
+        <span class="time-machine-icon" data-sprite="hourglass" aria-hidden="true"></span><span class="time-machine-label">Time Machine</span>
+      </a>
       <button class="crt-toggle" type="button" aria-pressed="false" title="Old monitor effect">
         <span class="crt-led" aria-hidden="true"></span>CRT
       </button>

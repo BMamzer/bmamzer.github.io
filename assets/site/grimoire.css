@@ -123,7 +123,7 @@ p { margin: 0; }
   letter-spacing: 0.1em;
 }
 
-.topnav { display: flex; gap: 2px; }
+.topnav { display: flex; gap: 2px; margin-left: auto; }
 .topnav a {
   position: relative;
   display: flex;
@@ -154,6 +154,40 @@ p { margin: 0; }
   .brand span { display: none; }
   .topnav a { padding: 0 10px; letter-spacing: 0.14em; font-size: 0.74rem; }
 }
+
+/* The time machine: switches the site to the 1994 Pixel look at /retro/ (assets/site/time-machine.js). */
+.time-machine {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 0 14px 0 11px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(23, 16, 11, 0.55);
+  color: var(--gold-hi);
+  font-family: var(--display);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: border-color 0.3s, background-color 0.3s, box-shadow 0.3s;
+}
+.time-machine:hover {
+  color: #fff3cf;
+  border-color: var(--gold);
+  background: rgba(60, 40, 20, 0.6);
+  box-shadow: 0 0 18px rgba(255, 170, 80, 0.25);
+}
+.hourglass { width: 18px; height: 18px; flex: none; transition: transform 0.6s var(--ease); }
+.hourglass .sand-top, .hourglass .sand-bottom { fill: var(--ember); }
+.time-machine:hover .hourglass, .time-machine:focus-visible .hourglass { transform: rotate(180deg); }
+/* Narrow screens have no room in the top bar: the button sits under the studio tagline instead. */
+.stage-time-machine { width: fit-content; margin-top: 22px; }
+@media (max-width: 799px) { .topbar .time-machine { display: none; } }
+@media (min-width: 800px) { .stage-time-machine { display: none; } }
 
 /* ---------------------------------------------------------------- stage */
 
@@ -1389,6 +1423,59 @@ p { margin: 0; }
   .lb-prev { left: 24px; }
   .lb-next { right: 24px; }
 }
+
+/* ---------------------------------------------------------------- time machine effect */
+
+/* Leaving for 1994: the page sinks into a gold vortex turning backwards while the year counts down. */
+.tm-out {
+  background: radial-gradient(circle at 50% 50%, rgba(13, 9, 7, 0.55), rgba(13, 9, 7, 0.95) 70%);
+  -webkit-backdrop-filter: sepia(0.8) blur(3px);
+  backdrop-filter: sepia(0.8) blur(3px);
+  animation: tm-fade-in 0.35s ease-out both;
+}
+.tm-out .tm-fx {
+  inset: 50% auto auto 50%;
+  width: 260vmax;
+  height: 260vmax;
+  translate: -50% -50%;
+  background: repeating-conic-gradient(rgba(241, 213, 144, 0) 0deg 7deg, rgba(241, 213, 144, 0.2) 7deg 9deg);
+  -webkit-mask-image: radial-gradient(circle, transparent 3%, #000 14%, rgba(0, 0, 0, 0.6) 30%, transparent 48%);
+  mask-image: radial-gradient(circle, transparent 3%, #000 14%, rgba(0, 0, 0, 0.6) 30%, transparent 48%);
+  animation: tm-vortex 1.7s cubic-bezier(0.55, 0, 0.8, 0.4) both;
+}
+@keyframes tm-fade-in { from { opacity: 0; } }
+@keyframes tm-vortex {
+  from { rotate: 0deg; scale: 1.4; opacity: 0; }
+  20% { opacity: 1; }
+  to { rotate: -600deg; scale: 0.7; opacity: 1; }
+}
+.tm-overlay .tm-year {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(4.5rem, 21vw, 11rem);
+  filter: drop-shadow(0 0 28px rgba(255, 150, 60, 0.45));
+}
+.tm-overlay .tm-year span {
+  width: 0.78em;
+  background: var(--gilt);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.tm-overlay .tm-caption {
+  margin-top: 18px;
+  font-family: var(--display);
+  font-size: clamp(0.85rem, 1.6vw, 1.2rem);
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold-hi);
+  animation: tm-fade-in 0.6s 0.2s ease-out both;
+}
+/* Back from 1994: the year on black, then a ring of light opens onto the page. */
+.tm-in .tm-year { animation: tm-settle 0.8s var(--ease) both; }
+.tm-leaving .tm-year { transform: scale(1.12); }
+@keyframes tm-settle { from { opacity: 0; transform: scale(0.92); filter: drop-shadow(0 0 28px rgba(255, 150, 60, 0)) blur(6px); } }
 
 /* ---------------------------------------------------------------- motion */
 

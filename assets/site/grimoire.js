@@ -656,3 +656,4 @@ initCodex();
 initTopbar();
 addStructuredData(catalog);
 onRoute(catalog, game => (game ? showCodex(game) : hideCodex()));
+document.documentElement.classList.add('is-ready');

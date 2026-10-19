@@ -254,11 +254,42 @@ p { margin: 0 0 0.8em; }
 .crt-led { width: 10px; height: 10px; background: #3a1712; box-shadow: 0 0 0 2px var(--ink); }
 .crt-toggle[aria-pressed='true'] .crt-led { background: #7dff6a; box-shadow: 0 0 0 2px var(--ink), 0 0 10px #7dff6a; }
 
-@media (max-width: 639px) {
+/* The time machine: back to the present-day site at / (assets/site/time-machine.js). */
+.time-machine {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 6px 12px 6px 10px;
+  font: 400 1.25rem/1 var(--mono);
+  letter-spacing: 0.06em;
+  color: var(--gold-hi);
+  text-decoration: none;
+  text-shadow: 2px 2px 0 var(--ink);
+  background: linear-gradient(180deg, var(--wood-hi), var(--wood));
+  border: 3px solid;
+  border-color: #c98a4d var(--wood-lo) var(--wood-lo) #c98a4d;
+  box-shadow: 0 0 0 2px var(--ink);
+  white-space: nowrap;
+}
+.time-machine:hover { color: #fff; filter: brightness(1.12); }
+.time-machine:active { border-color: var(--wood-lo) #c98a4d #c98a4d var(--wood-lo); }
+.time-machine-icon { width: 22px; flex: none; }
+.time-machine-icon svg { width: 100%; height: auto; }
+.time-machine:hover .time-machine-icon { animation: tm-flip 0.6s steps(4) both; }
+@keyframes tm-flip { to { transform: rotate(180deg); } }
+
+@media (max-width: 767px) {
   .topbar-inner { padding-block: 6px; gap: 4px 8px; }
   .topnav { order: 3; width: 100%; justify-content: space-between; border-top: 2px solid rgba(0, 0, 0, 0.35); padding-top: 4px; }
   .topnav a { flex: 1; justify-content: center; }
   .brand-name { font-size: 0.72rem; }
+}
+@media (max-width: 519px) {
+  /* The name on its own row, then the time machine and CRT buttons, then the menu. */
+  .topbar-inner::before { content: ''; order: 1; flex-basis: 100%; }
+  .time-machine, .crt-toggle { order: 2; }
+  .time-machine { flex: 1; justify-content: center; }
 }
 
 /* ------------------------------------------------------------ title screen */
@@ -1154,6 +1185,42 @@ dialog.lightbox::backdrop { background: rgba(4, 4, 6, 0.92); }
   .crt body::after { animation: flicker 6s steps(2) infinite; }
 }
 @keyframes flicker { 0%, 96% { opacity: 1; } 97% { opacity: 0.85; } }
+
+/* ------------------------------------------------------------ time machine effect */
+
+/* Leaving for the present: a VHS fast-forward, tracking bands rolling down while the year counts up. */
+.tm-out { background: rgba(10, 10, 14, 0.84); animation: tm-px-in 0.3s steps(3) both; }
+.tm-out .tm-fx { background: repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.07) 0 2px, transparent 2px 6px); }
+.tm-out .tm-fx::before,
+.tm-out .tm-fx::after {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 14vh;
+  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.16) 40%, rgba(142, 224, 124, 0.12) 60%, transparent);
+  animation: tm-band 0.5s steps(8) infinite;
+}
+.tm-out .tm-fx::after { height: 6vh; animation-duration: 0.33s; animation-delay: -0.12s; }
+@keyframes tm-px-in { from { opacity: 0; } }
+@keyframes tm-band { from { transform: translateY(-20vh); } to { transform: translateY(110vh); } }
+.tm-overlay .tm-year {
+  font: 400 clamp(2.6rem, 13vw, 7rem)/1 var(--display);
+  color: var(--gold-hi);
+  text-shadow: 0.06em 0.06em 0 var(--gold-lo), 0.12em 0.12em 0 var(--ink);
+}
+.tm-overlay .tm-year span { width: 1em; }
+.tm-overlay .tm-caption {
+  margin-top: 26px;
+  font: 400 clamp(1.4rem, 5vw, 2rem)/1.1 var(--mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+.tm-out .tm-caption { animation: tm-blink 0.8s steps(1) infinite; }
+.tm-out .tm-caption::before { content: '\25B6\FE0E\25B6\FE0E  '; color: var(--affix); }
+@keyframes tm-blink { 50% { opacity: 0.4; } }
+/* Arriving from the present: the year on black, then the page appears block by block. */
+.tm-in .tm-year { animation: tm-px-in 0.4s steps(4) both; }
 
 /* ------------------------------------------------------------ big screens and motion */
 
