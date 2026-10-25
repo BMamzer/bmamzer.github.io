@@ -1,7 +1,10 @@
-// Bio-link pages (/tt, /ig, /yt): the released games, with store links tagged for the platform the visitor came from.
+// Bio-link pages (/tt, /ig, /yt for bartmamzer, /fun/tt, /fun/ig, /fun/yt for bartmamzerfun): the released games,
+// with store links tagged for the platform the visitor came from.
 // Only games on the released list in the social media guide go here (rule 1: nothing about unreleased games).
-// Each page sets data-source (tiktok, instagram, youtube) on <main>. data-straight="<game id>" sends phone visitors
-// straight to that game's store page instead of showing the list.
+// Each page sets data-source (tiktok, instagram, youtube) on <main>, and data-account="fun" on the casual account's
+// pages, which list only the games whose accounts include 'fun' (no Powerlust gore for casual viewers).
+// data-straight="<game id>" sends phone visitors straight to that game's store page instead of showing the list,
+// when the game is in their phone's own store.
 (() => {
   // App Store Connect campaign provider token (the pt= in a campaign link from App Analytics > Campaigns).
   const APP_STORE_PROVIDER_TOKEN = '117938829';
@@ -9,6 +12,7 @@
   const GAMES = [
     {
       id: 'powerlust',
+      accounts: ['main'],
       name: 'Powerlust',
       credit: 'I made this',
       line: 'A dark fantasy action RPG: build your own class and hack through dungeons with manual combat, fully offline.',
@@ -20,6 +24,7 @@
     },
     {
       id: 'legends-of-amberland',
+      accounts: ['main'],
       name: 'Legends of Amberland',
       subtitle: 'The Forgotten Crown',
       credit: 'I ported this to phones · originally by Silver Lemur Games',
@@ -28,6 +33,18 @@
       icon: '/bio/legends-of-amberland.webp',
       googleplay: 'bartmamzer.games.classic.offline.turn.based.rpg.legends.of.amberland.i',
       appstore: '6783288687',
+    },
+    {
+      // Google Play only: no App Store or CrazyGames link (and no word about them) until those versions are live.
+      id: 'spring-soccer',
+      accounts: ['main', 'fun'],
+      name: 'Spring Soccer',
+      subtitle: 'Mini Football',
+      credit: 'I made this',
+      line: 'Mini football where every player stands on a spring: drag one back, let go and score. Play the AI or a friend on one phone.',
+      price: { phone: 'Android · free · contains ads' },
+      icon: '/bio/spring-soccer.webp',
+      googleplay: 'bartmamzer.spring.soccer.game',
     },
   ];
 
@@ -46,6 +63,8 @@
 
   const main = document.querySelector('main[data-source]');
   const source = main.dataset.source;
+  const account = main.dataset.account || 'main';
+  const games = GAMES.filter((game) => game.accounts.includes(account));
 
   function detectDevice() {
     const ua = navigator.userAgent;
@@ -93,11 +112,11 @@
   }
 
   const device = detectDevice();
-  const straight = GAMES.find((game) => game.id === main.dataset.straight);
-  if (straight && device !== 'desktop') {
-    location.replace(storeUrl(ORDER[device].find((store) => straight[store]), straight));
+  const straight = games.find((game) => game.id === main.dataset.straight);
+  if (straight && device !== 'desktop' && straight[ORDER[device][0]]) {
+    location.replace(storeUrl(ORDER[device][0], straight));
     return;
   }
   document.documentElement.dataset.device = device;
-  main.querySelector('.games').innerHTML = GAMES.map((game) => card(game, device)).join('');
+  main.querySelector('.games').innerHTML = games.map((game) => card(game, device)).join('');
 })();

@@ -9,4 +9,4 @@
 - Never link privacy policies from the site (footer or game pages); the store listings link them.
 - Fonts are self-hosted with `tools/fetch-font.mjs`; no Google Fonts CDN, no analytics, no cookies.
 - No em dashes anywhere.
-- `tt/`, `ig/`, `yt/` are the social bio-link pages (code in `bio/`): only games on the social media guide's released list, hard-coded in `bio/bio.js`, never read from games.json.
+- `tt/`, `ig/`, `yt/` (bartmamzer) and `fun/tt/`, `fun/ig/`, `fun/yt/` (bartmamzerfun, casual games only) are the social bio-link pages (code in `bio/`): only games on the social media guide's released list, hard-coded in `bio/bio.js`, never read from games.json.
