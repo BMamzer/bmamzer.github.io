@@ -189,7 +189,8 @@ async function fromGooglePlay(pkg) {
   found.stores.push({ type: 'googleplay', url: `https://play.google.com/store/apps/details?id=${pkg}` });
   const icon = html.match(/<meta property="og:image" content="([^"=]+)/)?.[1];
   if (icon) found.icon ??= `${icon}=s1024`;
-  const shots = [...html.matchAll(/<img[^>]+alt="Screenshot image"[^>]+src="([^"=]+)/g)].map(m => m[1]);
+  // Play has put src both before and after alt, so match the whole tag.
+  const shots = [...html.matchAll(/<img[^>]*alt="Screenshot image"[^>]*>/g)].map(m => m[0].match(/src="([^"=]+)/)?.[1]).filter(Boolean);
   found.shots.android = [...new Set(shots)].map(u => `${u}=w2400`);
 }
 
