@@ -81,6 +81,92 @@
   },
   "games": [
     {
+      "id": "spring-soccer",
+      "title": "Spring Soccer",
+      "subtitle": "Mini Football",
+      "tagline": "Every player is on a spring. Pull back, let go, score.",
+      "summary": "A mini football game where every player stands on a spring: drag one back like a slingshot and let go to fling them into the ball. Play the AI, win the Spring Cup or take on a friend on one phone.",
+      "description": [
+        "Spring Soccer is a mini football game where every player stands on a spring. Drag a player back like a slingshot, let go, and the spring flings them into the ball. Where they hit it decides the shot: dead centre for a rocket, a graze for an angle, or a bank off the wall.",
+        "Play two-minute matches against Rookies, Pros and Legends, fight through the four knockout rounds of the Spring Cup, or crack 20 trick shot levels with bumpers and sliding gates. With two players on one phone, you both flick at the same time, first to 5 goals.",
+        "Chain passes to charge a flaming power shot, watch great goals again in slow motion, and open crates to collect over 270 funny faces. Spend the gold you earn on 12 balls, 6 stadiums, goal nets, trails and springs. It plays offline, and it is free on Google Play (contains ads)."
+      ],
+      "features": [
+        "Spring physics: pull back, let go, score",
+        "2 players on one phone, both flicking at once",
+        "Quick matches, the Spring Cup and 20 trick shots",
+        "An aim line that shows wall bounces",
+        "270+ funny faces to collect",
+        "Plays offline. Free on Google Play, contains ads"
+      ],
+      "genres": [
+        "Sports",
+        "Physics",
+        "Casual"
+      ],
+      "released": "2026-10-25",
+      "platforms": [
+        "android"
+      ],
+      "stores": [
+        {
+          "type": "googleplay",
+          "url": "https://play.google.com/store/apps/details?id=bartmamzer.spring.soccer.game"
+        }
+      ],
+      "badge": "2 players on one phone",
+      "accent": "#ffd23f",
+      "featured": true,
+      "media": {
+        "hero": "/assets/games/spring-soccer/hero.webp",
+        "cover": "/assets/games/spring-soccer/cover.webp",
+        "poster": "/assets/games/spring-soccer/poster.webp",
+        "icon": "/assets/games/spring-soccer/icon.webp",
+        "screenshots": [
+          {
+            "src": "/assets/games/spring-soccer/shots/01.webp",
+            "w": 1080,
+            "h": 1920
+          },
+          {
+            "src": "/assets/games/spring-soccer/shots/02.webp",
+            "w": 1080,
+            "h": 1920
+          },
+          {
+            "src": "/assets/games/spring-soccer/shots/03.webp",
+            "w": 1080,
+            "h": 1920
+          },
+          {
+            "src": "/assets/games/spring-soccer/shots/04.webp",
+            "w": 1080,
+            "h": 1920
+          },
+          {
+            "src": "/assets/games/spring-soccer/shots/05.webp",
+            "w": 1080,
+            "h": 1920
+          },
+          {
+            "src": "/assets/games/spring-soccer/shots/06.webp",
+            "w": 1080,
+            "h": 1920
+          },
+          {
+            "src": "/assets/games/spring-soccer/shots/07.webp",
+            "w": 1080,
+            "h": 1920
+          },
+          {
+            "src": "/assets/games/spring-soccer/shots/08.webp",
+            "w": 1080,
+            "h": 1920
+          }
+        ]
+      }
+    },
+    {
       "id": "arcane-plunder",
       "title": "Arcane Plunder",
       "subtitle": "Incremental Dungeon Game",
