@@ -84,3 +84,28 @@ main {
 
 noscript p { text-align: center; }
 noscript a { color: var(--gold-hi); }
+
+/* bartmamzerfun pages (/fun/tt, /fun/ig, /fun/yt): the same layout in a bright, casual look, no dark fantasy. */
+html.fun {
+  --bg: #e9f8ec;
+  --panel: #ffffff;
+  --gold: #2bb24c;
+  --gold-hi: #17663a;
+  --text: #1d2a21;
+  --muted: #55665a;
+  --line: rgba(35, 140, 70, 0.22);
+  --display: ui-rounded, 'SF Pro Rounded', 'Arial Rounded MT Bold', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --body: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  color-scheme: light;
+}
+.fun body { background: radial-gradient(ellipse 120% 50% at 50% 0%, rgba(255, 214, 92, 0.4), transparent 70%), var(--bg); }
+.fun .intro h1 { font-weight: 800; letter-spacing: 0; }
+.fun .intro h1 span { display: block; color: #d9600b; }
+.fun .sigil { width: 44px; height: 44px; }
+.fun .game { border-radius: 18px; box-shadow: 0 8px 24px rgba(23, 102, 58, 0.1); }
+.fun .game h2 { font-weight: 800; }
+.fun .store {
+  background: linear-gradient(180deg, #ffe066 0%, #ffbf1f 100%);
+  box-shadow: 0 3px 0 #d99a00;
+  color: #2a1d00;
+}
