@@ -46,6 +46,18 @@
       icon: '/bio/spring-soccer.webp',
       googleplay: 'bartmamzer.spring.soccer.game',
     },
+    {
+      // Google Play only, like Spring Soccer. It sells random items (Mystery Sacks) for gems, so the price line
+      // always says so, and "free" never stands alone.
+      id: 'potato-farmer',
+      accounts: ['main', 'fun'],
+      name: 'Potato Farmer',
+      credit: 'I made this',
+      line: 'A farm game where a potato farms potatoes: plant, water and harvest 25 kinds, cook them for potato customers and dress up your potato.',
+      price: { phone: 'Android · free to play · contains ads · in-app purchases (includes random items)' },
+      icon: '/bio/potato-farmer.webp',
+      googleplay: 'bartmamzer.potato.farmer.game',
+    },
   ];
 
   const STORES = {

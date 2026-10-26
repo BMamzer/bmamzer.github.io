@@ -81,6 +81,93 @@
   },
   "games": [
     {
+      "id": "potato-farmer",
+      "title": "Potato Farmer",
+      "subtitle": "Cozy Farm Game",
+      "tagline": "You are a potato. You farm potatoes. Don't think about it too hard.",
+      "summary": "A cozy farm game where a potato farms potatoes: plant, water and harvest 25 kinds of potato, cook them for potato customers and grow a farm that keeps earning while you are away.",
+      "description": [
+        "Potato Farmer is a cozy idle farming and cooking game in 3D where you are a potato, and you farm potatoes. Tap or drag across your plots to plant, water and harvest, fill the orders of 24 potato customers and cook your harvest in 15 buildings, from the Fry Shack and the Pizzeria to the Spud Diner, where the potatoes serve potatoes to potatoes.",
+        "Grow 25 potato varieties, from Russet Rookie to Diamond Potato. Couch Potatoes grow 3x faster while you are away, Hot Potatoes pay double when you harvest them fast, and Ghost Potatoes are invisible to crows. Lucky harvests come out Mustachioed, Giant or Shiny, rain waters every crop, and a rainbow doubles the chance of a lucky one.",
+        "Bonk moles in sunglasses, shoo crows, catch falling potatoes in the Spud Rain mini game, hire Spudling helpers and dress your potato in more than 75 hats, faces, skins, back pieces and pets. It plays offline, in 16 languages."
+      ],
+      "features": [
+        "You are a potato, and you farm potatoes",
+        "Tap or swipe to plant, water and harvest",
+        "25 potato varieties, some Mustachioed, Giant or Shiny",
+        "15 buildings and 24 potato customers",
+        "Dress your potato: 75+ hats, faces, skins and pets",
+        "Plays offline, in 16 languages",
+        "Free to play · contains ads · in-app purchases (includes random items)"
+      ],
+      "genres": [
+        "Farming",
+        "Idle",
+        "Casual"
+      ],
+      "released": "2026-10-26",
+      "platforms": [
+        "android"
+      ],
+      "stores": [
+        {
+          "type": "googleplay",
+          "url": "https://play.google.com/store/apps/details?id=bartmamzer.potato.farmer.game"
+        }
+      ],
+      "badge": "Plays offline",
+      "accent": "#51b0f8",
+      "featured": true,
+      "media": {
+        "hero": "/assets/games/potato-farmer/hero.webp",
+        "cover": "/assets/games/potato-farmer/cover.webp",
+        "poster": "/assets/games/potato-farmer/poster.webp",
+        "icon": "/assets/games/potato-farmer/icon.webp",
+        "screenshots": [
+          {
+            "src": "/assets/games/potato-farmer/shots/01.webp",
+            "w": 1600,
+            "h": 900
+          },
+          {
+            "src": "/assets/games/potato-farmer/shots/02.webp",
+            "w": 1600,
+            "h": 900
+          },
+          {
+            "src": "/assets/games/potato-farmer/shots/03.webp",
+            "w": 1600,
+            "h": 900
+          },
+          {
+            "src": "/assets/games/potato-farmer/shots/04.webp",
+            "w": 1600,
+            "h": 900
+          },
+          {
+            "src": "/assets/games/potato-farmer/shots/05.webp",
+            "w": 1600,
+            "h": 900
+          },
+          {
+            "src": "/assets/games/potato-farmer/shots/06.webp",
+            "w": 1600,
+            "h": 900
+          },
+          {
+            "src": "/assets/games/potato-farmer/shots/07.webp",
+            "w": 1600,
+            "h": 900
+          },
+          {
+            "src": "/assets/games/potato-farmer/shots/08.webp",
+            "w": 1600,
+            "h": 900
+          }
+        ]
+      }
+    },
+    {
       "id": "spring-soccer",
       "title": "Spring Soccer",
       "subtitle": "Mini Football",
