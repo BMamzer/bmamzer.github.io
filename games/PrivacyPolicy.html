@@ -121,11 +121,11 @@
 <body>
     <div class="container">
         <h1>Privacy Policy</h1>
-        <p class="date">Mobile games (Android and iOS)<br>Effective Date: 20 October 2026</p>
+        <p class="date">Mobile games (Android and iOS)<br>Effective Date: 28 October 2026</p>
 
         <p>This Privacy Policy applies to the mobile games for Android and iOS developed by <strong>Bartlomiej Mamzer</strong> ("we", "us") that are published on Google Play and the Apple App Store and that link to this page (the "Games"). It explains what information is processed when you play, why, who receives it, and the choices you have.</p>
         <p>Not every Game uses every feature described here. For example, a Game without in-app purchases or cloud saves does not process the information described in those sections. The versions of our games played in a web browser (for example on web game portals) are not covered by this policy; they are subject to the privacy policy of the website you play them on.</p>
-        <p>We do not require you to create an account, we do not run our own servers for the Games, and we never ask for your name, email address, phone number or precise location.</p>
+        <p>We do not require you to create an account, the only server we run for the Games is the anonymous statistics service described in section 4, and we never ask for your name, email address, phone number or precise location.</p>
 
         <h2>1. Your age</h2>
         <p>When you first start a Game, it asks how old you are. Your answer (and the month you gave it) is stored <strong>only on your device</strong> and is never sent to us or to anyone else. The Game uses it to decide how advertising and analytics must work for you:</p>
@@ -149,7 +149,7 @@
         </ul>
         <p>Google acts under its own privacy policy. Learn more: <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">How Google uses information from apps that use its services</a> and <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a>.</p>
 
-        <h2>4. Analytics (GameAnalytics)</h2>
+        <h2>4. Analytics (GameAnalytics and our own first-session statistics)</h2>
         <p>To understand how the Games are played and to improve them (for example, where players get stuck, which levels are too hard, whether ads or purchases work correctly), the Games use <strong>GameAnalytics</strong>, provided by GameAnalytics ApS (Denmark).</p>
         <ul>
             <li><strong>When:</strong> only for players who are old enough to consent for themselves. Where consent is required (such as in the EEA, UK and Switzerland), analytics start only if you agree in the consent form, and you can change your choice later in the privacy options. Elsewhere, analytics are on by default and you can switch them off in the Game's settings. Children never send analytics.</li>
@@ -157,6 +157,7 @@
             <li><strong>What is never sent:</strong> your age, name, email address, advertising identifier, precise location or anything you type.</li>
         </ul>
         <p>Learn more: <a href="https://gameanalytics.com/privacy" target="_blank" rel="noopener">GameAnalytics Privacy Policy</a>.</p>
+        <p><strong>First-session statistics.</strong> Under the same rules (the same consent, and never for children), the first session of a new game (the one that starts your farm or save) also sends anonymous statistics to our own analytics service, hosted by Supabase on servers in Frankfurt, Germany: a random number that exists only for that session and is never stored on your device, which steps of the game you reached and when (for example "planted a potato"), error messages, whether it is the iOS or Android app, and four coarse facts: touch screen or not, portrait or landscape, a screen-size group and a two-letter language code. It contains no identifier, so it cannot be linked to you, to your device or to your other sessions; your IP address is used only to deliver it and is not stored. Later sessions send nothing, and if you withdraw consent during that session, sending stops.</p>
 
         <h2>5. In-app purchases</h2>
         <p>Purchases are processed entirely by <strong>Google Play</strong> (Android) or the <strong>Apple App Store</strong> (iOS) using your store account. We never receive your payment details, credit card number or billing address. The Game only receives the product you bought and a transaction identifier, which it uses to deliver the item, prevent double delivery and restore purchases. Purchase events may be included in analytics as described in section 4, without any payment details.</p>
@@ -198,6 +199,12 @@
                         <td>Improving the Games</td>
                         <td>Random game-generated ID, gameplay events, device info, approximate country</td>
                         <td>Only for players old enough to consent, according to their choice</td>
+                    </tr>
+                    <tr>
+                        <td>Our first-session statistics (Supabase, Frankfurt)</td>
+                        <td>Improving the first minutes of the Games</td>
+                        <td>Random per-session number, game steps reached, error messages, coarse device facts</td>
+                        <td>Only a new game's first session, only for players old enough to consent, according to their choice</td>
                     </tr>
                     <tr>
                         <td>Google Play / App Store</td>
