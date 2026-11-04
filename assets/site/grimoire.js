@@ -65,6 +65,13 @@ function storeIcons(game) {
        aria-label="${esc(game.title)} on ${esc(s.label)}" title="${esc(s.label)}">${icon(s.type)}</a>`).join('');
 }
 
+// The Discord invite, shaped like the store buttons ("Join the community on" / "Discord").
+function discordButton(url) {
+  return `<a class="discord-btn" href="${esc(url)}" target="_blank" rel="noopener">
+    ${icon('discord', { size: 26 })}<span><small>Join the community on</small><strong>Discord</strong></span>
+  </a>`;
+}
+
 // Plain clicks open the codex in place; modified clicks keep normal link behaviour.
 document.addEventListener('click', e => {
   const link = e.target.closest('a[data-open]');
@@ -106,6 +113,12 @@ function renderStudio() {
   $('[data-mail]').innerHTML = `<a href="mailto:${esc(studio.email)}">${icon('mail', { size: 22 })}<span>${esc(studio.email)}</span></a>`;
   $('[data-links]').innerHTML = studio.links.map(l => `
     <li><a href="${esc(l.url)}" target="_blank" rel="noopener me">${icon(l.type)}<span>${esc(l.label)}</span></a></li>`).join('');
+
+  if (studio.community?.url) {
+    $('[data-community-text]').textContent = studio.community.text || '';
+    $('[data-community-link]').innerHTML = discordButton(studio.community.url);
+    $('[data-community]').hidden = false;
+  }
 
   if (studio.support) {
     $('[data-support-title]').textContent = studio.support.title;
@@ -548,6 +561,7 @@ function renderCodex(game) {
         </a></li>`).join('')}
       </ul>` : ''}
       ${game.unavailable ? `<p class="store-gone">${esc(game.unavailable)}</p>` : ''}
+      ${game.community ? `<p class="community-row">${discordButton(game.community)}</p>` : ''}
       ${sideLinks ? `<p class="side-links">${sideLinks}</p>` : ''}
     </header>
 

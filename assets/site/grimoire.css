@@ -994,6 +994,10 @@ p { margin: 0; }
 .contact-mail a:hover { border-color: var(--gold-hi); }
 .contact-mail svg { flex: none; color: var(--gold); }
 
+/* The Discord invite under the email address. */
+.community { margin: 40px auto 0; max-width: 560px; }
+.community-text { margin: 0 auto 16px; max-width: 42ch; font-size: 1.1rem; font-style: italic; color: var(--muted); }
+
 .links {
   margin: 44px auto 0;
   padding: 0;
@@ -1224,6 +1228,31 @@ p { margin: 0; }
 @media (max-width: 480px) {
   .stores li { flex: 1 1 100%; }
   .store-btn { min-width: 0; justify-content: center; }
+}
+
+/* Discord invite: the store button's shape in Discord's blurple, on the home page and on community games' pages. */
+.community-row { margin-top: 12px; display: flex; justify-content: center; }
+.discord-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 56px;
+  min-width: 190px;
+  padding: 8px 22px;
+  border: 1px solid rgba(124, 134, 255, 0.7);
+  background: linear-gradient(180deg, #2a2b55, #17172f);
+  box-shadow: inset 0 1px 0 rgba(200, 205, 255, 0.14), 0 10px 30px -14px rgba(0, 0, 0, 0.9);
+  color: var(--text);
+  text-decoration: none;
+  text-align: left;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+.discord-btn svg { color: #aab2ff; flex: none; }
+.discord-btn small { display: block; font-size: 0.78rem; font-style: italic; color: #c9cbeb; line-height: 1.1; }
+.discord-btn strong { display: block; font-family: var(--display); font-size: 1rem; letter-spacing: 0.06em; color: #fff; line-height: 1.25; }
+.discord-btn:hover { border-color: #b8beff; box-shadow: inset 0 1px 0 rgba(200, 205, 255, 0.2), 0 0 30px -6px rgba(88, 101, 242, 0.75); color: var(--text); }
+@media (max-width: 480px) {
+  .community-row .discord-btn { flex: 1 1 100%; min-width: 0; justify-content: center; }
 }
 
 .side-links {

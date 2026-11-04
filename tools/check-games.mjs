@@ -22,6 +22,7 @@ try {
 
 const s = data.studio || {};
 for (const key of ['name', 'tagline', 'email']) if (!s[key]) errors.push(`studio.${key} is missing`);
+if (s.community && !/^https:\/\//.test(s.community.url || '')) errors.push('studio.community needs an https url (the Discord invite)');
 if (s.support && !(s.support.label && /^https:\/\//.test(s.support.url || ''))) errors.push('studio.support needs a label and an https url');
 
 const ids = new Set();
@@ -58,6 +59,7 @@ for (const [i, g] of (data.games || []).entries()) {
   const local = m.trailer && !/^https?:/.test(m.trailer) ? m.trailer : null;
   const files = [m.cover, m.hero, m.poster, m.logo, m.icon, m.loop, m.loopPoster, local, ...(m.screenshots || []).map(x => x.src)];
   for (const f of files.filter(Boolean)) need(existsSync(join(ROOT, f)), `file not found: ${f}`);
+  if ('community' in g) need(/^https:\/\//.test(g.community || ''), 'community must be an https invite link, e.g. https://discord.gg/...');
   // Privacy policies are linked from the store listings only, never from the site.
   need(!g.privacy, 'remove "privacy": the site does not link privacy policies (the stores do)');
   for (const local of [g.website].filter(u => u && u.startsWith('/'))) {

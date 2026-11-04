@@ -13,6 +13,11 @@
       "label": "Support me on Ko-fi",
       "url": "https://ko-fi.com/bartmamzer"
     },
+    "community": {
+      "type": "discord",
+      "text": "The community for my casual and idle games: chat with other players, report bugs, share ideas and hear about updates first.",
+      "url": "https://discord.gg/Wb5eNeXVhd"
+    },
     "location": "Poland",
     "since": 2014,
     "url": "https://bartmamzer.com",
@@ -115,6 +120,7 @@
           "url": "https://play.google.com/store/apps/details?id=bartmamzer.potato.farmer.game"
         }
       ],
+      "community": "https://discord.gg/Wb5eNeXVhd",
       "badge": "Plays offline",
       "accent": "#51b0f8",
       "featured": true,
@@ -201,6 +207,7 @@
           "url": "https://play.google.com/store/apps/details?id=bartmamzer.spring.soccer.game"
         }
       ],
+      "community": "https://discord.gg/Wb5eNeXVhd",
       "badge": "2 players on one phone",
       "accent": "#ffd23f",
       "featured": true,
@@ -286,6 +293,7 @@
           "url": "https://store.steampowered.com/app/4042600/"
         }
       ],
+      "community": "https://discord.gg/Wb5eNeXVhd",
       "badge": "Free demo on Steam",
       "accent": "#3cc6e6",
       "featured": true,
@@ -526,6 +534,7 @@
           "url": "https://store.steampowered.com/app/3539200/"
         }
       ],
+      "community": "https://discord.gg/Wb5eNeXVhd",
       "badge": "Free demo on Steam",
       "accent": "#f0a032",
       "featured": true,

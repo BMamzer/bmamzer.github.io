@@ -173,6 +173,14 @@ p { margin: 0 0 0.8em; }
 .btn-gold:hover { color: var(--ink); }
 .btn-gold:active { border-color: var(--gold-lo) #fff6cf #fff6cf var(--gold-lo); }
 
+.btn-discord {
+  color: #fff;
+  background: linear-gradient(180deg, #7e88f7, #5865f2);
+  border-color: #c3c8ff #2d379e #2d379e #c3c8ff;
+}
+.btn-discord:hover { color: #fff; }
+.btn-discord:active { border-color: #2d379e #c3c8ff #c3c8ff #2d379e; }
+
 .btn-compact { padding-inline: 12px; }
 .btn-small { min-height: 44px; padding: 8px 12px; font-size: 1.2rem; }
 
@@ -856,10 +864,13 @@ p { margin: 0 0 0.8em; }
 .contact-card { display: flex; gap: 18px; align-items: flex-start; padding: 24px 22px; }
 .contact-text p { color: #f0e6cc; }
 .mail-btn { max-width: 100%; }
+.contact .community { margin-top: 22px; }
+.contact .community .btn { max-width: 100%; }
 .mail-btn span { overflow-wrap: anywhere; }
 @media (max-width: 480px) {
   .contact-card { flex-direction: column; }
   .mail-btn { width: 100%; font-size: 1.15rem; }
+  .contact .community .btn { width: 100%; }
 }
 .links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
 @media (min-width: 640px) { .links { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
@@ -1033,10 +1044,12 @@ dialog::backdrop { background: rgba(6, 6, 9, 0.84); }
 .info-sub { margin: 0 0 10px; font: 400 1.35rem/1.1 var(--ui); color: var(--muted); }
 .info-tagline { margin: 0; font: 400 1.5rem/1.15 var(--ui); color: var(--gold-hi); }
 .info-stores { display: flex; flex-wrap: wrap; gap: 10px; }
+.info-community { margin: 12px 0 0; }
 .info-links { margin: 14px 0 0; }
 .info-links a { display: inline-flex; align-items: center; min-height: 44px; font: 400 1.3rem/1 var(--ui); }
 @media (max-width: 480px) {
   .info-stores .btn { flex: 1 1 9em; }
+  .info-community .btn { width: 100%; }
 }
 
 .info-section { margin-top: 30px; min-width: 0; }

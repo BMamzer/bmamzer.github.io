@@ -146,6 +146,11 @@ function storeLinks(game, extra = '') {
   }).join('');
 }
 
+// The Discord invite for the contact card and community games' info windows.
+function discordLink(url) {
+  return `<a class="btn btn-discord" href="${esc(url)}" target="_blank" rel="noopener">${icon('discord')}<span>Join the community on Discord</span></a>`;
+}
+
 function img(src, alt, attrs = '') {
   return `<img src="${esc(src)}" alt="${esc(alt)}" decoding="async" ${attrs}>`;
 }
@@ -539,6 +544,7 @@ function infoHtml(g) {
       <div class="info-facts">
         <dl class="stats">${statRows(g)}</dl>
         <div class="info-stores">${storeLinks(g)}${g.unavailable ? `<p class="store-gone">${esc(g.unavailable)}</p>` : ''}</div>
+        ${g.community ? `<p class="info-community">${discordLink(g.community)}</p>` : ''}
         ${links.length ? `<p class="info-links">${links.join('<span aria-hidden="true"> | </span>')}</p>` : ''}
       </div>
     </header>
@@ -680,6 +686,13 @@ function renderContact(catalog) {
   $('.guilds').hidden = !studio.links.length;
   $('.links').innerHTML = studio.links.map(l => `
     <li><a class="btn btn-link" href="${esc(l.url)}" rel="me noopener">${icon(l.type)}<span>${esc(l.label)}</span></a></li>`).join('');
+
+  if (studio.community?.url) {
+    const box = $('.contact .community');
+    $('p', box).textContent = studio.community.text || '';
+    box.querySelector('a').outerHTML = discordLink(studio.community.url);
+    box.hidden = false;
+  }
 
   const { support } = studio;
   if (support) {
