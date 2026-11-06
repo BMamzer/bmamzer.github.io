@@ -107,12 +107,17 @@
       ],
       "released": "2026-10-26",
       "platforms": [
-        "android"
+        "android",
+        "ios"
       ],
       "stores": [
         {
           "type": "googleplay",
           "url": "https://play.google.com/store/apps/details?id=bartmamzer.potato.farmer.game"
+        },
+        {
+          "type": "appstore",
+          "url": "https://apps.apple.com/app/id6816941711"
         }
       ],
       "badge": "Plays offline",
