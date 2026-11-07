@@ -59,6 +59,19 @@
       googleplay: 'bartmamzer.potato.farmer.game',
       appstore: '6816941711',
     },
+    {
+      // Google Play and the App Store (both since 2026-11-07); no web or CrazyGames link (the web build is a private
+      // playtest). Always the full name: "Medieval War" alone is another developer's game. It sells no random items.
+      id: 'medieval-war-castle-defense',
+      accounts: ['main', 'fun'],
+      name: 'Medieval War Castle Defense',
+      credit: 'I made this',
+      line: 'A castle defense game: the archers and the catapult on your wall fight by themselves, while you steer the hero at the gate and lead your army against every siege.',
+      price: { phone: 'Free to play · contains ads · in-app purchases' },
+      icon: '/bio/medieval-war-castle-defense.webp',
+      googleplay: 'bartmamzer.medieval.war.castle.defense.game',
+      appstore: '6831338263',
+    },
   ];
 
   const STORES = {
