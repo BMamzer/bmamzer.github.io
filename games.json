@@ -86,6 +86,98 @@
   },
   "games": [
     {
+      "id": "medieval-war-castle-defense",
+      "title": "Medieval War Castle Defense",
+      "tagline": "The wall fights by itself. You are the hero at the gate.",
+      "summary": "A castle defense game where the archers and the catapult on your wall fight by themselves, while you steer the hero on the field in front of the gate, lead your army and break every siege.",
+      "description": [
+        "Medieval War Castle Defense is a medieval castle defense game with a hero you steer. The archers and the catapult on your wall fight by themselves, tower defense style, while you take the field in front of the gate. Drag to move, and your hero strikes whatever is closest.",
+        "Start as the Knight with Shield Charge, Whirlwind and War Cry. Raise your keep to call the Ranger and the Mage, who brings down a Meteor Storm. Spend the gold you win on spearmen, swordsmen, archers and mounted knights, and switch your army between Follow me and Hold the gate with one tap.",
+        "Every siege brings something new: battering rams, ladder crews, shield walls, siege catapults and siege towers, and each needs a different answer. Before a wave starts you see what is coming and what beats it. Fight through 5 regions against 7 bosses who learn a new move each time they come back. It plays offline, in 16 languages."
+      ],
+      "features": [
+        "The wall fights by itself, you are the hero at the gate",
+        "3 heroes: the Knight, the Ranger and the Mage",
+        "One tap: your army follows you or holds the gate",
+        "Every siege engine needs its own answer",
+        "7 bosses who learn a new move each time they return",
+        "Plays offline, in 16 languages",
+        "Free to play · contains ads · in-app purchases"
+      ],
+      "genres": [
+        "Castle defense",
+        "Strategy",
+        "Action"
+      ],
+      "released": "2026-11-07",
+      "platforms": [
+        "android",
+        "ios"
+      ],
+      "stores": [
+        {
+          "type": "googleplay",
+          "url": "https://play.google.com/store/apps/details?id=bartmamzer.medieval.war.castle.defense.game"
+        },
+        {
+          "type": "appstore",
+          "url": "https://apps.apple.com/app/id6831338263"
+        }
+      ],
+      "community": "https://discord.gg/Wb5eNeXVhd",
+      "badge": "Plays offline",
+      "accent": "#3f7fd8",
+      "featured": true,
+      "media": {
+        "hero": "/assets/games/medieval-war-castle-defense/hero.webp",
+        "cover": "/assets/games/medieval-war-castle-defense/cover.webp",
+        "poster": "/assets/games/medieval-war-castle-defense/poster.webp",
+        "icon": "/assets/games/medieval-war-castle-defense/icon.webp",
+        "screenshots": [
+          {
+            "src": "/assets/games/medieval-war-castle-defense/shots/01.webp",
+            "w": 1600,
+            "h": 900
+          },
+          {
+            "src": "/assets/games/medieval-war-castle-defense/shots/02.webp",
+            "w": 1600,
+            "h": 900
+          },
+          {
+            "src": "/assets/games/medieval-war-castle-defense/shots/03.webp",
+            "w": 1600,
+            "h": 900
+          },
+          {
+            "src": "/assets/games/medieval-war-castle-defense/shots/04.webp",
+            "w": 1600,
+            "h": 900
+          },
+          {
+            "src": "/assets/games/medieval-war-castle-defense/shots/05.webp",
+            "w": 1600,
+            "h": 900
+          },
+          {
+            "src": "/assets/games/medieval-war-castle-defense/shots/06.webp",
+            "w": 1600,
+            "h": 900
+          },
+          {
+            "src": "/assets/games/medieval-war-castle-defense/shots/07.webp",
+            "w": 1600,
+            "h": 900
+          },
+          {
+            "src": "/assets/games/medieval-war-castle-defense/shots/08.webp",
+            "w": 1600,
+            "h": 900
+          }
+        ]
+      }
+    },
+    {
       "id": "potato-farmer",
       "title": "Potato Farmer",
       "subtitle": "Cozy Farm Game",
