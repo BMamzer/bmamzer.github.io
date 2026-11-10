@@ -54,12 +54,13 @@ This repo is public: never put an unreleased game in `games.json`, in `assets/` 
 | `originalDeveloper` | ports only | The studio that made the original game. Setting it marks the game as a port everywhere on the site |
 | `credits` | no | Credit line, e.g. "Original game by Silver Lemur Games. Mobile port by Bart Mamzer." |
 | `website` | no | The game's own page, e.g. `/powerlust/` |
+| `community` | no | Discord invite for the game's players, e.g. `https://discord.gg/...`. The game's page shows a "Join the community on Discord" button. Casual and idle games use the website invite from `studio.community`; Powerlust has its own server and none here |
 | `accent` | yes | Hex colour picked from the art (the import script suggests one; adjust by eye) |
 | `featured` | no | `false` moves an older game to the quieter "Earlier games" area |
 | `media` | yes | Paths written by the import script (see below) |
 
 `studio` at the top of `games.json` holds the studio name, tagline, about text, email, stats, links, `support` (the Ko-fi button at the bottom of the
-page; remove it to hide the button) and `spotlight` (the game ids shown in the opening section, in order).
+page; remove it to hide the button), `spotlight` (the game ids shown in the opening section, in order) and `community` (the Discord invite and its line of text in the contact section; remove it to hide them).
 
 ## Images
 
