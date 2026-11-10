@@ -35,6 +35,19 @@
       appstore: '6783288687',
     },
     {
+      // Google Play and the App Store (both since 2026-11-05). No price line: guide rule 8 bans money words, and
+      // LoA I's "no in-app purchases" would be false here (a free download with one in-app unlock).
+      id: 'legends-of-amberland-2',
+      accounts: ['main'],
+      name: 'Legends of Amberland II', // no-break space: "II" never wraps onto a line of its own
+      subtitle: 'The Song of Trees',
+      credit: 'I ported this to phones · originally by Silver Lemur Games',
+      line: 'The sequel, a brand-new story of its own: seven heroes explore an open fantasy world square by square, then sail a ship to uncharted islands.',
+      icon: '/bio/legends-of-amberland-2.webp',
+      googleplay: 'bartmamzer.games.classic.offline.turn.based.rpg.legends.of.amberland.ii',
+      appstore: '6809402268',
+    },
+    {
       // Google Play only: no App Store or CrazyGames link (and no word about them) until those versions are live.
       id: 'spring-soccer',
       accounts: ['main', 'fun'],
@@ -117,7 +130,7 @@
   function card(game, device) {
     const stores = ORDER[device].filter((store) => game[store]);
     const [first, ...rest] = stores;
-    const price = (device === 'desktop' && game.price.desktop) || game.price.phone;
+    const price = game.price && ((device === 'desktop' && game.price.desktop) || game.price.phone);
     const others = rest.length
       ? `<p class="also">Also on ${rest.map((store) => `<a href="${storeUrl(store, game)}">${STORES[store].label}</a>`).join(' · ')}</p>`
       : '';
@@ -131,7 +144,7 @@
           </div>
         </div>
         <p class="line">${game.line}</p>
-        <p class="price">${price}</p>
+        ${price ? `<p class="price">${price}</p>` : ''}
         <a class="store" href="${storeUrl(first, game)}">${storeIcon(first)}<span>${STORES[first].label}</span></a>
         ${others}
       </li>`;
