@@ -60,7 +60,6 @@ main {
 .subtitle { display: block; font-size: 0.8em; color: var(--text); margin-top: 2px; }
 .credit { margin: 4px 0 0; font-size: 0.875rem; color: var(--muted); font-style: italic; }
 .line { margin: 12px 0 0; }
-.price { margin: 6px 0 0; font-size: 0.875rem; color: var(--muted); }
 
 .store {
   display: flex;

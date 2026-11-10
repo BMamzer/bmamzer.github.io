@@ -1,6 +1,7 @@
 // Bio-link pages (/tt, /ig, /yt for bartmamzer, /fun/tt, /fun/ig, /fun/yt for bartmamzerfun): the released games,
 // with store links tagged for the platform the visitor came from.
 // Only games on the released list in the social media guide go here (rule 1: nothing about unreleased games).
+// No money words on the cards: no price, "free", ads or in-app purchases (guide rule 8).
 // Each page sets data-source (tiktok, instagram, youtube) on <main>, and data-account="fun" on the casual account's
 // pages, which list only the games whose accounts include 'fun' (no Powerlust gore for casual viewers).
 // data-straight="<game id>" sends phone visitors straight to that game's store page instead of showing the list,
@@ -16,7 +17,6 @@
       name: 'Powerlust',
       credit: 'I made this',
       line: 'A dark fantasy action RPG: build your own class and hack through dungeons with manual combat, fully offline.',
-      price: { phone: 'Free to play · in-app purchases', desktop: 'Phones: free to play · in-app purchases. PC: paid, on Steam' },
       icon: '/bio/powerlust.webp',
       googleplay: 'bartmamzer.powerlust.actionrpg.roguelike',
       appstore: '1439088319',
@@ -29,14 +29,12 @@
       subtitle: 'The Forgotten Crown',
       credit: 'I ported this to phones · originally by Silver Lemur Games',
       line: 'A retro party RPG: seven heroes explore an open fantasy world and its dungeons square by square, in turn-based fights.',
-      price: { phone: 'Premium, one-time price · no ads, no in-app purchases' },
       icon: '/bio/legends-of-amberland.webp',
       googleplay: 'bartmamzer.games.classic.offline.turn.based.rpg.legends.of.amberland.i',
       appstore: '6783288687',
     },
     {
-      // Google Play and the App Store (both since 2026-11-05). No price line: guide rule 8 bans money words, and
-      // LoA I's "no in-app purchases" would be false here (a free download with one in-app unlock).
+      // Google Play and the App Store (both since 2026-11-05).
       id: 'legends-of-amberland-2',
       accounts: ['main'],
       name: 'Legends of Amberland II', // no-break space: "II" never wraps onto a line of its own
@@ -55,32 +53,28 @@
       subtitle: 'Mini Football',
       credit: 'I made this',
       line: 'Mini football where every player stands on a spring: drag one back, let go and score. Play the AI or a friend on one phone.',
-      price: { phone: 'Android · free · contains ads' },
       icon: '/bio/spring-soccer.webp',
       googleplay: 'bartmamzer.spring.soccer.game',
     },
     {
-      // Google Play and the App Store (since 2026-11-06); no CrazyGames link until its Full Launch. It sells random
-      // items (Mystery Sacks) for gems, so the price line always says so, and "free" never stands alone.
+      // Google Play and the App Store (since 2026-11-06); no CrazyGames link until its Full Launch.
       id: 'potato-farmer',
       accounts: ['main', 'fun'],
       name: 'Potato Farmer',
       credit: 'I made this',
       line: 'A farm game where a potato farms potatoes: plant, water and harvest 25 kinds, cook them for potato customers and dress up your potato.',
-      price: { phone: 'Free to play · contains ads · in-app purchases (includes random items)' },
       icon: '/bio/potato-farmer.webp',
       googleplay: 'bartmamzer.potato.farmer.game',
       appstore: '6816941711',
     },
     {
       // Google Play and the App Store (both since 2026-11-07); no web or CrazyGames link (the web build is a private
-      // playtest). Always the full name: "Medieval War" alone is another developer's game. It sells no random items.
+      // playtest). Always the full name: "Medieval War" alone is another developer's game.
       id: 'medieval-war-castle-defense',
       accounts: ['main', 'fun'],
       name: 'Medieval War Castle Defense',
       credit: 'I made this',
       line: 'A castle defense game: the archers and the catapult on your wall fight by themselves, while you steer the hero at the gate and lead your army against every siege.',
-      price: { phone: 'Free to play · contains ads · in-app purchases' },
       icon: '/bio/medieval-war-castle-defense.webp',
       googleplay: 'bartmamzer.medieval.war.castle.defense.game',
       appstore: '6831338263',
@@ -130,7 +124,6 @@
   function card(game, device) {
     const stores = ORDER[device].filter((store) => game[store]);
     const [first, ...rest] = stores;
-    const price = game.price && ((device === 'desktop' && game.price.desktop) || game.price.phone);
     const others = rest.length
       ? `<p class="also">Also on ${rest.map((store) => `<a href="${storeUrl(store, game)}">${STORES[store].label}</a>`).join(' · ')}</p>`
       : '';
@@ -144,7 +137,6 @@
           </div>
         </div>
         <p class="line">${game.line}</p>
-        ${price ? `<p class="price">${price}</p>` : ''}
         <a class="store" href="${storeUrl(first, game)}">${storeIcon(first)}<span>${STORES[first].label}</span></a>
         ${others}
       </li>`;
