@@ -121,7 +121,7 @@
 <body>
     <div class="container">
         <h1>Privacy Policy</h1>
-        <p class="date">Mobile games (Android and iOS)<br>Effective Date: 13 November 2026</p>
+        <p class="date">Mobile games (Android and iOS)<br>Effective Date: 17 November 2026</p>
 
         <p>This Privacy Policy applies to the mobile games for Android and iOS developed by <strong>Bartlomiej Mamzer</strong> ("we", "us") that are published on Google Play and the Apple App Store and that link to this page (the "Games"). It explains what information is processed when you play, why, who receives it, and the choices you have.</p>
         <p>Not every Game uses every feature described here. For example, a Game without in-app purchases or cloud saves does not process the information described in those sections. The versions of our games played in a web browser (for example on web game portals) are not covered by this policy; they are subject to the privacy policy of the website you play them on.</p>
@@ -130,7 +130,7 @@
         <h2>1. Your age</h2>
         <p>When you first start a Game, it asks how old you are. Your answer (and the month you gave it) is stored <strong>only on your device</strong> and is never sent to us or to anyone else. The Game uses it to decide how advertising and analytics must work for you:</p>
         <ul>
-            <li><strong>Children</strong> (under 13, or under the age at which you can consent to data processing yourself in your country, which is between 13 and 16 in the EU and up to 18 in a few other countries): ads are requested without personalization and without the device's advertising identifier, marked with Google's child-directed treatment for players under 13 and with Google's under-the-age-of-consent tag for older children; no consent or tracking prompts are shown, and no analytics are collected.</li>
+            <li><strong>Children</strong> (under 13, or under the age at which you can consent to data processing yourself in your country, which is between 13 and 16 in the EU and up to 18 in a few other countries): ads are requested without personalization and without the device's advertising identifier, marked with Google's child-directed treatment for players under 13 and with Google's under-the-age-of-consent tag for older children; no consent or tracking prompts are shown, no analytics are collected, and the Game uses only its built-in settings (no Firebase Remote Config, see section 4).</li>
             <li><strong>Teens</strong> (13 to 17, and old enough to consent in your country): only non-personalized ads are shown, there is no tracking prompt, and analytics work as described in section 4: where consent is required they start only if you agree, and elsewhere they are on and you can switch them off in the Game's settings.</li>
             <li><strong>Adults</strong> (18 and over): advertising and analytics follow the consent choices described below.</li>
         </ul>
@@ -141,7 +141,7 @@
         <p><strong>Reminder notifications:</strong> some Games can show a notification when something in the game is ready for you (for example, a delivery that has come back). The Game schedules it on your device itself, only after you allow notifications, and you can switch it off in the Game's settings or in your device settings. No push service is used, and no information is sent to us or to anyone else for these notifications.</p>
 
         <h2>3. Advertising (Google AdMob)</h2>
-        <p>Some Games show ads (for example, optional rewarded videos) through <strong>Google AdMob</strong>, a service of Google. Children only see video ads they choose to watch, other players may also see ad breaks that the Game announces before they start, and every ad is family-friendly: rated for all ages (G) for children and at most PG for everyone else. To deliver and measure ads and prevent fraud, Google may process your IP address, device and app information (such as device model, operating system and language), ad interactions and, where allowed, your device's advertising identifier (the Android Advertising ID, or Apple's IDFA on iOS).</p>
+        <p>Some Games show ads (for example, optional rewarded videos) through <strong>Google AdMob</strong>, a service of Google. Some Games also show ad breaks, which the Game announces before they start. In some Games children only see video ads they choose to watch; in others they see the same ads as everyone else, including ad breaks, always under the rules for children below. Every ad is family-friendly: rated for all ages (G) for children and at most PG for everyone else. To deliver and measure ads and prevent fraud, Google may process your IP address, device and app information (such as device model, operating system and language), ad interactions and, where allowed, your device's advertising identifier (the Android Advertising ID, or Apple's IDFA on iOS).</p>
         <ul>
             <li><strong>Consent in the EEA, UK and Switzerland:</strong> before any ads are requested, the Game shows Google's consent form (Google User Messaging Platform). You can accept or refuse personalized advertising there, and you can change your choice at any time through the privacy options in the Game's settings.</li>
             <li><strong>Personalized ads</strong> are only shown to adults who allow them. Teens and children only receive non-personalized ads, and children's ad requests do not include the advertising identifier.</li>
@@ -150,7 +150,7 @@
         </ul>
         <p>Google acts under its own privacy policy. Learn more: <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">How Google uses information from apps that use its services</a> and <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a>.</p>
 
-        <h2>4. Analytics (GameAnalytics, Google Analytics for Firebase and our own first-session statistics)</h2>
+        <h2>4. Analytics and game settings (GameAnalytics, Google Analytics for Firebase, Firebase Remote Config and our own first-session statistics)</h2>
         <p>To understand how the Games are played and to improve them (for example, where players get stuck, which levels are too hard, whether ads or purchases work correctly), the Games use <strong>GameAnalytics</strong>, provided by GameAnalytics ApS (Denmark), or <strong>Google Analytics for Firebase</strong>, a service of Google (each Game uses one or both). The rules below apply to both.</p>
         <ul>
             <li><strong>When:</strong> only for players who are old enough to consent for themselves. Where consent is required (such as in the EEA, UK and Switzerland), analytics start only if you agree in the consent form, and you can change your choice later in the privacy options. Elsewhere, analytics are on by default and you can switch them off in the Game's settings. Children never send analytics.</li>
@@ -160,6 +160,7 @@
         </ul>
         <p>Learn more: <a href="https://gameanalytics.com/privacy" target="_blank" rel="noopener">GameAnalytics Privacy Policy</a>, <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">How Google uses information from apps that use its services</a> and <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a>.</p>
         <p><strong>First-session statistics.</strong> Under the same rules (the same consent, and never for children), the first session of a new game (the one that starts your farm or save) also sends anonymous statistics to our own analytics service, hosted by Supabase on servers in Frankfurt, Germany: a random number that exists only for that session and is never stored on your device, which steps of the game you reached and when (for example "planted a potato"), error messages, whether it is the iOS or Android app, and four coarse facts: touch screen or not, portrait or landscape, a screen-size group and a two-letter language code. It contains no identifier, so it cannot be linked to you, to your device or to your other sessions; your IP address is used only to deliver it and is not stored. Later sessions send nothing, and if you withdraw consent during that session, sending stops.</p>
+        <p><strong>Game settings (Firebase Remote Config).</strong> Some Games use <strong>Firebase Remote Config</strong>, a service of Google, to adjust game settings without an app update (for example, how big the reward for an optional video is, or from which day an offer or an ad break can appear). Under the same rules as analytics (the same consent, and never for children), the Game asks Firebase for its current settings from time to time and uses them from the next time you start it, so nothing changes in the middle of a game. The request contains a random identifier that the Firebase software creates for your installation of the Game (the Firebase installation ID; it is not linked to your name, account or advertising identifier), the Game's identifier and version, your device's country code, language, time zone and operating system version, and, in Games that also use Google Analytics for Firebase, when the Game was first opened. It never contains your age, name, email address, advertising identifier, precise location or anything you type. Google processes this data on our behalf. Players who do not take part, and children, play with the settings built into the Game. Learn more: <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Privacy and Security in Firebase</a>.</p>
 
         <h2>5. In-app purchases</h2>
         <p>Purchases are processed entirely by <strong>Google Play</strong> (Android) or the <strong>Apple App Store</strong> (iOS) using your store account. We never receive your payment details, credit card number or billing address. The Game only receives the product you bought and a transaction identifier, which it uses to deliver the item, prevent double delivery and restore purchases. Purchase events may be included in analytics as described in section 4, without any payment details.</p>
@@ -209,6 +210,12 @@
                         <td>Only for players old enough to consent, according to their choice</td>
                     </tr>
                     <tr>
+                        <td>Firebase Remote Config</td>
+                        <td>Adjusting game settings without an update</td>
+                        <td>Firebase installation ID, the Game's identifier and version, country code, language, time zone, operating system version</td>
+                        <td>Only for players old enough to consent, according to their choice</td>
+                    </tr>
+                    <tr>
                         <td>Our first-session statistics (Supabase, Frankfurt)</td>
                         <td>Improving the first minutes of the Games</td>
                         <td>Random per-session number, game steps reached, error messages, coarse device facts</td>
@@ -232,13 +239,13 @@
 
         <h2>8. Legal bases (EEA, UK and Switzerland)</h2>
         <ul>
-            <li><strong>Consent</strong> for personalized advertising, for the use of advertising identifiers and for analytics where consent is required.</li>
-            <li><strong>Legitimate interests</strong> for showing non-personalized ads that fund the Games, for ad fraud prevention, and for analytics where consent is not required (you can opt out at any time).</li>
+            <li><strong>Consent</strong> for personalized advertising, for the use of advertising identifiers and for analytics and Firebase Remote Config where consent is required.</li>
+            <li><strong>Legitimate interests</strong> for showing non-personalized ads that fund the Games, for ad fraud prevention, and for analytics and Firebase Remote Config where consent is not required (you can opt out at any time).</li>
             <li><strong>Performance of a contract</strong> for delivering in-app purchases and cloud saves you ask for.</li>
         </ul>
 
         <h2>9. International transfers and retention</h2>
-        <p>Google (AdMob and Google Analytics for Firebase) may process data in the United States and other countries, using the safeguards described in its privacy policy (such as the EU-U.S. Data Privacy Framework and Standard Contractual Clauses). GameAnalytics may use service providers outside the EEA under similar safeguards. Google Analytics for Firebase keeps analytics data for up to 14 months. Other data held by Google, Apple and GameAnalytics is kept according to their own retention policies. Data stored on your device stays there until you uninstall the Game.</p>
+        <p>Google (AdMob, Google Analytics for Firebase and Firebase Remote Config) may process data in the United States and other countries, using the safeguards described in its privacy policy (such as the EU-U.S. Data Privacy Framework and Standard Contractual Clauses). GameAnalytics may use service providers outside the EEA under similar safeguards. Google Analytics for Firebase keeps analytics data for up to 14 months. Other data held by Google, Apple and GameAnalytics is kept according to their own retention policies. Data stored on your device stays there until you uninstall the Game.</p>
 
         <h2>10. Your choices and rights</h2>
         <ul>
@@ -251,7 +258,7 @@
         <p>You can delete the data related to our Games (developer: Bartlomiej Mamzer) in the following ways.</p>
         <h3>Delete it yourself</h3>
         <ul>
-            <li><strong>Data on your device:</strong> uninstall the Game. This immediately deletes your game progress, settings, age answer, consent choices and the random analytics identifier from your device. A reinstall starts with a new identifier that is not linked to the old one.</li>
+            <li><strong>Data on your device:</strong> uninstall the Game. This immediately deletes your game progress, settings, age answer, consent choices and the random analytics and Firebase installation identifiers from your device. A reinstall starts with new identifiers that are not linked to the old ones.</li>
             <li><strong>Advertising identifier:</strong> on Android, go to Settings &gt; Google &gt; Ads (or Settings &gt; Privacy &gt; Ads) and delete or reset your advertising ID. On iOS, go to Settings &gt; Privacy &amp; Security &gt; Tracking and turn off tracking for the Game.</li>
             <li><strong>Cloud saves:</strong> on Android, delete the Game's saved data in the Google Play Games app or delete your Play Games profile in your Google Account. On iOS, delete the Game's data in Settings &gt; [your name] &gt; iCloud &gt; Manage Storage.</li>
         </ul>
@@ -259,7 +266,7 @@
         <ol>
             <li>Send an email to <a href="mailto:bartlomiejmamzergames@gmail.com?subject=Data%20deletion%20request">bartlomiejmamzergames@gmail.com</a> with the subject "Data deletion request".</li>
             <li>Tell us which Game (or Games) and which platform (Android or iOS) the request is about, and roughly when you installed and played it.</li>
-            <li>We will reply within 30 days. We do not collect your name or email address through the Games, so we cannot look you up ourselves; we will pass your request to GameAnalytics or Google (for Google Analytics for Firebase), which delete the analytics data they can link to your device, and explain how to delete data held by Google or Apple.</li>
+            <li>We will reply within 30 days. We do not collect your name or email address through the Games, so we cannot look you up ourselves; we will pass your request to GameAnalytics or Google (for Google Analytics for Firebase and Firebase Remote Config), which delete the data they can link to your device, and explain how to delete data held by Google or Apple.</li>
         </ol>
         <h3>What is deleted and what is kept</h3>
         <ul>
@@ -268,8 +275,8 @@
         </ul>
 
         <h2>12. Children's privacy</h2>
-        <p>The Games are not designed for the Apple App Store Kids category. Every Game asks for the player's age before any advertising or analytics service starts. For players identified as children we do not collect personal information: their ad requests are marked with Google's child-directed treatment (under 13) or with Google's under-the-age-of-consent tag (13 or older but under the age of consent in their country), both of which switch off personalized ads and keep the advertising identifier out of the request, and analytics are not used. If you believe a child's personal information has been collected, please contact us and we will take steps to delete it.</p>
-        <p>For players under 13, Games that show ads let Google AdMob use device and connection information (such as the IP address, device model, operating system and language, but never the advertising identifier) only to support the Game's internal operations: to show contextual ads that are not based on the player's activity, to limit how often an ad is shown, to measure that ads were delivered, and to keep the Game and its ads secure and free of fraud. To make sure this information is not used to contact a specific child, to build a profile of them or for behavioral advertising, every ad request for these players is marked as child-directed, personalized advertising is switched off, the advertising identifier is not sent, ads are limited to content suitable for all ages, and no analytics service is used.</p>
+        <p>The Games are not designed for the Apple App Store Kids category. Every Game asks for the player's age before any advertising or analytics service starts. For players identified as children we do not collect personal information: their ad requests are marked with Google's child-directed treatment (under 13) or with Google's under-the-age-of-consent tag (13 or older but under the age of consent in their country), both of which switch off personalized ads and keep the advertising identifier out of the request, and neither analytics nor Firebase Remote Config is used. If you believe a child's personal information has been collected, please contact us and we will take steps to delete it.</p>
+        <p>For players under 13, Games that show ads let Google AdMob use device and connection information (such as the IP address, device model, operating system and language, but never the advertising identifier) only to support the Game's internal operations: to show contextual ads that are not based on the player's activity, to limit how often an ad is shown, to measure that ads were delivered, and to keep the Game and its ads secure and free of fraud. To make sure this information is not used to contact a specific child, to build a profile of them or for behavioral advertising, every ad request for these players is marked as child-directed, personalized advertising is switched off, the advertising identifier is not sent, ads are limited to content suitable for all ages, and neither an analytics service nor Firebase Remote Config is used.</p>
 
         <h2>13. Security</h2>
         <p>Data sent by the Games to the services above is encrypted in transit (HTTPS/TLS).</p>
