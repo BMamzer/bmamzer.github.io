@@ -86,6 +86,95 @@
   },
   "games": [
     {
+      "id": "bean-barista",
+      "title": "Bean Barista",
+      "subtitle": "Cafe Simulator",
+      "tagline": "Grow it. Roast it. Brew it. Serve it to a vampire.",
+      "summary": "A cozy coffee shop game where you make every cup yourself: grow the beans on your farm, roast them, brew each drink by hand and serve it to a vampire, a robot, an alien and Grandma Gertie.",
+      "description": [
+        "Bean Barista is a cozy coffee shop game in 3D where the barista is a coffee bean and every cup starts on your own farm. Plant, water and harvest 18 bean varieties, from Arabica to the Moon Bean and the Dragon Bean, then tip them into the drum roaster and hit DUMP when the needle reaches your zone: light, medium, dark or burnt, because some customers love that.",
+        "At the brew bar you make each order step by step: time the espresso shot, steam the milk, add syrups and toppings. Unlock more than 50 drinks, pour latte art for bigger tips and mix anything in the Experiment Lab to find 16 secret recipes.",
+        "Serve 30 regulars with their own voices and three-part stories: Count Brewla on the night shift, BRW-8 the robot who rates every drink to 14 decimal places, Zorp the alien who pays in gems, and Grandma Gertie, who just wants a regular coffee, dear. Decorate your café with 9 themes and 45 decorations, hire staff, and take part in a new Bean Festival every week. It plays offline, in 16 languages."
+      ],
+      "features": [
+        "Make every cup yourself: grow, roast, brew and serve",
+        "18 coffee beans, 72 bean and roast combinations",
+        "50+ drinks, latte art and 16 secret recipes",
+        "30 odd regulars with their own stories",
+        "9 café themes, 45 decorations and 95+ outfits",
+        "A new Bean Festival every week",
+        "Plays offline, in 16 languages",
+        "Free to play · contains ads · in-app purchases"
+      ],
+      "genres": [
+        "Simulation",
+        "Cooking",
+        "Casual"
+      ],
+      "released": "2026-11-20",
+      "platforms": [
+        "ios"
+      ],
+      "stores": [
+        {
+          "type": "appstore",
+          "url": "https://apps.apple.com/app/id6825800536"
+        }
+      ],
+      "community": "https://discord.gg/Wb5eNeXVhd",
+      "badge": "Plays offline",
+      "accent": "#9b572e",
+      "featured": true,
+      "media": {
+        "hero": "/assets/games/bean-barista/hero.webp",
+        "cover": "/assets/games/bean-barista/cover.webp",
+        "poster": "/assets/games/bean-barista/poster.webp",
+        "icon": "/assets/games/bean-barista/icon.webp",
+        "screenshots": [
+          {
+            "src": "/assets/games/bean-barista/shots/01.webp",
+            "w": 1600,
+            "h": 900
+          },
+          {
+            "src": "/assets/games/bean-barista/shots/02.webp",
+            "w": 1600,
+            "h": 900
+          },
+          {
+            "src": "/assets/games/bean-barista/shots/03.webp",
+            "w": 1600,
+            "h": 900
+          },
+          {
+            "src": "/assets/games/bean-barista/shots/04.webp",
+            "w": 1600,
+            "h": 900
+          },
+          {
+            "src": "/assets/games/bean-barista/shots/05.webp",
+            "w": 1600,
+            "h": 900
+          },
+          {
+            "src": "/assets/games/bean-barista/shots/06.webp",
+            "w": 1600,
+            "h": 900
+          },
+          {
+            "src": "/assets/games/bean-barista/shots/07.webp",
+            "w": 1600,
+            "h": 900
+          },
+          {
+            "src": "/assets/games/bean-barista/shots/08.webp",
+            "w": 1600,
+            "h": 900
+          }
+        ]
+      }
+    },
+    {
       "id": "medieval-war-castle-defense",
       "title": "Medieval War Castle Defense",
       "tagline": "The wall fights by itself. You are the hero at the gate.",
