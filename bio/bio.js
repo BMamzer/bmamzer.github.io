@@ -79,6 +79,17 @@
       googleplay: 'bartmamzer.medieval.war.castle.defense.game',
       appstore: '6831338263',
     },
+    {
+      // The App Store only (since 2026-11-20): no Google Play link (and no word about it) until its page is live; no
+      // web or CrazyGames link (the web build is a private playtest).
+      id: 'bean-barista',
+      accounts: ['main', 'fun'],
+      name: 'Bean Barista',
+      credit: 'I made this',
+      line: 'A cozy café game where you grow, roast and brew every cup yourself and serve it to a vampire, a robot, an alien and Grandma Gertie.',
+      icon: '/bio/bean-barista.webp',
+      appstore: '6825800536',
+    },
   ];
 
   const STORES = {
