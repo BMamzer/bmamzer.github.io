@@ -88,7 +88,9 @@
     }
     var re = /(?:^|[^0-9A-Za-z])PH[-\s]+([0-9A-Za-z]{4}(?:[-\s]+[0-9A-Za-z]{4})*)(?![0-9A-Za-z])/gi, m;
     while ((m = re.exec(text))) tries.push(m[1]);
-    if (!tries.length) tries.push(text);
+    // the whole text as a code only when it looks like one (as Builds.LooksLikeCode)
+    var t = text.trim(), alnum = t.replace(/[^0-9A-Za-z]/g, '');
+    if (!tries.length && (/^ph/i.test(t) || (/[0-9]/.test(t) && alnum.length >= 8))) tries.push(text);
     var first = null;
     for (var i = 0; i < tries.length; i++) {
       var r = decode(data, tries[i]);

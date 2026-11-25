@@ -7,7 +7,8 @@
   <meta name="description" content="Powerhaven: quick rifts, epic loot and a haven to build. A bright, fast action RPG for Android and iOS." />
   <meta name="robots" content="noindex" />
   <!-- The show-off cards' links land here (docs/social-currency.md 5.2): ?c=<card> is the campaign tag (Play's utm_campaign,
-       the App Store's ct), ?g=<day>&t=<tier> a Gauntlet challenge. Phones go on to their store; nothing about the player is
+       the App Store's ct), ?g=<day>&t=<tier>&n=<name> a Gauntlet challenge (the name checked against the game's name words in
+       ../build/data.js). Phones go on to their store; nothing about the player is
        in the link. -->
   <style>
     :root { --bg: #24166a; --panel: #3b2aa0; --text: #ffffff; --muted: #c8bff5; --yellow: #ffcf2b; --edge: #c27c00; }
@@ -35,6 +36,7 @@
   <a class="btn alt" id="ios" href="#">Download on the App Store</a>
   <p class="small"><a href="/powerhaven/">About Powerhaven</a> · <a href="/powerhaven/policy/">Privacy Policy</a></p>
 </main>
+<script src="../build/data.js"></script>
 <script>
   (function () {
     var q = new URLSearchParams(location.search);
@@ -47,11 +49,14 @@
     document.getElementById('ios').href = ios;
     // a Gauntlet challenge: everyone plays the same run each day
     var day = parseInt(q.get('g') || '', 10), tier = parseInt(q.get('t') || '', 10);
-    var challenge = day > 0 && tier > 0;
+    var challenge = day > 0 && tier > 0 && tier <= 1000;
     if (challenge) {
+      // the challenger's generated name, shown only when the game could have made it (two of its words, two digits)
+      var who = 'A friend', name = q.get('n') || '', words = (window.PH_BUILD_DATA || {}).nameWords, m = /^([A-Z][a-z]+)([A-Z][a-z]+)(\d{2})$/.exec(name);
+      if (m && words && words.adjectives.indexOf(m[1]) >= 0 && words.nouns.indexOf(m[2]) >= 0) who = name;
       document.getElementById('challenge').style.display = 'block';
       document.getElementById('challengeTier').textContent = 'Gauntlet #' + day + ': tier ' + tier;
-      document.getElementById('challengeText').textContent = 'A friend reached tier ' + tier + ' in the day\'s Gauntlet. Everyone plays the same run that day. Can you go deeper?';
+      document.getElementById('challengeText').textContent = who + ' reached tier ' + tier + ' in the day\'s Gauntlet. Everyone plays the same run that day. Can you go deeper?';
     }
     var ua = navigator.userAgent || '';
     var android = /Android/i.test(ua), apple = /iPhone|iPad|iPod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
