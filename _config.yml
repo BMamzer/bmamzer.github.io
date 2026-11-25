@@ -1,0 +1,4 @@
+# GitHub Pages builds this site with Jekyll, which leaves out folders starting with a dot: .well-known holds the app
+# link files (Android assetlinks.json, iOS apple-app-site-association) and must be served.
+include:
+  - .well-known
