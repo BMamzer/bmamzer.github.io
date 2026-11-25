@@ -1,0 +1,14 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "bartmamzer.powerhaven.game",
+      "sha256_cert_fingerprints": [
+        "B8:C8:09:E8:51:47:77:4D:01:A8:47:17:75:C8:F2:3A:CF:CE:87:E5:27:40:03:67:8F:D7:BB:8C:CB:BE:52:6F",
+        "E4:52:97:99:F6:76:98:C6:14:AB:AC:63:C3:1A:44:86:B1:46:D7:05:67:37:5B:32:84:9D:BB:E7:59:3E:16:65",
+        "1F:A9:7E:A1:EB:06:4D:27:5A:97:B9:36:A3:14:07:C0:58:1F:E8:C6:A4:24:7D:2B:27:06:9A:6C:3F:C3:21:0C"
+      ]
+    }
+  }
+]

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Powerhaven build</title>
+  <meta name="description" content="A hero build for Powerhaven: its skills, crowns, vow and uniques. Paste the code in the game's Skills screen." />
+  <meta name="robots" content="noindex" />
+  <!-- The build page (docs/social-currency.md 5.5): ?c=<code> is a build code, decoded here by buildcode.js with the game's
+       lists in data.js (tools/buildpage.py). Installed games open these links themselves (Android App Links, iOS
+       Universal Links, /.well-known/); everyone else sees the build and the store buttons. Nothing about the player is
+       in a code. -->
+  <script>
+    // Safari's app banner: OPEN hands this link to an installed game
+    document.write('<meta name="apple-itunes-app" content="app-id=6820693104, app-argument=' + location.href.replace(/"/g, '') + '">');
+  </script>
+  <style>
+    :root { --bg: #24166a; --panel: #3b2aa0; --inner: rgba(14, 6, 50, 0.45); --text: #ffffff; --muted: #c8bff5; --yellow: #ffcf2b; --gold: #ffc53a; --edge: #c27c00; --red: #ff8f8f; }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    body { margin: 0; min-height: 100vh; background: radial-gradient(circle at 50% 20%, #3b2aa0, #160c46 70%); color: var(--text);
+           font: 17px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+    main { max-width: 980px; margin: 0 auto; padding: 28px 18px 40px; }
+    .logo { display: block; width: 260px; max-width: 70%; margin: 0 auto 18px; }
+    .head { display: flex; align-items: center; gap: 18px; justify-content: center; text-align: left; }
+    .portrait { width: 92px; height: 92px; border-radius: 50%; border: 5px solid #fff; flex-shrink: 0; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    .portrait img { width: 88%; height: 88%; object-fit: contain; }
+    .kicker { font-weight: 800; letter-spacing: 2px; font-size: 0.9rem; color: var(--muted); }
+    h1 { font-size: 2.4rem; line-height: 1.05; margin: 2px 0 0; color: var(--yellow); text-shadow: 0 3px 0 rgba(12, 5, 34, 0.6); }
+    .code { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 20px auto 6px; flex-wrap: wrap; }
+    .code span { font: 700 1.25rem/1 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; letter-spacing: 2px; background: var(--inner);
+                 padding: 12px 16px; border-radius: 14px; border: 3px solid rgba(255, 255, 255, 0.15); }
+    button, .btn { cursor: pointer; font: 700 1.05rem/1 inherit; border: 0; border-radius: 16px; padding: 14px 20px; color: #24133f; background: var(--yellow);
+                   border-bottom: 5px solid var(--edge); text-decoration: none; display: inline-block; text-align: center; }
+    .btn.blue { background: #2f86ff; color: #fff; border-bottom-color: #1450b8; }
+    .btn.green { background: #47c94a; color: #fff; border-bottom-color: #23852a; }
+    .copied { color: var(--muted); font-size: 0.9rem; min-height: 1.2em; text-align: center; }
+    h2 { font-size: 1rem; letter-spacing: 2px; color: var(--muted); margin: 26px 4px 10px; }
+    .skills { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+    .card { background: var(--inner); border-radius: 18px; padding: 12px 10px; text-align: center; border: 2px solid rgba(255, 255, 255, 0.08); }
+    .ring { width: 70px; height: 70px; border-radius: 50%; margin: 0 auto 6px; display: flex; align-items: center; justify-content: center; border: 4px solid rgba(255, 255, 255, 0.35); }
+    .ring img { width: 82%; height: 82%; object-fit: contain; }
+    .basic .ring { border-color: var(--yellow); }
+    .slot { font-size: 0.72rem; letter-spacing: 1.5px; color: var(--muted); font-weight: 800; }
+    .sname { font-weight: 800; margin: 2px 0 6px; }
+    .pick { font-size: 0.85rem; color: #e9e4ff; }
+    .pick.none { color: rgba(255, 255, 255, 0.4); }
+    .crown { font-weight: 800; color: var(--gold); margin-top: 4px; font-size: 0.92rem; }
+    .crown.none { color: var(--muted); font-weight: 600; }
+    .lv { font-size: 0.75rem; color: var(--muted); margin-top: 6px; }
+    .row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .item { display: flex; gap: 12px; align-items: center; text-align: left; }
+    .item .tile { width: 64px; height: 64px; border-radius: 14px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; background: rgba(196, 107, 255, 0.35); }
+    .item .tile.round { border-radius: 50%; }
+    .item .tile img { width: 86%; height: 86%; object-fit: contain; }
+    .item b { display: block; }
+    .item small { color: var(--muted); display: block; }
+    .item .price { color: var(--red); }
+    .how { background: var(--inner); border-radius: 18px; padding: 16px 18px; margin-top: 26px; text-align: center; color: #e9e4ff; }
+    .stores { text-align: center; margin-top: 18px; }
+    .stores .btn { margin: 8px 6px; min-width: 240px; }
+    .error { text-align: center; margin: 30px 0; font-size: 1.15rem; }
+    .small { color: var(--muted); font-size: 0.85rem; margin-top: 30px; text-align: center; }
+    .small a { color: var(--muted); }
+    @media (max-width: 760px) {
+      .skills { grid-template-columns: repeat(2, 1fr); }
+      .skills .card:first-child { grid-column: span 2; }
+      .row { grid-template-columns: 1fr; }
+      h1 { font-size: 1.9rem; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <img class="logo" src="logo.webp" alt="Powerhaven" />
+  <div id="build" hidden>
+    <div class="head">
+      <div class="portrait" id="portrait"><img id="portraitImg" alt="" /></div>
+      <div><div class="kicker" id="kicker"></div><h1 id="name"></h1></div>
+    </div>
+    <div class="code"><span id="code"></span><button id="copy" type="button">COPY CODE</button></div>
+    <div class="copied" id="copied"></div>
+    <h2>SKILL BAR</h2>
+    <div class="skills" id="skills"></div>
+    <h2>VOW AND UNIQUES</h2>
+    <div class="row" id="extras"></div>
+    <div class="how">In Powerhaven, open <b>SKILLS</b>, tap <b>PASTE BUILD</b> and paste the code. <b>APPLY</b> takes the build over (skill picks are free), <b>TRY IN TRAINING</b> lets you fight with it first. With the game installed, this link opens it straight away.</div>
+  </div>
+  <div class="error" id="error" hidden></div>
+  <div class="stores">
+    <a class="btn green" id="open" href="#" hidden>OPEN IN POWERHAVEN</a>
+    <a class="btn" id="play" href="#">Get it on Google Play</a>
+    <a class="btn blue" id="ios" href="#">Download on the App Store</a>
+  </div>
+  <p class="small">Powerhaven: quick rifts, epic loot and a haven to build. Free on Android and iOS, no ads. <a href="/powerhaven/">About Powerhaven</a></p>
+</main>
+<script src="data.js"></script>
+<script src="buildcode.js"></script>
+<script>
+  (function () {
+    var data = window.PH_BUILD_DATA, B = window.PHBuild;
+    var q = new URLSearchParams(location.search);
+    var raw = q.get('c') || q.get('build') || '';
+    var campaign = 'card_build';
+    var play = 'https://play.google.com/store/apps/details?id=bartmamzer.powerhaven.game&referrer=' +
+      encodeURIComponent('utm_source=powerhaven&utm_medium=share&utm_campaign=' + campaign);
+    var ios = 'https://apps.apple.com/app/id6820693104?pt=117938829&ct=' + encodeURIComponent(campaign) + '&mt=8';
+    document.getElementById('play').href = play;
+    document.getElementById('ios').href = ios;
+    var ua = navigator.userAgent || '';
+    var android = /Android/i.test(ua), apple = /iPhone|iPad|iPod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    if (android) document.getElementById('ios').hidden = true;
+    if (apple) document.getElementById('play').hidden = true;
+
+    function el(tag, cls, text, parent) {
+      var e = document.createElement(tag);
+      if (cls) e.className = cls;
+      if (text != null) e.textContent = text;
+      if (parent) parent.appendChild(e);
+      return e;
+    }
+    function img(id, parent) { var i = el('img', null, null, parent); i.src = 'i/' + id + '.webp'; i.alt = ''; i.loading = 'lazy'; return i; }
+    function clusterColor(c) { return data.clusters[c] || '#ff9f3a'; }
+    function unique(id) { return data.uniques.filter(function (u) { return u.id === id; })[0]; }
+
+    var r = B.parse(data, raw);
+    if (!r.build) {
+      var msg = { empty: 'No build code here. Ask your friend for the link again.', typo: 'This build code has a typo. Check each character, or ask for the link again.',
+                  newer: 'This build comes from a newer Powerhaven. Update the game to see it.', unknown: 'This build uses something new. Update the game to see it.' }[r.error]
+                || 'This doesn\'t look like a Powerhaven build code.';
+      var err = document.getElementById('error');
+      err.textContent = msg;
+      err.hidden = false;
+      return;
+    }
+    var b = r.build, hero = data.heroes.filter(function (h) { return h.id === b.hero; })[0];
+    var code = raw.trim().toUpperCase();
+    var d = B.digits(code);
+    if (d) { var p = d; while (p.length % 4) p = '0' + p; code = 'PH-' + p.match(/.{4}/g).join('-'); }
+    var nm = B.name(data, b);
+    document.title = nm[0] + ' ' + nm[1] + ' - Powerhaven build';
+    document.getElementById('name').textContent = nm[0] + ' ' + nm[1];
+    document.getElementById('kicker').textContent = hero.name.toUpperCase() + ' BUILD';
+    document.getElementById('portrait').style.background = hero.color;
+    document.getElementById('portraitImg').src = 'i/hero_' + hero.id + '.webp';
+    document.getElementById('code').textContent = code;
+    document.getElementById('build').hidden = false;
+    document.getElementById('copy').onclick = function () {
+      var done = function () { document.getElementById('copied').textContent = 'Copied. Paste it in the game: SKILLS, then PASTE BUILD.'; };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(code).then(done, done); else done();
+    };
+
+    var slots = ['BASIC', 'MOVE', 'SKILL', 'SKILL', 'SKILL'];
+    var skills = document.getElementById('skills');
+    for (var slot = 0; slot < 5; slot++) {
+      var card = el('div', 'card' + (slot === 0 ? ' basic' : ''), null, skills);
+      var id = b.bar[slot], s = id && data.skills[id];
+      var ring = el('div', 'ring', null, card);
+      el('div', 'slot', slots[slot], card);
+      if (!s) { el('div', 'sname', 'Empty', card); ring.style.background = '#241866'; continue; }
+      ring.style.background = clusterColor(s.cluster);
+      img(s.icon, ring);
+      el('div', 'sname', s.name, card);
+      for (var row = 0; row < 2; row++) {
+        var pick = b.picks[slot][row], node = pick && s.rows[row].filter(function (n) { return n.id === pick; })[0];
+        el('div', 'pick' + (node ? '' : ' none'), node ? node.name : 'Row ' + (row + 1) + ': no pick', card);
+      }
+      var cr = B.crown(data, b, slot);
+      el('div', 'crown' + (cr ? '' : ' none'), cr ? cr.name : 'No crown', card);
+      if (s.unlock > 1) el('div', 'lv', 'Unlocks at level ' + s.unlock, card);
+    }
+
+    var extras = document.getElementById('extras');
+    var vow = b.vow && hero.vows.filter(function (v) { return v.id === b.vow; })[0];
+    var vi = el('div', 'card item', null, extras);
+    var vt = el('div', 'tile round', null, vi);
+    var vx = el('div', null, null, vi);
+    if (vow) {
+      vt.style.background = clusterColor(vow.cluster);
+      img(vow.id, vt);
+      el('b', null, vow.name, vx);
+      el('small', null, vow.desc, vx);
+      el('small', 'price', 'Price: ' + vow.price, vx);
+      el('small', null, 'Vows open at level ' + data.vowLevel, vx);
+    } else {
+      vt.style.background = '#241866';
+      el('b', null, 'No vow', vx);
+      el('small', null, 'Vows open at level ' + data.vowLevel + ': one rule for the whole kit, with a price.', vx);
+    }
+    b.uniques.forEach(function (id) {
+      var u = unique(id);
+      if (!u) return;
+      var ui = el('div', 'card item', null, extras);
+      img('unique_' + u.id, el('div', 'tile', null, ui));
+      var ux = el('div', null, null, ui);
+      el('b', null, u.name, ux);
+      el('small', null, 'Unique ' + u.base, ux);
+      el('small', null, u.perk, ux);
+    });
+
+    // Android with the game installed: Chrome opens it from here (else the store)
+    if (android) {
+      var open = document.getElementById('open');
+      open.href = 'intent://bartmamzer.com/powerhaven/build/?c=' + encodeURIComponent(code) +
+        '#Intent;scheme=https;package=bartmamzer.powerhaven.game;S.browser_fallback_url=' + encodeURIComponent(play) + ';end';
+      open.hidden = false;
+    }
+  })();
+</script>
+</body>
+</html>
