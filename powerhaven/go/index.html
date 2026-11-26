@@ -8,7 +8,8 @@
   <meta name="robots" content="noindex" />
   <!-- The show-off cards' links land here (docs/social-currency.md 5.2): ?c=<card> is the campaign tag (Play's utm_campaign,
        the App Store's ct), ?g=<day>&t=<tier>&n=<name> a Gauntlet challenge (the name checked against the game's name words in
-       ../build/data.js). Phones go on to their store; nothing about the player is
+       ../build/data.js), ?c=blueprint&n=<name>#<code> a haven blueprint (the layout after the #, which never reaches the server;
+       an installed game opens the link itself). Phones go on to their store; nothing about the player is
        in the link. -->
   <style>
     :root { --bg: #24166a; --panel: #3b2aa0; --text: #ffffff; --muted: #c8bff5; --yellow: #ffcf2b; --edge: #c27c00; }
@@ -50,6 +51,15 @@
     // a Gauntlet challenge: everyone plays the same run each day
     var day = parseInt(q.get('g') || '', 10), tier = parseInt(q.get('t') || '', 10);
     var challenge = day > 0 && tier > 0 && tier <= 1000;
+    // a haven blueprint: the game opens these links itself; without it, say what it is before the store
+    var blueprint = card === 'blueprint' && location.hash.length > 8;
+    if (blueprint) {
+      var bwho = 'A friend', bname = q.get('n') || '', bwords = (window.PH_BUILD_DATA || {}).nameWords, bm = /^([A-Z][a-z]+)([A-Z][a-z]+)(\d{2})$/.exec(bname);
+      if (bm && bwords && bwords.adjectives.indexOf(bm[1]) >= 0 && bwords.nouns.indexOf(bm[2]) >= 0) bwho = bname;
+      document.getElementById('challenge').style.display = 'block';
+      document.getElementById('challengeTier').textContent = bwho === 'A friend' ? 'A haven blueprint' : bwho + '\'s haven';
+      document.getElementById('challengeText').textContent = bwho + ' shared their haven with you. Get Powerhaven, then tap the link again to walk through it and copy it into your own haven.';
+    }
     if (challenge) {
       // the challenger's generated name, shown only when the game could have made it (two of its words, two digits)
       var who = 'A friend', name = q.get('n') || '', words = (window.PH_BUILD_DATA || {}).nameWords, m = /^([A-Z][a-z]+)([A-Z][a-z]+)(\d{2})$/.exec(name);
@@ -64,7 +74,7 @@
     if (apple) document.getElementById('play').style.display = 'none';
     // phones go straight on to their store (after a moment when there is a challenge to read)
     var go = android ? play : apple ? ios : null;
-    if (go) setTimeout(function () { location.href = go; }, challenge ? 2500 : 300);
+    if (go) setTimeout(function () { location.href = go; }, challenge || blueprint ? 3500 : 300);
   })();
 </script>
 </body>
